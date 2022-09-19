@@ -1,0 +1,83 @@
+@import '../../styles/variables.scss';
+
+.header {
+  padding: 25px 0;
+  background: $main-color;
+  color: #fff;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo {
+      width: 10%;
+      font-size: 30px;
+    }
+
+    .menu_wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 90%;
+
+      .service_menu {
+        display: flex;
+
+        li {
+          padding: 0 10px;
+        }
+      }
+
+      .etc_menu {
+        display: flex;
+
+        ul {
+          display: flex;
+          align-items: center;
+
+          &.contact_menu {
+            &::after {
+              content: '';
+              display: inline-block;
+              width: 1px;
+              height: 14px;
+              margin: 0 10px;
+              background: #fff;
+            }
+          }
+
+          &.register_menu {
+            margin-right: 30px
+          }
+
+          li {
+            padding: 0 5px;
+            font-size: 13px;
+          }
+        }
+
+        .cart {
+          margin-right: 15px;
+          font-size: 20px;
+          color: #fff;
+
+          i {
+            vertical-align: middle;
+          }
+        }
+
+        .all_menu_btn {
+          background: none;
+          border: none;
+          font-size: 20px;
+          color: #fff;
+
+          i {
+            vertical-align: bottom;
+          }
+        }
+      }
+    }
+  }
+}
