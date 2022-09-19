@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+## 1. 팀 소개
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<aside>
+👉 ****jeong6-jjeom****
 
-## Available Scripts
+</aside>
 
-In the project directory, you can run:
+### 팀원
 
-### `npm start`
+<aside>
+👉 백엔드 - 추재호, 정우진
+프론트 - 김효성, 신주안, 안수진
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+</aside>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# 2. 서비스 소개
 
-### `npm test`
+<aside>
+👉 초신선 육류를 주력으로 판매하는 쇼핑몰
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+</aside>
 
-### `npm run build`
+<aside>
+👉 1.다양한 종류의 초신선 육류를 판매합니다.
+2.원하는 날짜에 원하는 지역으로 배송 서비스를 제공합니다.
+3.사용자의 다양한 리뷰를 제공합니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+</aside>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# 3. 필수 구현 사항
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<aside>
+👉 1. 회원가입/로그인
+    1-1. 회원가입 : 아이디(이메일주소) / 비밀번호 / 이름 / 휴대폰번호
 
-### `npm run eject`
+3. 카테고리 별 상품 리스트
+4. 선택 상품에 대한 상세페이지
+5. 선택 상품 장바구니 담기
+6. 주문하기(배송지 정보-도착 희망일-주문확정)
+   6-1. 배송지 정보 입력 (포스트로 때리자)
+   6-2. 도착 희망일 입력
+   6-3. 주문확정
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+</aside>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# 4. 추가 구현 사항
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<aside>
+👉 1. 해당 상품에 대한 리뷰
+2. 쿠폰 및 적립금
+3. 비밀번호 변경
+4. 실제 결제 구현하기
+5. sns 로그인
+6. 베스트상품
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+</aside>
 
-## Learn More
+# 5. 개선 사항
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<aside>
+👉 1. 내가 본 상품 목록
+2. 상품 검색기능
+3. 상품 필터링 기능(판매순,신상품,리뷰순…)
+4. 회원가입 시 조건안내 (input placeholder)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+</aside>
