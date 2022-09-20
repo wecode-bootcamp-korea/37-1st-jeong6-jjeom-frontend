@@ -1,0 +1,136 @@
+@import '/src/styles/variables.scss';
+.detail {
+  .detail_top {
+    width: 100%;
+    height: 560;
+    background-color: $main-color;
+
+    .detail_top_data {
+      @include flex-center;
+
+      img {
+        width: 500px;
+        height: 500px;
+        margin: 0px 50px;
+      }
+
+      .detail_top_content {
+        color: white;
+
+        h2 {
+          font-size: 28px;
+          font-weight: 700;
+          margin: 15px 0;
+        }
+
+        .detail_top_gram {
+          margin-bottom: 10px;
+          color: $sub-text;
+        }
+
+        .detail_top_price {
+          font-size: 24px;
+          padding-bottom: 30px;
+          border-bottom: 1px solid white;
+        }
+
+        .detail_top_option {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-top: 30px;
+
+          .option_btn {
+            width: 250px;
+            height: 50px;
+            border: 1px solid white;
+            color: white;
+            background-color: $main-color;
+          }
+
+          .option_btn_container {
+            position: absolute;
+          }
+
+          .hide {
+            display: none;
+          }
+        }
+
+        .detail_top_count {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-top: 15px;
+
+          .count_container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 250px;
+            height: 50px;
+            border: 1px solid white;
+
+            button {
+              width: 50px;
+              height: inherit;
+              font-size: 30px;
+              color: white;
+              background-color: inherit;
+            }
+
+            & :first-child {
+              border-right: 1px solid white;
+            }
+
+            & :last-child {
+              border-left: 1px solid white;
+            }
+          }
+        }
+
+        .detail_content_btn {
+          @include flex-center;
+          justify-content: space-between;
+          margin-top: 30px;
+
+          button {
+            width: 140px;
+            height: 50px;
+            color: white;
+          }
+
+          & :first-child {
+            background-color: #4c4c4c;
+          }
+
+          & :last-child {
+            background-color: red;
+          }
+        }
+      }
+    }
+  }
+
+  .detail_tab {
+    @include flex-center;
+    margin-top: 35px;
+
+    .active {
+      color: black;
+      border-bottom: 1px solid black;
+    }
+
+    button {
+      font-size: 20px;
+      font-weight: 900;
+      background: none;
+      color: gray;
+    }
+  }
+  .detail_desc {
+    img {
+      width: 100%;
+    }
+  }
+}
