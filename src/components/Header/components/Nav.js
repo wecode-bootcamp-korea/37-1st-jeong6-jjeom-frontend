@@ -1,6 +1,6 @@
 import React from 'react';
 import './Nav.scss';
-
+import NAV_LIST from '../navData';
 const Nav = ({ isActive, showNav }) => {
   return (
     <nav className={isActive ? 'nav active' : 'nav'}>
@@ -20,38 +20,12 @@ const Nav = ({ isActive, showNav }) => {
         <section className="menu_list">
           <h4 className="menu_name">쇼핑하기</h4>
           <ul className="catogry_list">
-            <li className="pig">
-              <img src="./images/pig.png" alt="돼지" />
-              <p className="category_name">돼지</p>
-            </li>
-            <li className="cow">
-              <img src="./images/cow.png" alt="소" />
-              <p className="category_name">소</p>
-            </li>
-            <li className="chicken">
-              <img src="./images/chicken.png" alt="닭" />
-              <p className="category_name">닭</p>
-            </li>
-            <li className="fish">
-              <img src="./images/fish.png" alt="수산" />
-              <p className="category_name">수산</p>
-            </li>
-            <li className="mealkit">
-              <img src="./images/cutlery.png" alt="밀키트" />
-              <p className="category_name">밀키트</p>
-            </li>
-            <li className="milk">
-              <img src="./images/milk.png" alt="우유" />
-              <p className="category_name">우유</p>
-            </li>
-            <li className="eggs">
-              <img src="./images/eggs.png" alt="계란" />
-              <p className="category_name">계란</p>
-            </li>
-            <li className="baby_food">
-              <img src="./images/baby-food.png" alt="이유식" />
-              <p className="category_name">이유식</p>
-            </li>
+            {NAV_LIST.map(data => (
+              <li key={data.id}>
+                <img src={data.image} alt={data.catogory} />
+                <p className="category_name">{data.catogory}</p>
+              </li>
+            ))}
           </ul>
         </section>
         <section className="menu_link">
