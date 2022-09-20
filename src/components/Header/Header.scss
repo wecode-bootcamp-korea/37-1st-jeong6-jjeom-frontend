@@ -1,7 +1,7 @@
 @import '../../styles/variables.scss';
 
 .header {
-  padding: 25px 0;
+  padding: 20px 0;
   background: $main-color;
   color: #fff;
 
@@ -11,15 +11,18 @@
     align-items: center;
 
     .logo {
-      width: 10%;
-      font-size: 30px;
+      width: 150px;
+
+      img {
+        width: 100%;
+      }
     }
 
     .menu_wrap {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 90%;
+      width: calc(100% - 150px);
 
       .service_menu {
         display: flex;
@@ -48,7 +51,7 @@
           }
 
           &.register_menu {
-            margin-right: 30px
+            margin-right: 25px
           }
 
           li {

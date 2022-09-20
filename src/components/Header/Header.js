@@ -5,7 +5,9 @@ const Header = () => {
   return (
     <header className="header">
       <div className="container">
-        <h1 className="logo">정육쩜</h1>
+        <h1 className="logo">
+          <img src="./images/logo_w.png" alt="정육쩜 로고" />
+        </h1>
         <div className="menu_wrap">
           <ul className="service_menu">
             <li>쇼핑하기</li>
