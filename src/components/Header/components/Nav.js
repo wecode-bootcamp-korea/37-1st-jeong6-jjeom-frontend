@@ -61,11 +61,11 @@ const Nav = ({ isActive, showNav }) => {
           <p>고객센터</p>
         </section>
         <section className="menu_member">
-          <p className="mypage">
+          <p className="mypage hide">
             <i className="fa-regular fa-user" />
             마이페이지
           </p>
-          <p className="logout">
+          <p className="logout hide">
             <i className="fa-solid fa-arrow-right-from-bracket" />
             로그아웃
           </p>
