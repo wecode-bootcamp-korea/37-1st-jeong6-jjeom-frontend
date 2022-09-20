@@ -1,10 +1,10 @@
 import React from 'react';
 import './Nav.scss';
 
-const Nav = () => {
+const Nav = ({ isActive, showNav }) => {
   return (
-    <nav className="nav">
-      <div className="dim" />
+    <nav className={isActive ? 'nav active' : 'nav'}>
+      <div className="dim" onClick={showNav} />
       <div className="nav_box">
         <section className="menu_top">
           <h3 className="menu_name">메뉴</h3>
@@ -12,8 +12,8 @@ const Nav = () => {
             <li className="cart">
               <i className="fa-solid fa-cart-shopping" />
             </li>
-            <li className="close">
-              <i class="fa-solid fa-xmark" />
+            <li className="close" onClick={showNav}>
+              <i className="fa-solid fa-xmark" />
             </li>
           </ul>
         </section>

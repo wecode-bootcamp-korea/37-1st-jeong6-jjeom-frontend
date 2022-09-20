@@ -1,8 +1,14 @@
-import React from 'react';
+import { React, useState } from 'react';
 import Nav from './components/Nav';
 import './Header.scss';
 
 const Header = () => {
+  const [isActive, setIsActive] = useState(false);
+
+  const showNav = () => {
+    setIsActive(!isActive);
+  };
+
   return (
     <>
       <header className="header">
@@ -30,14 +36,14 @@ const Header = () => {
               <p className="cart">
                 <i className="fa-solid fa-cart-shopping" />
               </p>
-              <button className="all_menu_btn">
+              <button className="all_menu_btn" onClick={showNav}>
                 <i className="fa-solid fa-bars" />
               </button>
             </div>
           </div>
         </div>
       </header>
-      <Nav />
+      <Nav isActive={isActive} showNav={showNav} />
     </>
   );
 };
