@@ -1,5 +1,13 @@
 @import '/src/styles/variables.scss';
-
+.colored1 {
+  opacity: 0.2;
+}
+.colored2 {
+  color: black;
+}
+.inputInfo {
+  font-weight: bold;
+}
 .infoWrap {
   @include flex-center;
   flex-direction: column;

@@ -1,10 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
-import SuccessModal from './SuccessModal';
 import ModalPortal from '../../Portal';
 import CheckInfoModal from './CheckInfoModal';
-import CheckInfoPwModal from './CheckInfoPwModal';
-import { useNavigate } from 'react-router-dom';
+import './SignupData2.scss';
 
 const SignupData2 = ({ setTransPage }) => {
   const [suceessModal, setSuccessModal] = useState(true);
@@ -56,15 +54,15 @@ const SignupData2 = ({ setTransPage }) => {
     }
   };
   return (
-    <>
+    <div>
       <div className="registerWrap">
         <div className="registerHeader">회원가입</div>
         <div className="registerIcon">
-          <i className="fa-solid fa-file-circle-check" />
+          <i className="fa-solid fa-file-circle-check colored1" />
           <span>01.약관동의</span>
           <i className="fa-solid fa-chevron-right" />
-          <i className="fa-regular fa-pen-to-square" />
-          <span>02.정보입력</span>
+          <i className="fa-regular fa-pen-to-square colored2" />
+          <span className="inputInfo">02.정보입력</span>
         </div>
         <div className="infoWrap">
           <div className="subTextInfo">가입정보 입력</div>
@@ -127,7 +125,7 @@ const SignupData2 = ({ setTransPage }) => {
                   value={inputValues.phoneNumber}
                   onChange={handleInput}
                   className="inputText"
-                  placeholder="하이픈(-) 은 빼고 입력해주세요. ex) 010-1234-5678"
+                  placeholder="ex) 010-1234-5678"
                 />
               </div>
             </div>
@@ -147,26 +145,38 @@ const SignupData2 = ({ setTransPage }) => {
               </button>
             </div>
             <ModalPortal>
-              {suceessModal && <SuccessModal closeModal={closeModal} />}
+              {suceessModal && (
+                <CheckInfoModal
+                  title="회원가입 성공!"
+                  comment="정육쩜에 방문해 주신 여러분 환영합니다"
+                  onClick={closeModal}
+                />
+              )}
             </ModalPortal>
 
             <ModalPortal>
               {checkInfoModal && (
-                <CheckInfoModal closeCheckInfoModal={closeCheckInfoModal} />
+                <CheckInfoModal
+                  title="알람"
+                  comment="이미 가입한 회원이거나 양식에 맞지 않습니다."
+                  onClick={closeCheckInfoModal}
+                />
               )}
             </ModalPortal>
 
             <ModalPortal>
               {checkInfoPwModal && (
-                <CheckInfoPwModal
-                  closeCheckInfoPwModal={closeCheckInfoPwModal}
+                <CheckInfoModal
+                  title="알람"
+                  comment="비밀번호가 다릅니다. 다시 한번 확인해주세요"
+                  onClick={closeCheckInfoPwModal}
                 />
               )}
             </ModalPortal>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

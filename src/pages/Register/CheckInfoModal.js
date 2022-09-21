@@ -1,16 +1,16 @@
 import React from 'react';
 import './CheckInfoModal.scss';
 
-const CheckInfoModal = ({ closeCheckInfoModal }) => {
+const CheckInfoModal = ({ title, comment, onClick }) => {
   return (
     <>
-      <div onClick={closeCheckInfoModal} className="successModalBack"></div>
+      <div onClick={onClick} className="successModalBack" />
       <div className="successModal">
-        <p className="successHeader">약관 동의</p>
-        <p className="successContent">
-          이용약관과 개인정보 이용 방침에 모두 동의해주세요.
-        </p>
-        <button className="successBtn">확인</button>
+        <p className="successHeader">{title}</p>
+        <p className="successContent">{comment}</p>
+        <button onClick={onClick} className="successBtn">
+          확인
+        </button>
       </div>
     </>
   );
