@@ -93,6 +93,10 @@ const Cart = () => {
           <button className="payment_btn order">전체상품 주문하기</button>
           <button className="payment_btn shopping">쇼핑계속하기</button>
         </div>
+        <div className="no_product">
+          <p>장바구니에 담은 상품이 없습니다.</p>
+          <button className="shopping_btn">쇼핑 계속하기</button>
+        </div>
       </div>
     </div>
   );
