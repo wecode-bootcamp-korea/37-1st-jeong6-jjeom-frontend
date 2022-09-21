@@ -1,14 +1,14 @@
 @import '../../styles/variables.scss';
 
-.list_data {
+.products_list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 
-  .list_data_container {
+  .products_container {
     margin-bottom: 30px;
 
-    .list_img {
+    .products_img {
       @include flex-center;
       position: relative;
       width: 350px;
@@ -27,7 +27,7 @@
         font-size: 12px;
       }
 
-      img {
+      .prducut_img {
         width: 200px;
         height: 200px;
       }

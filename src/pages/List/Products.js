@@ -4,10 +4,10 @@ import './Products.scss';
 const Products = ({ data }) => {
   const { title, price, gram, img_url, antibiotic } = data;
   return (
-    <li className="list_data_container">
-      <div className="list_img">
-        {antibiotic && <span className="">무항생제</span>}
-        <img src={img_url} alt="상품 이미지" />
+    <li className="products_container">
+      <div className="products_img">
+        {antibiotic && <span className="antibiotic">무항생제</span>}
+        <img className="prducut_img" src={img_url} alt="상품 이미지" />
         <button>
           <i className="fa-solid fa-cart-shopping" />
         </button>

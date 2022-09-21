@@ -16,13 +16,17 @@ const List = () => {
       <section className="list_banner" />
       <div className="container">
         <section className="list_tab">
-          <ul>
+          <ul className="list_tab_container">
             {LIST_TAB.map(tab => {
-              return <li key={tab.id}>{tab.text}</li>;
+              return (
+                <li className="list_tab_button" key={tab.id}>
+                  {tab.text}
+                </li>
+              );
             })}
           </ul>
         </section>
-        <ul className="list_data">
+        <ul className="products_list">
           {products.map(data => {
             return <Products key={data.id} data={data} />;
           })}
