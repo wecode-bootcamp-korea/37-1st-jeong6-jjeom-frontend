@@ -8,7 +8,7 @@ const ListData = ({ data }) => {
         {antibiotic ? <span>무항생제</span> : null}
         <img src={img_url} alt="이미지" />
         <button>
-          <i class="fa-solid fa-cart-shopping" />
+          <i className="fa-solid fa-cart-shopping" />
         </button>
       </div>
       <h6>{title}</h6>
