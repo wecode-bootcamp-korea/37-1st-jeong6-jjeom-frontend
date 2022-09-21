@@ -1,0 +1,62 @@
+@import '/src/styles/variables.scss';
+
+.registerWrap {
+  @include flex-center;
+  flex-direction: column;
+  margin-top: 100px;
+  .registerHeader {
+    font-weight: bold;
+    font-size: 32px;
+    margin-bottom: 70px;
+  }
+  .registerIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    width: 1180px;
+    height: 94px;
+    background-color: #f7f7f7;
+  }
+  i {
+    font-size: 50px;
+  }
+  .serviceAgree {
+    display: flex;
+    flex-direction: column;
+    width: 753px;
+    height: 100%;
+    .checkbox {
+      margin-right: 10px;
+      margin-bottom: 30px;
+      margin-top: 30px;
+    }
+    .registerAgreeContent {
+      width: 758px;
+      border: 1px solid #e1dedf;
+      .AgreeContent {
+        width: 100%;
+        padding: 10px;
+      }
+    }
+  }
+  .btnWrap {
+    margin-top: 20px;
+    height: 50px;
+    width: 753px;
+    .backBtn {
+      width: 50%;
+      height: 100%;
+      background-color: #888888;
+      color: white;
+      font-weight: bold;
+    }
+    .agreeBtn {
+      width: 50%;
+      height: 100%;
+      background-color: black;
+      color: white;
+      font-weight: bold;
+    }
+  }
+}

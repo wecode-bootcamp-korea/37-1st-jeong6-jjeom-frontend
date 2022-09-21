@@ -6,6 +6,7 @@ import List from './pages/List/List';
 import Detail from './pages/Detail/Detail';
 import Cart from './pages/Cart/Cart';
 import Payment from './pages/Payment/Payment';
+import Register from './pages/Register/Register';
 
 const Router = () => {
   return (
@@ -17,6 +18,7 @@ const Router = () => {
         <Route path="/detail" element={<Detail />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/payment" element={<Payment />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   );
