@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import Products from './Products';
 import './List.scss';
-import ListData from './ListData';
 
 const List = () => {
-  const [listData, setListData] = useState([]);
+  const [products, setProducrts] = useState([]);
 
   useEffect(() => {
     fetch('/data/list-data.json')
       .then(res => res.json())
-      .then(data => setListData(data));
+      .then(data => setProducrts(data));
   }, []);
 
   return (
@@ -23,8 +23,8 @@ const List = () => {
           </ul>
         </section>
         <ul className="list_data">
-          {listData.map(data => {
-            return <ListData key={data.id} data={data} />;
+          {products.map(data => {
+            return <Products key={data.id} data={data} />;
           })}
         </ul>
       </div>

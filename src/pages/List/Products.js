@@ -1,12 +1,12 @@
 import React from 'react';
-
-const ListData = ({ data }) => {
+import './Products.scss';
+const Products = ({ data }) => {
   const { title, price, gram, img_url, antibiotic } = data;
   return (
     <li className="list_data_container">
       <div className="list_img">
-        {antibiotic ? <span>무항생제</span> : null}
-        <img src={img_url} alt="이미지" />
+        {antibiotic && <span>무항생제</span>}
+        <img src={img_url} alt="상품 이미지" />
         <button>
           <i className="fa-solid fa-cart-shopping" />
         </button>
@@ -19,4 +19,4 @@ const ListData = ({ data }) => {
   );
 };
 
-export default ListData;
+export default Products;
