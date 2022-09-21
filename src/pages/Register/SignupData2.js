@@ -2,14 +2,25 @@ import React from 'react';
 import { useState } from 'react';
 import SuccessModal from './SuccessModal';
 import ModalPortal from '../../Portal';
+import CheckInfoModal from './CheckInfoModal';
+import CheckInfoPwModal from './CheckInfoPwModal';
+import { useNavigate } from 'react-router-dom';
 
-const SignupData2 = () => {
+const SignupData2 = ({ setTransPage }) => {
   const [suceessModal, setSuccessModal] = useState(true);
 
   const closeModal = () => {
     setSuccessModal(false);
   };
 
+  const [checkInfoModal, setCheckInfoModal] = useState(false);
+  const closeCheckInfoModal = () => {
+    setCheckInfoModal(false);
+  };
+  const [checkInfoPwModal, setCheckInfoPwModal] = useState(false);
+  const closeCheckInfoPwModal = () => {
+    setCheckInfoPwModal(false);
+  };
   const [inputValues, setInputValues] = useState({
     email: '',
     password: '',
@@ -37,11 +48,11 @@ const SignupData2 = () => {
         .then(Response => Response.json())
         .then(result =>
           result.message === 'success'
-            ? alert('gygy')
-            : alert('이미 있는 계정이거나, 회원가입 양식이 틀렸습니다.')
+            ? setSuccessModal(true)
+            : setCheckInfoModal(true)
         );
     } else {
-      alert('비밀번호를 확인해주세요');
+      setCheckInfoPwModal(true);
     }
   };
   return (
@@ -121,13 +132,36 @@ const SignupData2 = () => {
               </div>
             </div>
             <div className="btnWrap">
-              <button className="backBtn">이전으로</button>
+              <button
+                onClick={() => {
+                  {
+                    setTransPage(false);
+                  }
+                }}
+                className="backBtn"
+              >
+                이전으로
+              </button>
               <button onClick={joinBtn} className="agreeBtn">
                 가입하기
               </button>
             </div>
             <ModalPortal>
               {suceessModal && <SuccessModal closeModal={closeModal} />}
+            </ModalPortal>
+
+            <ModalPortal>
+              {checkInfoModal && (
+                <CheckInfoModal closeCheckInfoModal={closeCheckInfoModal} />
+              )}
+            </ModalPortal>
+
+            <ModalPortal>
+              {checkInfoPwModal && (
+                <CheckInfoPwModal
+                  closeCheckInfoPwModal={closeCheckInfoPwModal}
+                />
+              )}
             </ModalPortal>
           </div>
         </div>

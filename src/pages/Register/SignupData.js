@@ -2,6 +2,10 @@ import React from 'react';
 import { useState } from 'react';
 import './SignupData.scss';
 import SignupData2 from './SignupData2';
+import CheckModal from './CheckModal';
+import ModalPortal from '../../Portal';
+import CheckInfoModal from './CheckInfoModal';
+import { useNavigate } from 'react-router-dom';
 const SignupData = ({ setTransPage }) => {
   const [checkBoxAcitve, setCheckBoxActive] = useState(false);
   const [checkBoxAcitve2, setCheckBoxActive2] = useState(false);
@@ -11,6 +15,12 @@ const SignupData = ({ setTransPage }) => {
   const isCheckBoxClicked2 = () => {
     setCheckBoxActive2(!checkBoxAcitve2);
   };
+
+  const [modal, setModal] = useState(false);
+  const modalHandler = () => {
+    setModal(false);
+  };
+  const navigate = useNavigate();
 
   return (
     <>
@@ -57,19 +67,29 @@ const SignupData = ({ setTransPage }) => {
           </div>
         </div>
         <div className="btnWrap">
-          <button className="backBtn">이전으로</button>
           <button
             onClick={() => {
-              if (checkBoxAcitve === true && checkBoxAcitve2 === true) {
-                return setTransPage(true);
-              } else {
-                alert('확인죰');
+              navigate(-1);
+            }}
+            className="backBtn"
+          >
+            이전으로
+          </button>
+          <button
+            onClick={() => {
+              {
+                checkBoxAcitve === true && checkBoxAcitve2 === true
+                  ? setTransPage(true)
+                  : setModal(true);
               }
             }}
             className="agreeBtn"
           >
             동의하기
           </button>
+          <ModalPortal>
+            {modal && <CheckModal modalHandler={modalHandler} />}
+          </ModalPortal>
         </div>
       </div>
     </>

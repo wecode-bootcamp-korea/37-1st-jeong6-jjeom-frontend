@@ -12,9 +12,9 @@ const Register = () => {
   return (
     <>
       {transPage ? (
-        <SignupData2></SignupData2>
+        <SignupData2 setTransPage={setTransPage} />
       ) : (
-        <SignupData setTransPage={setTransPage}></SignupData>
+        <SignupData setTransPage={setTransPage} />
       )}
     </>
   );
