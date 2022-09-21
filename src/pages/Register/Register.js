@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+
 import './Register.scss';
 import ModalPortal from '../../Portal';
 import RegisterInfo from './RegisterInfo';
@@ -10,10 +10,6 @@ const Register = () => {
 
   const closeModal = () => {
     setSuccessModal(false);
-  };
-  const navigate = useNavigate();
-  const goToLogin = () => {
-    navigate('/login');
   };
 
   const [checkBoxAcitve, setCheckBoxActive] = useState(false);
@@ -35,43 +31,43 @@ const Register = () => {
     const { name, value } = event.target;
     setInputValues({ ...inputValues, [name]: value });
   };
-  console.log(inputValues);
-  // const joinBtn = () => {
-  // if (
-  //   checkBoxAcitve &&
-  //   checkBoxAcitve2 &&
-  //   inputValues.password === inputValues.pwCheck
-  // ) {
-  // fetch('http://10.58.2.161:3000/users/signup', {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json;charset=utf-8' },
-  //   body: JSON.stringify({
-  //     email: inputValues.email,
-  //     password: inputValues.password,
-  //     name: inputValues.name,
-  //     phoneNumber: inputValues.phoneNumber,
-  //   }),
-  // })
-  // .then(Response => Response.json())
-  // .then(result =>
-  //   result.message === 'success'
-  //     ? alert('이미 있는 계정이거나, 회원가입 양식이 틀렸습니다.')
-  //     : setSuccessModal(true)
-  // );
-  //   } else {
-  //     alert('이용약관과 개인정보 이용 방침에 모두 동의해주세요.');
-  //   }
-  // };
+
+  const joinBtn = () => {
+    if (
+      checkBoxAcitve &&
+      checkBoxAcitve2 &&
+      inputValues.password === inputValues.pwCheck
+    ) {
+      fetch('http://10.58.2.161:3000/users/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json;charset=utf-8' },
+        body: JSON.stringify({
+          email: inputValues.email,
+          password: inputValues.password,
+          name: inputValues.name,
+          phoneNumber: inputValues.phoneNumber,
+        }),
+      })
+        .then(Response => Response.json())
+        .then(result =>
+          result.message === 'success'
+            ? alert('이미 있는 계정이거나, 회원가입 양식이 틀렸습니다.')
+            : setSuccessModal(true)
+        );
+    } else {
+      alert('이용약관과 개인정보 이용 방침에 모두 동의해주세요.');
+    }
+  };
 
   return (
     <>
       <div className="registerWrap">
         <div className="registerHeader">회원가입</div>
         <div className="registerIcon">
-          <i className="fa-solid fa-file-circle-check"></i>
+          <i className="fa-solid fa-file-circle-check" />
           <span>01.약관동의</span>
-          <i className="fa-solid fa-chevron-right"></i>
-          <i className="fa-regular fa-pen-to-square"></i>
+          <i className="fa-solid fa-chevron-right" />
+          <i className="fa-regular fa-pen-to-square" />
           <span>02.정보입력</span>
         </div>
         <div className="serviceAgree">
@@ -87,7 +83,7 @@ const Register = () => {
             <iframe
               className="AgreeContent"
               src="https://yookgak.com/website/term-20191015.html"
-            ></iframe>
+            />
           </div>
         </div>
         <div className="serviceAgree">
@@ -104,10 +100,10 @@ const Register = () => {
             <iframe
               className="AgreeContent"
               src="https://yookgak.com/assets/private-20220502.html"
-            ></iframe>
+            />
           </div>
         </div>
-        <div className="personalInfo"></div>
+
         <div className="infoWrap">
           <div className="subTextInfo">가입정보 입력</div>
           <div className="userInfoWrap">
@@ -178,7 +174,7 @@ const Register = () => {
         <div className="btnWrap">
           <button className="backBtn">이전으로</button>
           <button
-            // onClick={joinBtn}
+            onClick={joinBtn}
             // onClick={() => {
             //   if (checkBoxAcitve === true && checkBoxAcitve2 === true) {
             //     return joinBtn;
