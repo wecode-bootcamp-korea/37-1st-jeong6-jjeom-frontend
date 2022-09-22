@@ -5,11 +5,14 @@ import { useSearchParams } from 'react-router-dom';
 
 const List = () => {
   const [products, setProducrts] = useState([]);
+  const [tabSwtich, setTabSwitch] = useState();
   const [searchParams, setSearchParams] = useSearchParams();
   const name = searchParams.get('name');
+
   const handleTab = pageName => {
     searchParams.set('name', pageName);
     setSearchParams(searchParams);
+    setTabSwitch(pageName);
   };
 
   useEffect(() => {
@@ -27,7 +30,9 @@ const List = () => {
             {LIST_TAB.map(tab => {
               return (
                 <li
-                  className="list_tab_button"
+                  className={`list_tab_button ${
+                    tab.name === tabSwtich && 'active'
+                  }`}
                   key={tab.id}
                   onClick={() => {
                     handleTab(tab.name);

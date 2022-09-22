@@ -30,6 +30,10 @@
             background-color: $main-color;
           }
         }
+        .active {
+          color: white;
+          background-color: $main-color;
+        }
       }
     }
   }
