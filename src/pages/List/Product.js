@@ -1,5 +1,5 @@
 import React from 'react';
-import './Products.scss';
+import './Product.scss';
 
 const Products = ({ data }) => {
   const { title, price, gram, img_url, antibiotic } = data;

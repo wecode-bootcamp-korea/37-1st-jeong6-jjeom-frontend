@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Products from './Products';
+import Product from './Product';
 import './List.scss';
 
 const List = () => {
@@ -28,7 +28,7 @@ const List = () => {
         </section>
         <ul className="products_list">
           {products.map(data => {
-            return <Products key={data.id} data={data} />;
+            return <Product key={data.id} data={data} />;
           })}
         </ul>
       </div>
