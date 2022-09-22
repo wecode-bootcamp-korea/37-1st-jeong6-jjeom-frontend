@@ -7,9 +7,10 @@ const Login = () => {
   const goToSignUp = () => {
     navigate('/signup');
   };
+
   return (
     <>
-      <div className="loginWrap">
+      <div className="loginWrap start end">
         <div className="loginWord">로그인</div>
         <div className="subTextLogin"> 이메일 로그인</div>
         <form className="inputWrap">
