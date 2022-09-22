@@ -1,0 +1,119 @@
+@import '/src/styles/variables.scss';
+.confirm {
+  .confirm_title {
+    padding: 30px 0;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  .confirm_way {
+    .confirm_form {
+      display: flex;
+      flex-direction: column;
+      padding: 0 10px;
+      border: 1px solid rgba($color: #000000, $alpha: 0.1);
+
+      .confirm_radio {
+        @include flex-center;
+        justify-content: flex-start;
+        width: 100%;
+        height: 65px;
+        font-weight: 600;
+        border-top: 1px solid rgba($color: #000000, $alpha: 0.1);
+
+        &:first-child {
+          border-top: none;
+        }
+
+        .radio_btn {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+  .confirm_order {
+    .confirm_order_title {
+      font-weight: 600;
+      font-size: 24px;
+      padding: 30px 0;
+    }
+
+    .confirm_order_container {
+      padding: 50px;
+      border: 1px solid rgba($color: #000000, $alpha: 0.1);
+
+      .confirm_order_list {
+        @include flex-center;
+
+        .confirm_order_product {
+          @include flex-center;
+          justify-content: space-between;
+          width: 100%;
+          padding-bottom: 10px;
+          border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
+
+          .product_title {
+            display: flex;
+            align-items: flex-end;
+            width: 60%;
+
+            .product_option {
+              margin-left: 10px;
+              font-size: 12px;
+              color: rgba($color: #000000, $alpha: 0.2);
+            }
+          }
+        }
+      }
+    }
+  }
+  .product_summary {
+    @include flex-center;
+    justify-content: space-around;
+    margin-top: 50px;
+    padding: 30px 10px;
+    background-color: #f7f7f7;
+
+    .fa-circle-plus {
+      color: rgba($color: #000000, $alpha: 0.1);
+      font-size: 30px;
+    }
+
+    .fa-circle-pause {
+      transform: rotate(90deg);
+      font-size: 30px;
+    }
+
+    .summary_text {
+      display: block;
+
+      .summary_title {
+        @include flex-center;
+        justify-content: flex-start;
+        font-size: 12px;
+        font-weight: 700;
+        color: rgba($color: #000000, $alpha: 0.4);
+      }
+
+      .summary_price {
+        display: flex;
+        font-size: 25px;
+        font-weight: 600;
+        align-items: flex-end;
+
+        & :last-child {
+          font-size: 12px;
+          font-weight: 400;
+          margin-top: 10px;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+  .confirm_delivery_container {
+    @include flex-center;
+    padding: 20px;
+    font-weight: 600;
+    border: 1px solid rgba($color: #000000, $alpha: 0.1);
+    color: #11d6e0;
+  }
+}

@@ -1,0 +1,55 @@
+@import '/src/styles/variables.scss';
+
+.completion {
+  @include flex-center;
+  flex-direction: column;
+  width: 350px;
+  .fa-circle-check {
+    font-size: 50px;
+    color: greenyellow;
+    margin-bottom: 10px;
+  }
+  .completion_title {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .completion_sub {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .completion_delivery_date {
+    margin: 20px 0;
+    font-size: 20px;
+
+    font-weight: 400;
+    color: #11d6e0;
+  }
+  .account_container {
+    width: 100%;
+    & :last-child {
+      border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
+    }
+    .account_info {
+      @include flex-center;
+      justify-content: space-between;
+      padding: 20px 0;
+      border-top: 1px solid rgba($color: #000000, $alpha: 0.1);
+
+      .account_final_price {
+        font-weight: 600;
+        color: red;
+      }
+    }
+  }
+  .final_warning {
+    display: flex;
+    color: red;
+    font-size: 14px;
+    margin-top: 20px;
+
+    & :last-child {
+      margin-left: 10px;
+    }
+  }
+}
