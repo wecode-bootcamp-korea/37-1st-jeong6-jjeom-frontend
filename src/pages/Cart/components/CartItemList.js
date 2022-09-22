@@ -1,8 +1,18 @@
-import React from 'react';
+import { React, useState } from 'react';
 import './CartItemList.scss';
 
 const CartItemList = ({ itemInfo }) => {
   const { img, name, option, price, gram } = itemInfo;
+
+  const [quantity, setQuantity] = useState(1);
+
+  const plusQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const minusQuantity = () => {
+    setQuantity(quantity - 1);
+  };
 
   return (
     <li>
@@ -19,11 +29,11 @@ const CartItemList = ({ itemInfo }) => {
         <span className="standard">{gram} 기준</span>
       </div>
       <div className="amount_box">
-        <button className="box">
+        <button className="box" onClick={minusQuantity}>
           <i className="fa-solid fa-minus" />
         </button>
-        <div className="box">1</div>
-        <button className="box">
+        <div className="box">{quantity}</div>
+        <button className="box" onClick={plusQuantity}>
           <i className="fa-solid fa-plus" />
         </button>
       </div>
