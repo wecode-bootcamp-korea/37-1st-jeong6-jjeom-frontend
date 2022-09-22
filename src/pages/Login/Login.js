@@ -1,8 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ModalPortal from '../../Portal';
+import LoginModal from './LoginModal';
 import './Login.scss';
 
 const Login = () => {
+  const [fade, setFade] = useState('');
+  useEffect(() => {
+    setTimeout(() => {
+      setFade('end');
+    }, 500);
+
+    return () => {
+      setFade('');
+    };
+  }, []);
+  const [modal, setModal] = useState(false);
+  const [failModal, setFailModal] = useState(false);
+  const modalHandler = () => {
+    setModal(false);
+  };
+  const failModalHandler = () => {
+    setFailModal(false);
+  };
   const navigate = useNavigate();
   const goToSignUp = () => {
     navigate('/signup');
@@ -11,14 +31,14 @@ const Login = () => {
     email: '',
     password: '',
   });
-
+  console.log(inputValues);
   const handleInput = e => {
     const { name, value } = e.target;
     setInputValues({ ...inputValues, [name]: value });
   };
 
   const loginBtn = () => {
-    fetch('http://10.58.2.161:3000/users/signup', {
+    fetch('', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({
@@ -28,15 +48,13 @@ const Login = () => {
     })
       .then(response => response.json())
       .then(result =>
-        result.message === 'success'
-          ? alert('메인페이지로 이동합니다.')
-          : alert('첫 방문이신가요? 아이디를 만들어주세요.')
+        result.message === 'success' ? setModal(true) : setFailModal(true)
       );
   };
 
   return (
     <>
-      <div className="loginWrap">
+      <div className={`loginWrap start ${fade}`}>
         <div className="loginWord">로그인</div>
         <div className="subTextLogin"> 이메일 로그인</div>
         <form className="inputWrap">
@@ -66,6 +84,24 @@ const Login = () => {
             회원가입하기
           </span>
         </div>
+        <ModalPortal>
+          {modal && (
+            <LoginModal
+              title="로그인 성공!"
+              comment="환영합니다. 김효성님"
+              onClick={modalHandler}
+            />
+          )}
+        </ModalPortal>
+        <ModalPortal>
+          {failModal && (
+            <LoginModal
+              title="알림"
+              comment="아이디 또는 비밀번호를 확인해주세요."
+              onClick={failModalHandler}
+            />
+          )}
+        </ModalPortal>
       </div>
     </>
   );
