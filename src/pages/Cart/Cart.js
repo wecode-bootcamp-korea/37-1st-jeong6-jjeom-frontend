@@ -9,12 +9,20 @@ const Cart = () => {
       <div className="container">
         <div className="item_table">
           <div className="item_header">
+            <div className="check_area">
+              <input type="checkbox" id="checkAll" title="선택" />
+              <label for="checkAll" />
+            </div>
             <p className="header_title">상품정보</p>
             <p className="header_title">수량</p>
             <p className="header_title">가격</p>
           </div>
           <ul className="item_list">
             <li>
+              <div className="check_area">
+                <input type="checkbox" id="check1" title="선택" />
+                <label for="check1" />
+              </div>
               <img
                 src="https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-clean-list.png"
                 alt="sample"
@@ -35,12 +43,16 @@ const Cart = () => {
                   <i className="fa-solid fa-plus" />
                 </button>
               </div>
-              <p classNam="price">46800원</p>
+              <p className="price">46800원</p>
               <button className="delete_btn">
                 <i className="fa-solid fa-xmark" />
               </button>
             </li>
             <li>
+              <div className="check_area">
+                <input type="checkbox" id="check2" title="선택" />
+                <label for="check2" />
+              </div>
               <img
                 src="https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-clean-list.png"
                 alt="sample"
@@ -61,12 +73,13 @@ const Cart = () => {
                   <i className="fa-solid fa-plus" />
                 </button>
               </div>
-              <p classNam="price">46800원</p>
+              <p className="price">46800원</p>
               <button className="delete_btn">
                 <i className="fa-solid fa-xmark" />
               </button>
             </li>
           </ul>
+          <button className="all_delete">선택 상품 삭제</button>
         </div>
         <div className="payment_area">
           <ul className="payment_list">
@@ -91,7 +104,7 @@ const Cart = () => {
               <p className="final_price">24800원</p>
             </li>
           </ul>
-          <button className="payment_btn order">전체상품 주문하기</button>
+          <button className="payment_btn order">상품 주문하기</button>
           <button className="payment_btn shopping">쇼핑계속하기</button>
         </div>
         <ItemNone />

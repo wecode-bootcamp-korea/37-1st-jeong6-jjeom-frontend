@@ -12,10 +12,41 @@
     margin-top: 50px;
 
     .item_table {
+      position: relative;
       width: 860px;
       margin-right: 50px;
+      padding-top: 50px;
+
+      .check_area {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+
+        input {
+          display: none;
+
+          &:checked {
+            +label {
+              background: url(../../assets/images/checkbox.png) no-repeat center;
+              background-size: 20px;
+            }
+          }
+        }
+
+        label {
+          display: inline-block;
+          height: 20px;
+          padding-left: 20px;
+          background: url(../../assets/images/unchecked.png) no-repeat center;
+          background-size: 20px;
+          vertical-align: top;
+          cursor: pointer;
+        }
+      }
 
       .item_header {
+        position: relative;
         display: flex;
         justify-content: space-evenly;
         padding: 20px 0;
@@ -27,8 +58,8 @@
           font-size: 13px;
           text-align: center;
 
-          &:first-child {
-            width: 40%;
+          &:nth-of-type(1) {
+            width: 300px;
           }
         }
       }
@@ -43,7 +74,7 @@
 
           img {
             width: 109px;
-            margin-right: 50px;
+            margin: 0 20px;
           }
 
           .product_info {
@@ -55,7 +86,8 @@
 
             .name {
               margin-right: 20px;
-              line-height: 25px;
+              line-height: 22px;
+              font-size: 14px;
 
               .option {
                 display: block;
@@ -66,27 +98,34 @@
 
             .standard {
               line-height: 20px;
+              font-size: 13px;
               color: #9b9b9b;
             }
           }
 
           .amount_box {
             display: flex;
-            margin-right: 80px;
+            margin-right: 110px;
             border: 1px solid $sub-text;
 
             .box {
-              width: 40px;
-              height: 40px;
-              line-height: 40px;
+              width: 30px;
+              height: 30px;
+              line-height: 30px;
               text-align: center;
               background: #fff;
+              font-size: 14px;
 
               i {
                 vertical-align: baseline;
+                font-size: 14px;
                 color: #9b9b9b;
               }
             }
+          }
+
+          .price {
+            font-size: 18px;
           }
 
           .delete_btn {
@@ -95,25 +134,37 @@
             right: 0;
             transform: translateY(-50%);
             display: block;
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
 
             text-align: center;
             background: #fff;
             border: 1px solid $sub-text;
 
             i {
-              font-size: 24px;
+              font-size: 16px;
               line-height: 28px;
               color: #9b9b9b;
             }
           }
         }
       }
+
+      .all_delete {
+        position: absolute;
+        top: 0px;
+        left: 0;
+        border: 1px solid #c8c8c8;
+        background: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 13px;
+      }
     }
 
     .payment_area {
       padding: 20px 30px;
+      margin-top: 50px;
       border-top: 1px solid #000;
       background: $gray-color;
 
