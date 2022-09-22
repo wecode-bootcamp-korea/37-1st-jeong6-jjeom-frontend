@@ -6,33 +6,33 @@ import Info from './Info';
 import './Detail.scss';
 
 const Detail = () => {
-  const { id } = useParams;
-  const [detailData, setDetailDate] = useState();
-  const [countItem, setCountItem] = useState(1);
+  const { id } = useParams();
+  const [detailData, setDetailDate] = useState({});
+  const [quanItem, setQuanItem] = useState(1);
   const [optionSwtich, setOptionSwitch] = useState(false);
-  const [optionValue, setOptionValue] = useState('선택');
+  const [option, setOption] = useState('선택');
   const [tab, setTab] = useState('1');
 
-  // useEffect(()=>{
-  //   fetch()
-  // },[])
-
+  useEffect(() => {
+    fetch(`/data/detail${id}.json`)
+      .then(res => res.json())
+      .then(data => setDetailDate(data));
+  }, [id]);
   const handlePlusCount = () => {
-    setCountItem(countItem + 1);
+    setQuanItem(quanItem + 1);
   };
 
   const handleMinusCount = () => {
-    countItem !== 1 ? setCountItem(countItem - 1) : setCountItem(1);
+    quanItem !== 1 ? setQuanItem(quanItem - 1) : setQuanItem(1);
   };
 
-  const handlOptionValue = e => {
-    setOptionValue(e.target.value);
+  const handlOption = e => {
+    setOption(e.target.value);
     setOptionSwitch(!optionSwtich);
   };
   const handleTab = e => {
     setTab(e.target.parentElement.value);
   };
-
   return (
     <div className="detail">
       <section className="detail_top">
@@ -42,12 +42,12 @@ const Detail = () => {
             alt="상품 이미지"
           />
 
-          <section className="detail_top_content">
-            <h2>초신선 돼지 삽겹살 구이용</h2>
-
+          <div className="detail_top_content">
+            <h2 className="detail_top_title">{detailData.title}</h2>
             <p className="detail_top_gram">100g당 3,550원</p>
-
-            <p className="detail_top_price">기준가 21,300원(600g)</p>
+            <p className="detail_top_price">
+              기준가 {detailData.price}원({detailData.gram}g)
+            </p>
 
             <div className="detail_top_option">
               <span>옵션</span>
@@ -55,14 +55,17 @@ const Detail = () => {
                 <button
                   type="button"
                   className="option_btn"
-                  value={optionValue}
-                  onClick={handlOptionValue}
+                  value={option}
+                  onClick={handlOption}
                 >
-                  {optionValue}
+                  {option}
                 </button>
 
                 {optionSwtich ? (
-                  <Option handlOptionValue={handlOptionValue} />
+                  <Option
+                    handlOption={handlOption}
+                    option={detailData.option}
+                  />
                 ) : null}
               </div>
             </div>
@@ -71,7 +74,7 @@ const Detail = () => {
               <span>수량</span>
               <div className="count_container">
                 <button onClick={handleMinusCount}>−</button>
-                <span>{countItem}</span>
+                <span>{quanItem}</span>
                 <button onClick={handlePlusCount}>+</button>
               </div>
             </div>
@@ -80,7 +83,7 @@ const Detail = () => {
               <button>바로구매</button>
               <button>장바구니</button>
             </div>
-          </section>
+          </div>
         </div>
       </section>
 

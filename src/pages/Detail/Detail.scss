@@ -1,4 +1,5 @@
 @import '/src/styles/variables.scss';
+
 .detail {
   .detail_top {
     width: 100%;
@@ -7,7 +8,7 @@
 
     .detail_top_data {
       @include flex-center;
-
+      color: white;
       img {
         width: 500px;
         height: 500px;
@@ -16,11 +17,13 @@
 
       .detail_top_content {
         color: white;
+        width: 350px;
 
-        h2 {
+        .detail_top_title {
           font-size: 28px;
           font-weight: 700;
           margin: 15px 0;
+          word-break: keep-all;
         }
 
         .detail_top_gram {
@@ -41,7 +44,7 @@
           margin-top: 30px;
 
           .option_btn {
-            width: 250px;
+            width: 300px;
             height: 50px;
             border: 1px solid white;
             color: white;
@@ -67,7 +70,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            width: 250px;
+            width: 300px;
             height: 50px;
             border: 1px solid white;
 
@@ -95,7 +98,7 @@
           margin-top: 30px;
 
           button {
-            width: 140px;
+            width: 170px;
             height: 50px;
             color: white;
           }
