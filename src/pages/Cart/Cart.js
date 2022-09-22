@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import './Cart.scss';
+import CartItemList from './components/CartItemList';
 import ItemNone from './components/ItemNone';
 
 const Cart = () => {
@@ -26,34 +27,8 @@ const Cart = () => {
             <p className="header_title">가격</p>
           </div>
           <ul className="item_list">
-            {cartItem.map(({ id, img, name, option, price, gram }) => (
-              <li key={id}>
-                <div className="check_area">
-                  <input type="checkbox" id="check1" title="선택" />
-                  <label htmlFor="check1" />
-                </div>
-                <img src={img} alt="sample" />
-                <div className="product_info">
-                  <p className="name">
-                    {name}
-                    <span className="option">{option}</span>
-                  </p>
-                  <span className="standard">{gram} 기준</span>
-                </div>
-                <div className="amount_box">
-                  <button className="box">
-                    <i className="fa-solid fa-minus" />
-                  </button>
-                  <div className="box">1</div>
-                  <button className="box">
-                    <i className="fa-solid fa-plus" />
-                  </button>
-                </div>
-                <p className="price">{price}원</p>
-                <button className="delete_btn">
-                  <i className="fa-solid fa-xmark" />
-                </button>
-              </li>
+            {cartItem.map(data => (
+              <CartItemList key={data.id} itemInfo={data} />
             ))}
           </ul>
           <button className="all_delete">선택 상품 삭제</button>
