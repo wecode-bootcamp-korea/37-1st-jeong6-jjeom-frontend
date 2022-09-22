@@ -4,14 +4,17 @@
   @include flex-center;
   flex-direction: column;
   margin-top: 200px;
+
   .signUpWord {
     font-size: 25px;
     font-weight: bold;
   }
+
   .subTextSignUp {
     margin-top: 70px;
     font-weight: bold;
   }
+
   .signUpBtn {
     width: 320px;
     height: 50px;
@@ -21,14 +24,14 @@
     border: 1px solid red;
     border-radius: 5px;
   }
+
   .gotoLogin {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex-center;
     margin-top: 100px;
     width: 320px;
     height: 50px;
     cursor: pointer;
+
     .goToLoginBtn {
       margin-left: 10px;
       color: red;
