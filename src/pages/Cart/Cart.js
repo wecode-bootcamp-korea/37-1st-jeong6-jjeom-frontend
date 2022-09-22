@@ -18,6 +18,18 @@ const Cart = () => {
     });
   };
 
+  const sumItemPrice = () => {
+    let totalPrice = 0;
+    for (let i = 0; i < cartItem.length; i++) {
+      totalPrice += cartItem[i].price * cartItem[i].amount;
+    }
+    return totalPrice;
+  };
+
+  const sumAllPrice = totalPrice => {
+    return sumItemPrice() + 3500;
+  };
+
   useEffect(() => {
     fetch('/data/cartList.json')
       .then(res => res.json())
@@ -53,7 +65,7 @@ const Cart = () => {
           <ul className="payment_list">
             <li className="all_price">
               <p>총 상품 금액</p>
-              <p>213000원</p>
+              <p>{sumItemPrice()}원</p>
             </li>
             <li className="all_price">
               <p>총 배송비</p>
@@ -63,13 +75,13 @@ const Cart = () => {
               <dl className="option">
                 <dt className="delivery">기본 배송비</dt>
                 <dd className="delivery">3500원</dd>
-                <dt className="sale">신선할인</dt>
-                <dd className="sale">-0%</dd>
+                {/* <dt className="sale">신선할인</dt>
+                <dd className="sale">-0%</dd> */}
               </dl>
             </li>
             <li>
               <p className="final_title">예상 결제 금액</p>
-              <p className="final_price">24800원</p>
+              <p className="final_price">{sumAllPrice(sumItemPrice)}원</p>
             </li>
           </ul>
           <button className="payment_btn order">상품 주문하기</button>
