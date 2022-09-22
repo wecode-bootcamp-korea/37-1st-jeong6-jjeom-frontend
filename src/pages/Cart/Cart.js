@@ -1,8 +1,16 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import './Cart.scss';
 import ItemNone from './components/ItemNone';
 
 const Cart = () => {
+  const [cartItem, setCartItem] = useState([]);
+
+  useEffect(() => {
+    fetch('/data/cartList.json')
+      .then(res => res.json())
+      .then(data => setCartItem(data));
+  }, []);
+
   return (
     <div className="cart">
       <h3 className="title">장바구니</h3>
@@ -11,73 +19,42 @@ const Cart = () => {
           <div className="item_header">
             <div className="check_area">
               <input type="checkbox" id="checkAll" title="선택" />
-              <label for="checkAll" />
+              <label htmlFor="checkAll" />
             </div>
             <p className="header_title">상품정보</p>
             <p className="header_title">수량</p>
             <p className="header_title">가격</p>
           </div>
           <ul className="item_list">
-            <li>
-              <div className="check_area">
-                <input type="checkbox" id="check1" title="선택" />
-                <label for="check1" />
-              </div>
-              <img
-                src="https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-clean-list.png"
-                alt="sample"
-              />
-              <div className="product_info">
-                <p className="name">
-                  초신선 무항생제 <br /> 돼지 삽겹살 구이용
-                  <span className="option">보통(16mm)</span>
-                </p>
-                <span className="standard">600g 기준</span>
-              </div>
-              <div className="amount_box">
-                <button className="box">
-                  <i className="fa-solid fa-minus" />
+            {cartItem.map(({ id, img, name, option, price, gram }) => (
+              <li key={id}>
+                <div className="check_area">
+                  <input type="checkbox" id="check1" title="선택" />
+                  <label htmlFor="check1" />
+                </div>
+                <img src={img} alt="sample" />
+                <div className="product_info">
+                  <p className="name">
+                    {name}
+                    <span className="option">{option}</span>
+                  </p>
+                  <span className="standard">{gram} 기준</span>
+                </div>
+                <div className="amount_box">
+                  <button className="box">
+                    <i className="fa-solid fa-minus" />
+                  </button>
+                  <div className="box">1</div>
+                  <button className="box">
+                    <i className="fa-solid fa-plus" />
+                  </button>
+                </div>
+                <p className="price">{price}원</p>
+                <button className="delete_btn">
+                  <i className="fa-solid fa-xmark" />
                 </button>
-                <div className="box">1</div>
-                <button className="box">
-                  <i className="fa-solid fa-plus" />
-                </button>
-              </div>
-              <p className="price">46800원</p>
-              <button className="delete_btn">
-                <i className="fa-solid fa-xmark" />
-              </button>
-            </li>
-            <li>
-              <div className="check_area">
-                <input type="checkbox" id="check2" title="선택" />
-                <label for="check2" />
-              </div>
-              <img
-                src="https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-clean-list.png"
-                alt="sample"
-              />
-              <div className="product_info">
-                <p className="name">
-                  초신선 무항생제 <br /> 돼지 삽겹살 구이용
-                  <span className="option">보통(16mm)</span>
-                </p>
-                <span className="standard">600g 기준</span>
-              </div>
-              <div className="amount_box">
-                <button className="box">
-                  <i className="fa-solid fa-minus" />
-                </button>
-                <div className="box">1</div>
-                <button className="box">
-                  <i className="fa-solid fa-plus" />
-                </button>
-              </div>
-              <p className="price">46800원</p>
-              <button className="delete_btn">
-                <i className="fa-solid fa-xmark" />
-              </button>
-            </li>
+              </li>
+            ))}
           </ul>
           <button className="all_delete">선택 상품 삭제</button>
         </div>
