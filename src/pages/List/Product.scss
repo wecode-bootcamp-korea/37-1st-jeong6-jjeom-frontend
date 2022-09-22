@@ -30,9 +30,21 @@
       .prducut_img {
         width: 200px;
         height: 200px;
+
+        &:hover {
+          width: 220px;
+          height: 220px;
+          transition: all 0.5s;
+        }
+
+        &:not(:hover) {
+          width: 200px;
+          height: 200px;
+          transition: all 0.5s;
+        }
       }
 
-      button {
+      .cart_btn {
         position: absolute;
         bottom: 15px;
         right: 15px;
@@ -44,12 +56,12 @@
           rgba(0, 0, 0, 0.05) 0px 5px 10px;
       }
     }
-    h6 {
+    .product_title {
       font-size: 18px;
       font-weight: 600;
       margin-top: 20px;
     }
-    p {
+    .product_price {
       font-weight: 400;
       color: $sub-text;
       margin-top: 10px;
