@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Option from './Option';
 import ItemInfo from './ItemInfo';
 import Info from './Info';
 import './Detail.scss';
 
 const Detail = () => {
+  const { id } = useParams;
+  const [detailData, setDetailDate] = useState();
   const [countItem, setCountItem] = useState(1);
   const [optionSwtich, setOptionSwitch] = useState(false);
   const [optionValue, setOptionValue] = useState('선택');
   const [tab, setTab] = useState('1');
+
+  // useEffect(()=>{
+  //   fetch()
+  // },[])
 
   const handlePlusCount = () => {
     setCountItem(countItem + 1);
