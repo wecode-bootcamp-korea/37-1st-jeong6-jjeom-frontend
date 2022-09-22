@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import Product from './Product';
 import './List.scss';
+import { useSearchParams } from 'react-router-dom';
 
 const List = () => {
   const [products, setProducrts] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const name = searchParams.get('name');
+  const handleTab = pageName => {
+    searchParams.set('name', pageName);
+    setSearchParams(searchParams);
+  };
 
   useEffect(() => {
-    fetch('/data/list-data.json')
+    fetch('/data/list-data.json') //`name=${name}`
       .then(res => res.json())
       .then(data => setProducrts(data));
-  }, []);
+  }, [name]);
 
   return (
     <div className="list">
@@ -19,7 +26,13 @@ const List = () => {
           <ul className="list_tab_container">
             {LIST_TAB.map(tab => {
               return (
-                <li className="list_tab_button" key={tab.id}>
+                <li
+                  className="list_tab_button"
+                  key={tab.id}
+                  onClick={() => {
+                    handleTab(tab.name);
+                  }}
+                >
                   {tab.text}
                 </li>
               );
@@ -39,12 +52,12 @@ const List = () => {
 export default List;
 
 const LIST_TAB = [
-  { id: 1, text: '돼지' },
-  { id: 2, text: '소' },
-  { id: 3, text: '닭' },
-  { id: 4, text: '수산' },
-  { id: 5, text: '밀키트' },
-  { id: 6, text: '우유' },
-  { id: 7, text: '달걀' },
-  { id: 8, text: '이유식' },
+  { id: 1, text: '돼지', name: 'pork' },
+  { id: 2, text: '소', name: 'cow' },
+  { id: 3, text: '닭', name: 'chicken' },
+  { id: 4, text: '수산', name: 'seafood' },
+  { id: 5, text: '밀키트', name: 'mealkit' },
+  { id: 6, text: '우유', name: 'milk' },
+  { id: 7, text: '달걀', name: 'egg' },
+  { id: 8, text: '이유식', name: 'baby' },
 ];
