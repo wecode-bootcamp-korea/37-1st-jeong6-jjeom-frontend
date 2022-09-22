@@ -6,6 +6,18 @@ import ItemNone from './components/ItemNone';
 const Cart = () => {
   const [cartItem, setCartItem] = useState([]);
 
+  const onChangeProps = (id, key, value) => {
+    setCartItem(prevItem => {
+      return prevItem.map(obj => {
+        if (obj.id === id) {
+          return { ...obj, [key]: value };
+        } else {
+          return { ...obj };
+        }
+      });
+    });
+  };
+
   useEffect(() => {
     fetch('/data/cartList.json')
       .then(res => res.json())
@@ -28,7 +40,11 @@ const Cart = () => {
           </div>
           <ul className="item_list">
             {cartItem.map(data => (
-              <CartItemList key={data.id} itemInfo={data} />
+              <CartItemList
+                key={data.id}
+                itemInfo={data}
+                onChangeProps={onChangeProps}
+              />
             ))}
           </ul>
           <button className="all_delete">선택 상품 삭제</button>
