@@ -14,7 +14,8 @@
       .order_form {
         display: flex;
         flex-direction: column;
-        border: 1px solid gray;
+        border: 1px solid rgba($color: #000000, $alpha: 0.2);
+
         border-bottom: none;
         margin-top: 30px;
         font-size: 14px;
@@ -23,10 +24,11 @@
         .order_wrap {
           display: flex;
           align-items: center;
-          border-bottom: 1px solid gray;
+          border-bottom: 1px solid rgba($color: #000000, $alpha: 0.2);
 
           .order_head {
-            border-right: 1px solid gray;
+            border-right: 1px solid rgba($color: #000000, $alpha: 0.2);
+
             min-width: 20%;
             padding: 20px;
             background-color: #f7f7f7;
@@ -61,7 +63,7 @@
       padding: 20px;
       border-bottom: 1px solid rgba($color: #000000, $alpha: 0.2);
 
-      .oreder_delivery_title {
+      .order_delivery_title {
         width: 30%;
         font-weight: 600;
       }
@@ -73,6 +75,23 @@
           width: 300px;
           padding: 10px;
           border: 1px solid black;
+        }
+      }
+      .order_delivery_radio {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 70%;
+
+        label {
+          font-weight: 400;
+
+          input {
+            margin-right: 10px;
+          }
+        }
+        & :last-child {
+          margin-top: 10px;
         }
       }
     }

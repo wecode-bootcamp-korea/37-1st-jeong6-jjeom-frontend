@@ -107,6 +107,13 @@
           margin-left: 5px;
         }
       }
+      .last-price {
+        color: red;
+
+        span {
+          color: black;
+        }
+      }
     }
   }
   .confirm_delivery_container {

@@ -61,12 +61,24 @@ const Order = () => {
       </section>
       <section className="order_delivery">
         <div className="order_delivery_container">
-          <p className="oreder_delivery_title">도착 희망일</p>
+          <p className="order_delivery_title">도착 희망일</p>
           <div className="order_delivery_date">
             <input type="text" placeholder="2022-09-23(금)" />
           </div>
         </div>
-        <div className="order_delivery_container" />
+        <div className="order_delivery_container">
+          <p className="order_delivery_title">배송 방법</p>
+          <div className="order_delivery_radio">
+            <label>
+              <input type="radio" name="radio_btn" />
+              새벽배송 (오전 7시 전 도착)
+            </label>
+            <label>
+              <input type="radio" name="radio_btn" />
+              당일배송 (오후 2시 - 7시 도착)
+            </label>
+          </div>
+        </div>
       </section>
     </div>
   );

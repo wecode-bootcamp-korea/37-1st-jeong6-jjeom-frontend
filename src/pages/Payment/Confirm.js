@@ -8,19 +8,39 @@ const Confirm = () => {
         <p className="confirm_title">결제 방법</p>
         <div className="confirm_form">
           <label className="confirm_radio">
-            <input className="radio_btn" type="radio" value="무통장 입금" />
+            <input
+              className="radio_btn"
+              type="radio"
+              value="무통장 입금"
+              name="confirm_radio_btn"
+            />
             무통장 입금
           </label>
           <label className="confirm_radio">
-            <input className="radio_btn" type="radio" value="무통장 입금" />
+            <input
+              className="radio_btn"
+              type="radio"
+              value="무통장 입금"
+              name="confirm_radio_btn"
+            />
             무통장 입금
           </label>
           <label className="confirm_radio">
-            <input className="radio_btn" type="radio" value="무통장 입금" />
+            <input
+              className="radio_btn"
+              type="radio"
+              value="무통장 입금"
+              name="confirm_radio_btn"
+            />
             무통장 입금
           </label>
           <label className="confirm_radio">
-            <input className="radio_btn" type="radio" value="무통장 입금" />
+            <input
+              className="radio_btn"
+              type="radio"
+              value="무통장 입금"
+              name="confirm_radio_btn"
+            />
             무통장 입금
           </label>
         </div>
@@ -72,8 +92,8 @@ const Confirm = () => {
             </div>
             <i className="fa-solid fa-circle-pause" />
             <div className="summary_text">
-              <p className="summary_title">총 상품 금액</p>
-              <p className="summary_price">
+              <p className="summary_title">예상 결제 금액</p>
+              <p className="summary_price last-price">
                 44,700<span>원</span>
               </p>
             </div>
