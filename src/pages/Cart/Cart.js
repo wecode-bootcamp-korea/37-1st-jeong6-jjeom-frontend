@@ -87,7 +87,6 @@ const Cart = () => {
                 key={data.id}
                 itemInfo={data}
                 onChangeProps={onChangeProps}
-                // checkedItemHandler={checkedItemHandler}
               />
             ))}
           </ul>
@@ -107,8 +106,6 @@ const Cart = () => {
               <dl className="option">
                 <dt className="delivery">기본 배송비</dt>
                 <dd className="delivery">3500원</dd>
-                {/* <dt className="sale">신선할인</dt>
-                <dd className="sale">-0%</dd> */}
               </dl>
             </li>
             <li>
