@@ -2,7 +2,13 @@ import { React, useState } from 'react';
 import './CartItemList.scss';
 
 const CartItemList = ({ itemInfo, onChangeProps }) => {
-  const { id, img, name, option, price, gram, amount } = itemInfo;
+  // const [isCheckBox, setIsCheckBox] = useState(false);
+
+  const { id, img, name, option, price, gram, amount, isChecked } = itemInfo;
+
+  const handleCheckBox = () => {
+    onChangeProps(id, 'isChecked', !isChecked);
+  };
 
   const plusQuantity = () => {
     onChangeProps(id, 'amount', amount + 1);
@@ -15,7 +21,13 @@ const CartItemList = ({ itemInfo, onChangeProps }) => {
   return (
     <li>
       <div className="check_area">
-        <input type="checkbox" id={`check${id}`} title="선택" />
+        <input
+          type="checkbox"
+          id={`check${id}`}
+          title="선택"
+          checked={isChecked}
+          onChange={handleCheckBox}
+        />
         <label htmlFor={`check${id}`} />
       </div>
       <img src={img} alt="sample" />

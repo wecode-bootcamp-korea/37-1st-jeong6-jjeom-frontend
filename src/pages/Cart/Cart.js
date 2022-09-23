@@ -5,18 +5,20 @@ import ItemNone from './components/ItemNone';
 
 const Cart = () => {
   const [cartItem, setCartItem] = useState([]);
-  const [checkedItem, setCheckedItem] = useState(false);
+  const [isAllCheckBox, isSetAllCheckBox] = useState(false);
+  // console.log(cartItem);
+  console.log(isAllCheckBox);
 
-  const totalCheckHandler = value => {
+  const handelAllCheckbox = value => {
+    // idSetAllCheckBox(e.target.checked);
     setCartItem(prevItem => {
       return prevItem.map(obj => {
         return { ...obj, isChecked: value };
       });
     });
-    setCheckedItem(value);
-  };
 
-  console.log(checkedItem);
+    isSetAllCheckBox(value);
+  };
 
   const onChangeProps = (id, key, value) => {
     setCartItem(prevItem => {
@@ -55,7 +57,15 @@ const Cart = () => {
         <div className="item_table">
           <div className="item_header">
             <div className="check_area">
-              <input type="checkbox" id="checkAll" title="선택" />
+              <input
+                type="checkbox"
+                id="checkAll"
+                title="선택"
+                checked={isAllCheckBox}
+                onChange={e => {
+                  handelAllCheckbox(e.target.checked);
+                }}
+              />
               <label htmlFor="checkAll" />
             </div>
             <p className="header_title">상품정보</p>
