@@ -5,8 +5,8 @@ import './SignUp.scss';
 const SignUp = () => {
   const navigate = useNavigate();
 
-  const goToLogin = () => {
-    navigate('/login');
+  const goToRegister = () => {
+    navigate('/register');
   };
   return (
     <div className="signUpWrap">
@@ -15,7 +15,7 @@ const SignUp = () => {
       <button className="signUpBtn">정육각 회원가입 하기</button>
       <div className="gotoLogin">
         <span>정육각 회원이신가요?</span>
-        <span onClick={goToLogin} className="goToLoginBtn">
+        <span onClick={goToRegister} className="goToLoginBtn">
           로그인하기
         </span>
       </div>
