@@ -1,18 +1,20 @@
 import React from 'react';
 import './Confirm.scss';
+import StepBtn from './StepBtn';
 
-const Confirm = () => {
+const Confirm = ({ handleStep, saveInputValue }) => {
   return (
     <div className="confirm container">
       <section className="confirm_way">
         <p className="confirm_title">결제 방법</p>
-        <div className="confirm_form">
+        <form className="confirm_form">
           <label className="confirm_radio">
             <input
               className="radio_btn"
               type="radio"
               value="무통장 입금"
-              name="confirm_radio_btn"
+              name="paymentMethod"
+              onChange={saveInputValue}
             />
             무통장 입금
           </label>
@@ -21,7 +23,8 @@ const Confirm = () => {
               className="radio_btn"
               type="radio"
               value="무통장 입금"
-              name="confirm_radio_btn"
+              name="paymentMethod"
+              onChange={saveInputValue}
             />
             무통장 입금
           </label>
@@ -29,21 +32,23 @@ const Confirm = () => {
             <input
               className="radio_btn"
               type="radio"
-              value="무통장 입금"
-              name="confirm_radio_btn"
+              value="카카오 입금"
+              name="paymentMethod"
+              onChange={saveInputValue}
             />
-            무통장 입금
+            카카오 입금
           </label>
           <label className="confirm_radio">
             <input
               className="radio_btn"
               type="radio"
               value="무통장 입금"
-              name="confirm_radio_btn"
+              name="paymentMethod"
+              onChange={saveInputValue}
             />
             무통장 입금
           </label>
-        </div>
+        </form>
       </section>
 
       <section className="confirm_order">
@@ -106,6 +111,7 @@ const Confirm = () => {
           2022-09-22 (목) 오후 2시 - 7시 전 도착 예정
         </div>
       </section>
+      <StepBtn handleStep={handleStep} preStep="order" nextStep="completion" />
     </div>
   );
 };
