@@ -1,0 +1,75 @@
+@import '../../styles/variables.scss';
+
+.products_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .products_container {
+    margin-bottom: 30px;
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .products_img {
+      @include flex-center;
+      position: relative;
+      width: 350px;
+      height: 350px;
+      background-color: $gray-color;
+
+      .antibiotic {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        padding: 7px;
+        background-color: white;
+        color: $blue-color;
+        border: 1px solid $blue-color;
+        border-radius: 15px;
+        font-size: 12px;
+      }
+
+      .prducut_img {
+        width: 200px;
+        height: 200px;
+
+        &:hover {
+          width: 220px;
+          height: 220px;
+          transition: all 0.5s;
+        }
+
+        &:not(:hover) {
+          width: 200px;
+          height: 200px;
+          transition: all 0.5s;
+        }
+      }
+
+      .cart_btn {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: white;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
+          rgba(0, 0, 0, 0.05) 0px 5px 10px;
+      }
+    }
+    .product_title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 20px;
+    }
+    .product_price {
+      font-weight: 400;
+      color: $sub-text;
+      margin-top: 10px;
+    }
+  }
+}
