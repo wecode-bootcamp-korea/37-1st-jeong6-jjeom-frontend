@@ -8,6 +8,11 @@
   .products_container {
     margin-bottom: 30px;
 
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
     .products_img {
       @include flex-center;
       position: relative;

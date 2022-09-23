@@ -4,8 +4,8 @@ import './List.scss';
 import { useSearchParams } from 'react-router-dom';
 
 const List = () => {
-  const [products, setProducrts] = useState([]);
-  const [tabSwtich, setTabSwitch] = useState();
+  const [products, setProducts] = useState([]);
+  const [tabSwtich, setTabSwitch] = useState('pork');
   const [searchParams, setSearchParams] = useSearchParams();
   const name = searchParams.get('name');
 
@@ -18,7 +18,7 @@ const List = () => {
   useEffect(() => {
     fetch('/data/list-data.json') //`name=${name}`
       .then(res => res.json())
-      .then(data => setProducrts(data));
+      .then(data => setProducts(data));
   }, [name]);
 
   return (

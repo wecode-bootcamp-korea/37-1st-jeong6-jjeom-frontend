@@ -6,10 +6,7 @@ const Products = ({ data }) => {
   const { id, title, price, gram, img_url, antibiotic } = data;
   return (
     <li className="products_container">
-      <Link
-        to={`/detail/${id}`}
-        style={{ textDecoration: 'none', color: 'black' }}
-      >
+      <Link to={`/detail/${id}`}>
         <div className="products_img">
           {antibiotic && <span className="antibiotic">무항생제</span>}
           <img className="prducut_img" src={img_url} alt="상품 이미지" />
