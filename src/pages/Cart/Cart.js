@@ -39,7 +39,7 @@ const Cart = () => {
   };
 
   const sumAllPrice = totalPrice => {
-    return sumItemPrice() + 3500;
+    return sumItemPrice() + checkItem.length === 0 ? 0 : 3500;
   };
 
   useEffect(() => {
