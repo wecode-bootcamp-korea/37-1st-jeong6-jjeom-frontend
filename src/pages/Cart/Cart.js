@@ -29,10 +29,11 @@ const Cart = () => {
     });
   };
 
+  const checkItem = cartItem.filter(item => item.isChecked);
   const sumItemPrice = () => {
     let totalPrice = 0;
-    for (let i = 0; i < cartItem.length; i++) {
-      totalPrice += cartItem[i].price * cartItem[i].amount;
+    for (let i = 0; i < checkItem.length; i++) {
+      totalPrice += checkItem[i].price * checkItem[i].amount;
     }
     return totalPrice;
   };
@@ -100,7 +101,7 @@ const Cart = () => {
             </li>
             <li className="all_price">
               <p>총 배송비</p>
-              <p>3500원</p>
+              <p>{checkItem.length === 0 ? '0원' : '3500원'}</p>
             </li>
             <li className="option_price">
               <dl className="option">
