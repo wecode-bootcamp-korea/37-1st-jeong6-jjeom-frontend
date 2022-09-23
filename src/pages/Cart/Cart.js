@@ -6,11 +6,8 @@ import ItemNone from './components/ItemNone';
 const Cart = () => {
   const [cartItem, setCartItem] = useState([]);
   const [isAllCheckBox, isSetAllCheckBox] = useState(false);
-  // console.log(cartItem);
-  console.log(isAllCheckBox);
 
   const handelAllCheckbox = value => {
-    // idSetAllCheckBox(e.target.checked);
     setCartItem(prevItem => {
       return prevItem.map(obj => {
         return { ...obj, isChecked: value };
@@ -57,13 +54,9 @@ const Cart = () => {
       checkedArr.push(item.isChecked);
     });
 
-    if (checkedArr.includes(false)) {
-      isSetAllCheckBox(false);
-    } else {
-      isSetAllCheckBox(true);
-    }
-
-    console.log(checkedArr);
+    checkedArr.includes(false)
+      ? isSetAllCheckBox(false)
+      : isSetAllCheckBox(true);
   }, [cartItem]);
 
   return (

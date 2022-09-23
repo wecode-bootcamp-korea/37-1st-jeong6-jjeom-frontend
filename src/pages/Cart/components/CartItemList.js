@@ -1,9 +1,7 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import './CartItemList.scss';
 
 const CartItemList = ({ itemInfo, onChangeProps }) => {
-  // const [isCheckBox, setIsCheckBox] = useState(false);
-
   const { id, img, name, option, price, gram, amount, isChecked } = itemInfo;
 
   const handleCheckBox = () => {
