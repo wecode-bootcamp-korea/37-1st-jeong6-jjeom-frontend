@@ -55,7 +55,11 @@ const Cart = () => {
   };
 
   const sumAllPrice = totalPrice => {
-    return sumItemPrice() + checkItem.length === 0 ? 0 : 3500;
+    if (checkItem.length === 0) {
+      return 0;
+    } else {
+      return sumItemPrice() + 3500;
+    }
   };
 
   useEffect(() => {
