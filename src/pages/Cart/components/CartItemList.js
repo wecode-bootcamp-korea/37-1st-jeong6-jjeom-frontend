@@ -1,9 +1,8 @@
 import { React } from 'react';
 import './CartItemList.scss';
 
-const CartItemList = ({ itemInfo, onChangeProps }) => {
+const CartItemList = ({ itemInfo, onChangeProps, setCartItem, cartItem }) => {
   const { id, img, name, option, price, gram, amount, isChecked } = itemInfo;
-
   const handleCheckBox = () => {
     onChangeProps(id, 'isChecked', !isChecked);
   };
@@ -14,6 +13,14 @@ const CartItemList = ({ itemInfo, onChangeProps }) => {
 
   const minusQuantity = () => {
     onChangeProps(id, 'amount', amount === 1 ? 1 : amount - 1);
+  };
+
+  const removeItem = id => {
+    setCartItem(
+      cartItem.filter(item => {
+        return item.id !== id;
+      })
+    );
   };
 
   return (
@@ -46,7 +53,12 @@ const CartItemList = ({ itemInfo, onChangeProps }) => {
         </button>
       </div>
       <p className="price">{price * amount}원</p>
-      <button className="delete_btn">
+      <button
+        className="delete_btn"
+        onClick={() => {
+          removeItem(id);
+        }}
+      >
         <i className="fa-solid fa-xmark" />
       </button>
     </li>

@@ -87,6 +87,8 @@ const Cart = () => {
               <CartItemList
                 key={data.id}
                 itemInfo={data}
+                cartItem={cartItem}
+                setCartItem={setCartItem}
                 onChangeProps={onChangeProps}
               />
             ))}
