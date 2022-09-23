@@ -7,6 +7,23 @@ const Cart = () => {
   const [cartItem, setCartItem] = useState([]);
   const [isAllCheckBox, isSetAllCheckBox] = useState(false);
 
+  const checkItem = cartItem.filter(item => item.isChecked);
+  const checkedId = checkItem.map(item => item.id);
+
+  const removeChild = id => {
+    let removeProducts;
+    id.forEach(
+      item => (removeProducts = cartItem.filter(product => product.id !== item))
+    );
+    id.forEach(
+      item =>
+        (removeProducts = removeProducts.filter(
+          removeProducts => removeProducts.id !== item
+        ))
+    );
+    setCartItem(removeProducts);
+  };
+
   const handelAllCheckbox = value => {
     setCartItem(prevItem => {
       return prevItem.map(obj => {
@@ -29,7 +46,6 @@ const Cart = () => {
     });
   };
 
-  const checkItem = cartItem.filter(item => item.isChecked);
   const sumItemPrice = () => {
     let totalPrice = 0;
     for (let i = 0; i < checkItem.length; i++) {
@@ -93,7 +109,14 @@ const Cart = () => {
               />
             ))}
           </ul>
-          <button className="all_delete">선택 상품 삭제</button>
+          <button
+            className="all_delete"
+            onClick={() => {
+              removeChild(checkedId);
+            }}
+          >
+            선택 상품 삭제
+          </button>
         </div>
         <div className="payment_area">
           <ul className="payment_list">
