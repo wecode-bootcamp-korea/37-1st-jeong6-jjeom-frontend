@@ -8,6 +8,7 @@
   background-color: black;
   opacity: 0.5;
 }
+
 .successModal {
   @include flex-center;
   flex-direction: column;
@@ -17,15 +18,17 @@
   transform: translate(-50%, -50%);
   width: 500px;
   height: 239px;
-
   background-color: white;
+
   .successHeader {
     font-weight: bold;
     margin-bottom: 30px;
   }
+
   .successContent {
     margin-bottom: 30px;
   }
+
   .successBtn {
     margin-top: 50px;
 

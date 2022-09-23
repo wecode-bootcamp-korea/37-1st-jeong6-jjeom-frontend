@@ -1,14 +1,17 @@
 import React from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ModalPortal from '../../Portal';
 import CheckInfoModal from './CheckInfoModal';
 import './SignupData2.scss';
 
 const SignupData2 = ({ setTransPage }) => {
-  const [suceessModal, setSuccessModal] = useState(true);
+  const navigate = useNavigate();
+  const [suceessModal, setSuccessModal] = useState(false);
 
-  const closeModal = () => {
+  const moveLogin = () => {
     setSuccessModal(false);
+    navigate('/login');
   };
 
   const [checkInfoModal, setCheckInfoModal] = useState(false);
@@ -22,8 +25,8 @@ const SignupData2 = ({ setTransPage }) => {
   const [inputValues, setInputValues] = useState({
     email: '',
     password: '',
-    name: '',
     phoneNumber: '',
+    name: '',
   });
 
   const handleInput = event => {
@@ -33,17 +36,17 @@ const SignupData2 = ({ setTransPage }) => {
 
   const joinBtn = () => {
     if (inputValues.password === inputValues.pwCheck) {
-      fetch('http://10.58.2.161:3000/users/signup', {
+      fetch('https://937d-211-106-114-186.jp.ngrok.io/users/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json;charset=utf-8' },
         body: JSON.stringify({
           email: inputValues.email,
           password: inputValues.password,
-          name: inputValues.name,
           phoneNumber: inputValues.phoneNumber,
+          name: inputValues.name,
         }),
       })
-        .then(Response => Response.json())
+        .then(response => response.json())
         .then(result =>
           result.message === 'success'
             ? setSuccessModal(true)
@@ -149,7 +152,7 @@ const SignupData2 = ({ setTransPage }) => {
                 <CheckInfoModal
                   title="회원가입 성공!"
                   comment="정육쩜에 방문해 주신 여러분 환영합니다"
-                  onClick={closeModal}
+                  onClick={moveLogin}
                 />
               )}
             </ModalPortal>
