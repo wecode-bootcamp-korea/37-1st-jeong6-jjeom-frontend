@@ -50,6 +50,22 @@ const Cart = () => {
       .then(data => setCartItem(data));
   }, []);
 
+  useEffect(() => {
+    let checkedArr = [];
+
+    cartItem.forEach(item => {
+      checkedArr.push(item.isChecked);
+    });
+
+    if (checkedArr.includes(false)) {
+      isSetAllCheckBox(false);
+    } else {
+      isSetAllCheckBox(true);
+    }
+
+    console.log(checkedArr);
+  }, [cartItem]);
+
   return (
     <div className="cart">
       <h3 className="title">장바구니</h3>
