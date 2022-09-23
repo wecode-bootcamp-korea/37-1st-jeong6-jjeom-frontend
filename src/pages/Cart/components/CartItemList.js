@@ -1,4 +1,4 @@
-import { React } from 'react';
+import { React, useState } from 'react';
 import './CartItemList.scss';
 
 const CartItemList = ({ itemInfo, onChangeProps }) => {
@@ -15,8 +15,8 @@ const CartItemList = ({ itemInfo, onChangeProps }) => {
   return (
     <li>
       <div className="check_area">
-        <input type="checkbox" id="check1" title="선택" />
-        <label htmlFor="check1" />
+        <input type="checkbox" id={`check${id}`} title="선택" />
+        <label htmlFor={`check${id}`} />
       </div>
       <img src={img} alt="sample" />
       <div className="product_info">

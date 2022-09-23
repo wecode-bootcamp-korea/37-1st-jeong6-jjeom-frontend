@@ -5,6 +5,18 @@ import ItemNone from './components/ItemNone';
 
 const Cart = () => {
   const [cartItem, setCartItem] = useState([]);
+  const [checkedItem, setCheckedItem] = useState(false);
+
+  const totalCheckHandler = value => {
+    setCartItem(prevItem => {
+      return prevItem.map(obj => {
+        return { ...obj, isChecked: value };
+      });
+    });
+    setCheckedItem(value);
+  };
+
+  console.log(checkedItem);
 
   const onChangeProps = (id, key, value) => {
     setCartItem(prevItem => {
@@ -56,6 +68,7 @@ const Cart = () => {
                 key={data.id}
                 itemInfo={data}
                 onChangeProps={onChangeProps}
+                // checkedItemHandler={checkedItemHandler}
               />
             ))}
           </ul>
