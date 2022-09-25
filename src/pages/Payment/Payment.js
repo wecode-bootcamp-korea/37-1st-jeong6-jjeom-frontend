@@ -40,22 +40,24 @@ const Payment = () => {
       <article className="payment_status_container">
         {STEP_STATUS.map(status => {
           return (
-            <>
-              <div
-                key={status.id}
-                className={`payment_status_step ${
-                  step === status.name && 'active'
-                }`}
-              >
+            <div
+              key={status.id}
+              className={`payment_status_step ${
+                step === status.name && 'active'
+              }`}
+            >
+              <div>
                 <i className={status.icon} />
                 <span className="payment_status_text">{status.text}</span>
               </div>
               <i
                 className={`fa-solid fa-chevron-right status_icon ${
                   step === status.name && 'active'
+                } ${
+                  status.id === STEP_STATUS[STEP_STATUS.length - 1].id && 'none'
                 }`}
               />
-            </>
+            </div>
           );
         })}
       </article>

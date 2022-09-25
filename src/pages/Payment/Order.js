@@ -5,18 +5,14 @@ import './Order.scss';
 const Order = ({ handleStep, saveInputValue }) => {
   const [userData, setUserData] = useState({});
 
+  let currentDay =
+    new Date().getMonth() + 1 + '월 ' + new Date().getDate() + '일';
+
   useEffect(() => {
     fetch('/data/user-data.json')
       .then(res => res.json())
       .then(data => setUserData(data));
   }, []);
-
-  // const singUp = e => {
-  //   e.preventDefault();
-  //   const formData = new FormData();
-  //   formData.append('name', userName);
-  //   formData.append('phoneNumber', phoneNumber);
-  // };
 
   return (
     <div className="order">
@@ -94,8 +90,8 @@ const Order = ({ handleStep, saveInputValue }) => {
             <div className="order_delivery_date">
               <input
                 name="date"
-                type="text"
-                placeholder="2022-09-23(금)"
+                type="number"
+                placeholder={currentDay}
                 onChange={saveInputValue}
               />
             </div>

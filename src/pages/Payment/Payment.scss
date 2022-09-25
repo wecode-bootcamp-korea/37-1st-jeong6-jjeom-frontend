@@ -14,6 +14,9 @@
   .active {
     color: black;
   }
+  .none {
+    display: none;
+  }
   .payment_status_container {
     @include flex-center;
     justify-content: space-evenly;
@@ -23,14 +26,15 @@
     color: gray;
     background-color: #f7f7f7;
 
-    .status_icon {
-      font-size: 50px;
-    }
-
     .payment_status_step {
       @include flex-center;
-      justify-content: space-between;
+      justify-content: space-around;
       font-weight: 600;
+      gap: 100px;
+
+      .status_icon {
+        font-size: 50px;
+      }
 
       .payment_status_text {
         margin-left: 20px;
