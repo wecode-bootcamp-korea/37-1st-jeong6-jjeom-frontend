@@ -1,15 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './LoginModal.scss';
 
 const LoginModal = ({ title, comment, onClick, ClickToMain }) => {
-  // useEffect(() => {
-  //   fetch('https://937d-211-106-114-186.jp.ngrok.io/users/signin', {
-  //     method: 'GET',
-  //     headers: { 'Content-Type': 'application/json;charset=utf-8' },
-  //   })
-  //     .then(response => response.json())
-  //     .then(result => console.log(result));
-  // });
   return (
     <>
       <div onClick={onClick} className="successModalBack"></div>

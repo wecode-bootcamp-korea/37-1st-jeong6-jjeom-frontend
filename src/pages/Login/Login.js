@@ -39,10 +39,10 @@ const Login = () => {
     const { name, value } = e.target;
     setInputValues({ ...inputValues, [name]: value });
   };
-  console.log(inputValues);
+
   const loginBtn = e => {
     e.preventDefault();
-    console.log(inputValues);
+
     fetch('https://937d-211-106-114-186.jp.ngrok.io/users/signin', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
