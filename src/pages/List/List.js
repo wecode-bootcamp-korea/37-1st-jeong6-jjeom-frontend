@@ -1,26 +1,34 @@
 import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Product from './Product';
 import './List.scss';
-import { useSearchParams } from 'react-router-dom';
 
 const List = () => {
   const [products, setProducts] = useState([]);
-  const [tabSwtich, setTabSwitch] = useState('pork');
+  const [tabSwitch, setTabSwitch] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
-  const name = searchParams.get('name');
+  const paramsId = searchParams.get('id');
 
-  const handleTab = pageName => {
-    searchParams.set('name', pageName);
+  const handleTab = pageId => {
+    searchParams.set('id', pageId);
     setSearchParams(searchParams);
-    setTabSwitch(pageName);
+    setTabSwitch(pageId);
   };
 
   useEffect(() => {
-    fetch('/data/list-data.json') //`name=${name}`
+    fetch(
+      // `https://0bec-211-106-114-186.jp.ngrok.io/products/list?categoriesId=${paramsId}`,
+      `https://jsonplaceholder.typicode.com/users/`
+      // {
+      //   // mode: 'no-cors',
+      //   headers: {
+      //     'Content-Type': 'application/json;charset=utf-8',
+      //   },
+      // }
+    )
       .then(res => res.json())
       .then(data => setProducts(data));
-  }, [name]);
-
+  });
   return (
     <div className="list">
       <section className="list_banner" />
@@ -31,11 +39,11 @@ const List = () => {
               return (
                 <li
                   className={`list_tab_button ${
-                    tab.name === tabSwtich && 'active'
+                    tab.id === tabSwitch && 'active'
                   }`}
                   key={tab.id}
                   onClick={() => {
-                    handleTab(tab.name);
+                    handleTab(tab.id);
                   }}
                 >
                   {tab.text}
@@ -57,12 +65,12 @@ const List = () => {
 export default List;
 
 const LIST_TAB = [
-  { id: 1, text: '돼지', name: 'pork' },
-  { id: 2, text: '소', name: 'cow' },
-  { id: 3, text: '닭', name: 'chicken' },
-  { id: 4, text: '수산', name: 'seafood' },
-  { id: 5, text: '밀키트', name: 'mealkit' },
-  { id: 6, text: '우유', name: 'milk' },
-  { id: 7, text: '달걀', name: 'egg' },
-  { id: 8, text: '이유식', name: 'baby' },
+  { id: 1, text: '돼지', name: '돼지' },
+  { id: 2, text: '소', name: '소' },
+  { id: 3, text: '닭', name: '닭' },
+  { id: 4, text: '수산', name: '수산' },
+  { id: 5, text: '밀키트', name: '밀키트' },
+  { id: 6, text: '우유', name: '우유' },
+  { id: 7, text: '달걀', name: '달걀' },
+  { id: 8, text: '이유식', name: '이유식' },
 ];
