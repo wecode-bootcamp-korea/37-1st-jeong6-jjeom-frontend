@@ -27,18 +27,23 @@ const Login = () => {
   const goToSignUp = () => {
     navigate('/signup');
   };
+  const ClickToMain = () => {
+    navigate('/main');
+  };
   const [inputValues, setInputValues] = useState({
     email: '',
     password: '',
   });
-  console.log(inputValues);
+
   const handleInput = e => {
     const { name, value } = e.target;
     setInputValues({ ...inputValues, [name]: value });
   };
-
-  const loginBtn = () => {
-    fetch('', {
+  console.log(inputValues);
+  const loginBtn = e => {
+    e.preventDefault();
+    console.log(inputValues);
+    fetch('https://937d-211-106-114-186.jp.ngrok.io/users/signin', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({
@@ -48,7 +53,11 @@ const Login = () => {
     })
       .then(response => response.json())
       .then(result =>
-        result.message === 'success' ? setModal(true) : setFailModal(true)
+        result.message === 'success'
+          ? (localStorage.setItem('name', result.username),
+            localStorage.setItem('또큰', result.accessToken),
+            setModal(true))
+          : setFailModal(true)
       );
   };
 
@@ -88,8 +97,9 @@ const Login = () => {
           {modal && (
             <LoginModal
               title="로그인 성공!"
-              comment="환영합니다. 김효성님"
+              comment={`환영합니다. ${localStorage.getItem('name')}님`}
               onClick={modalHandler}
+              ClickToMain={ClickToMain}
             />
           )}
         </ModalPortal>
