@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import BestItems from './BestItems';
-import './main.scss';
+import './Main.scss';
 import NotifyBanner from './NotifyBanner';
 
 const Main = () => {
   const [move, setMove] = useState(0);
-  const [disable, setDisable] = useState(true);
+
   const active = { transform: `translate(${move}vw)`, transition: 'all 1.5s' };
   const moveRightHandler = () => {
     setMove(prev => prev - 100);
@@ -67,7 +67,7 @@ const Main = () => {
           <div className="btnWrap">
             {move === 0 ? (
               <button disabled onClick={moveLeftHandler} className="btn1">
-                <i class="fa-solid fa-chevron-left"></i>
+                <i className="fa-solid fa-chevron-left"></i>
               </button>
             ) : (
               <button onClick={moveLeftHandler} className="btn1">

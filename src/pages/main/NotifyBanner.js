@@ -35,11 +35,11 @@ const NotifyBanner = () => {
           <div className="secondBtnWrap">
             {move2 === 0 ? (
               <button disabled onClick={moveLeftHandler} className="leftBtn">
-                <i class="fa-solid fa-chevron-left"></i>
+                <i className="fa-solid fa-chevron-left"></i>
               </button>
             ) : (
               <button onClick={moveLeftHandler} className="leftBtn">
-                <i class="fa-solid fa-chevron-left"></i>
+                <i className="fa-solid fa-chevron-left"></i>
               </button>
             )}
             <button onClick={moveRightHandler} className="rightBtn">

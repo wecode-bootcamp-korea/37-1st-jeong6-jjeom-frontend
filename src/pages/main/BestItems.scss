@@ -1,0 +1,22 @@
+@import '../../styles/variables.scss';
+.bestItems {
+  position: relative;
+
+  .best_header {
+    @include flex-center;
+    justify-content: space-between;
+
+    .fa-solid {
+      cursor: pointer;
+    }
+  }
+  .best_title {
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  .products_list {
+    @include flex-center;
+    gap: 50px;
+  }
+}

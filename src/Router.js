@@ -6,7 +6,7 @@ import List from './pages/List/List';
 import Detail from './pages/Detail/Detail';
 import Cart from './pages/Cart/Cart';
 import Payment from './pages/Payment/Payment';
-import Main from './pages/main/main';
+import Main from './pages/Main/Main';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 
@@ -17,8 +17,8 @@ const Router = () => {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/list" element={<List />} />
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/list/" element={<List />} />
+        <Route path="/detail/:id" element={<Detail />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/main" element={<Main />} />
