@@ -25,33 +25,6 @@ const Cart = () => {
     }
   };
 
-  // const checkItem = cartItem.filter(item => item.isChecked);
-  // const checkedId = checkItem.map(item => item.id);
-
-  // const removeChild = id => {
-  //   let removeProducts;
-  //   id.forEach(
-  //     item => (removeProducts = cartItem.filter(product => product.id !== item))
-  //   );
-  //   id.forEach(
-  //     item =>
-  //       (removeProducts = removeProducts.filter(
-  //         removeProducts => removeProducts.id !== item
-  //       ))
-  //   );
-  //   setCartItem(removeProducts);
-  // };
-
-  // const handelAllCheckbox = value => {
-  //   setCartItem(prevItem => {
-  //     return prevItem.map(obj => {
-  //       return { ...obj, isChecked: value };
-  //     });
-  //   });
-
-  //   isSetAllCheckBox(value);
-  // };
-
   const onChangeProps = (id, key, value) => {
     setCartItem(prevItem => {
       return prevItem.map(obj => {
