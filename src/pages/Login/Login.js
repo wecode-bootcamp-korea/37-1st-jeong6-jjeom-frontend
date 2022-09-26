@@ -73,7 +73,7 @@ const Login = () => {
             onChange={handleInput}
             className="inputText"
             placeholder="아이디(이메일 주소)를 입력하세요"
-          ></input>
+          />
           <input
             name="password"
             value={inputValues.password}
@@ -81,7 +81,7 @@ const Login = () => {
             className="inputText"
             type="password"
             placeholder="비밀번호를 입력하세요"
-          ></input>
+          />
           <button onClick={loginBtn} className="loginBtn">
             로그인
           </button>

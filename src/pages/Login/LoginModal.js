@@ -4,7 +4,7 @@ import './LoginModal.scss';
 const LoginModal = ({ title, comment, onClick, ClickToMain }) => {
   return (
     <>
-      <div onClick={onClick} className="successModalBack"></div>
+      <div onClick={onClick} className="successModalBack" />
       <div className="successModal">
         <p className="successHeader">{title}</p>
         <p className="successContent">{comment}</p>
