@@ -75,7 +75,7 @@ const SignupData = ({ setTransPage }) => {
         <button
           onClick={() => {
             {
-              checkBoxAcitve === true && checkBoxAcitve2 === true
+              checkBoxAcitve && checkBoxAcitve2
                 ? setTransPage(true)
                 : setModal(true);
             }

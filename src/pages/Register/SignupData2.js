@@ -28,6 +28,9 @@ const SignupData2 = ({ setTransPage }) => {
     phoneNumber: '',
     name: '',
   });
+  const lastPage = () => {
+    setTransPage(false);
+  };
 
   const handleInput = event => {
     const { name, value } = event.target;
@@ -133,14 +136,7 @@ const SignupData2 = ({ setTransPage }) => {
               </div>
             </div>
             <div className="btnWrap">
-              <button
-                onClick={() => {
-                  {
-                    setTransPage(false);
-                  }
-                }}
-                className="backBtn"
-              >
+              <button onClick={lastPage} className="backBtn">
                 이전으로
               </button>
               <button onClick={joinBtn} className="agreeBtn">
