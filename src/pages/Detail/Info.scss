@@ -3,7 +3,7 @@
 .info {
   padding: 5rem;
 
-  h3 {
+  h1 {
     font-size: 32px;
     font-weight: 700;
     padding-bottom: 30px;
@@ -39,7 +39,7 @@
       border-top: 1px solid black;
       padding: 50px 0;
 
-      h4 {
+      .delivery_sub_title {
         font-size: 20px;
         font-weight: 600;
         margin-bottom: 25px;
@@ -54,7 +54,7 @@
           display: flex;
           padding-bottom: 50px;
 
-          h6 {
+          .content_title {
             min-width: 80px;
             font-weight: 600;
           }
@@ -68,6 +68,10 @@
     }
   }
   .info_refund {
+    .content_title {
+      min-width: 80px;
+      font-weight: 600;
+    }
     p {
       padding-top: 50px;
       border-top: 1px solid black;

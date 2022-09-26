@@ -4,7 +4,7 @@ const Info = () => {
   return (
     <div className="info">
       <section className="info_basic">
-        <h3>상품 기본정보</h3>
+        <h1>상품 기본정보</h1>
         <ul>
           <li>
             <p>·품목명</p>
@@ -29,27 +29,27 @@ const Info = () => {
         </ul>
       </section>
       <section className="info_delivery">
-        <h3>배송 정보</h3>
+        <h1>배송 정보</h1>
         <div className="info_delivery_container">
           <div className="delivery_how">
-            <h4>배송 방법</h4>
+            <p className="delivery_sub_title">배송 방법</p>
             <ul>
               <li>
-                <h6>당일배송</h6>
+                <p className="content_title">당일배송</p>
                 <div>
                   <p className="sub-text">서울,경기 (일부)</p>
                   <p>낮 12시까지 주문,오후 7시 전 도착(월~금)</p>
                 </div>
               </li>
               <li>
-                <h6>새벽배송</h6>
+                <p className="content_title">새벽배송</p>
                 <div>
                   <p className="sub-text">수도권, 충청 (일부)</p>
                   <p>오후 8시까지 주문, 다음 날 오전 7시 전 도착 (화~토)</p>
                 </div>
               </li>
               <li>
-                <h6>택배배송</h6>
+                <p className="content_title">택배배송</p>
                 <div>
                   <p className="sub-text">그 외 지역</p>
                   <p>오후 8시까지 주문, 다음 날 오후 전 도착 (화~토)</p>
@@ -58,10 +58,10 @@ const Info = () => {
             </ul>
           </div>
           <div className="delivery_benefits">
-            <h4>배송비 혜택</h4>
+            <p className="delivery_sub_title">배송비 혜택</p>
             <ul>
               <li>
-                <h6>신선할인</h6>
+                <p className="content_title">신선할인</p>
                 <div>
                   <p>
                     상품을 추가하실 때 마다 배송비가 10%, 30%, 60%,100% 비율로
@@ -71,7 +71,7 @@ const Info = () => {
                 </div>
               </li>
               <li>
-                <h6>신선플랜</h6>
+                <p className="content_title">신선플랜</p>
                 <div>
                   <p>
                     한 번 배송비 (3,500원)에 1달 동안 4번 무료배송 받으실 수
@@ -84,7 +84,7 @@ const Info = () => {
         </div>
       </section>
       <section className="info_refund">
-        <h3>교환/환불 안내</h3>
+        <h1>교환/환불 안내</h1>
         <p>
           - 신선식품이기 때문에 단순 변심으로 인한 개인적인 사유로는 교환 및
           환불이 불가합니다.
