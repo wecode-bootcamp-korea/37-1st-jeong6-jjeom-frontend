@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Option = ({ handlOption, option }) => {
+const Option = ({ handleOption, option }) => {
   return (
     <ul className="option_btn_container">
       {option.map(option => {
@@ -9,7 +9,7 @@ const Option = ({ handlOption, option }) => {
             <button
               type="button"
               className="option_btn"
-              onClick={handlOption}
+              onClick={handleOption}
               value={option}
             >
               {option}

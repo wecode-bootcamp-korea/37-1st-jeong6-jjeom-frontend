@@ -8,10 +8,10 @@ import './Detail.scss';
 const Detail = () => {
   const { id } = useParams();
   const [detailData, setDetailDate] = useState({});
-  const [quanItem, setQuanItem] = useState(1);
-  const [optionSwtich, setOptionSwitch] = useState(false);
+  const [quantityItem, setQuantityItem] = useState(1);
+  const [isOptionSwtich, setIsOptionSwitch] = useState(false);
   const [option, setOption] = useState('선택');
-  const [tab, setTab] = useState('1');
+  const [tab, setTab] = useState('description');
 
   useEffect(() => {
     fetch(`/data/detail${id}.json`)
@@ -19,16 +19,16 @@ const Detail = () => {
       .then(data => setDetailDate(data));
   }, [id]);
   const handlePlusCount = () => {
-    setQuanItem(quanItem + 1);
+    setQuantityItem(quantityItem + 1);
   };
 
   const handleMinusCount = () => {
-    quanItem !== 1 ? setQuanItem(quanItem - 1) : setQuanItem(1);
+    quantityItem !== 1 ? setQuantityItem(quantityItem - 1) : setQuantityItem(1);
   };
 
-  const handlOption = e => {
+  const handleOption = e => {
     setOption(e.target.value);
-    setOptionSwitch(!optionSwtich);
+    setIsOptionSwitch(!isOptionSwtich);
   };
   const handleTab = e => {
     setTab(e.target.parentElement.value);
@@ -56,17 +56,17 @@ const Detail = () => {
                   type="button"
                   className="option_btn"
                   value={option}
-                  onClick={handlOption}
+                  onClick={handleOption}
                 >
                   {option}
                 </button>
 
-                {optionSwtich ? (
+                {isOptionSwtich && (
                   <Option
-                    handlOption={handlOption}
+                    handleOption={handleOption}
                     option={detailData.option}
                   />
-                ) : null}
+                )}
               </div>
             </div>
 
@@ -74,7 +74,7 @@ const Detail = () => {
               <span>수량</span>
               <div className="count_container">
                 <button onClick={handleMinusCount}>−</button>
-                <span>{quanItem}</span>
+                <span>{quantityItem}</span>
                 <button onClick={handlePlusCount}>+</button>
               </div>
             </div>
@@ -88,17 +88,22 @@ const Detail = () => {
       </section>
 
       <section className="detail_tab">
-        <button value="1" onClick={handleTab}>
+        <button value="description" onClick={handleTab}>
           <span className={`${tab === '1' ? 'active' : ''}`}>상품설명</span>
         </button>
-        <button value="2" onClick={handleTab}>
+        <button value="production" onClick={handleTab}>
           <span className={`${tab === '2' ? 'active' : ''}`}>상품정보안내</span>
         </button>
       </section>
 
-      {tab === '1' ? <ItemInfo /> : <Info />}
+      {TAP_LIST[tab]}
     </div>
   );
 };
 
 export default Detail;
+
+const TAP_LIST = {
+  description: <ItemInfo />,
+  production: <Info />,
+};
