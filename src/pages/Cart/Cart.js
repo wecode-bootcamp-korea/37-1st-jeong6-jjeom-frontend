@@ -64,39 +64,27 @@ const Cart = () => {
     });
   };
 
-  // const sumItemPrice = () => {
-  //   let totalPrice = 0;
-  //   for (let i = 0; i < checkItem.length; i++) {
-  //     totalPrice += checkItem[i].price * checkItem[i].amount;
-  //   }
-  //   return totalPrice;
-  // };
+  const sumItemPrice = () => {
+    let totalPrice = 0;
+    for (let i = 0; i < checkedItem.length; i++) {
+      totalPrice += cartItem[i].price * cartItem[i].amount;
+    }
+    return totalPrice;
+  };
 
-  // const sumAllPrice = totalPrice => {
-  //   if (checkItem.length === 0) {
-  //     return 0;
-  //   } else {
-  //     return sumItemPrice() + 3500;
-  //   }
-  // };
+  const sumAllPrice = totalPrice => {
+    if (checkedItem.length === 0) {
+      return 0;
+    } else {
+      return sumItemPrice() + 3500;
+    }
+  };
 
   useEffect(() => {
     fetch('/data/cartList.json')
       .then(res => res.json())
       .then(data => setCartItem(data));
   }, []);
-
-  // useEffect(() => {
-  //   let checkedArr = [];
-
-  //   cartItem.forEach(item => {
-  //     checkedArr.push(item.isChecked);
-  //   });
-
-  //   checkedArr.includes(false)
-  //     ? isSetAllCheckBox(false)
-  //     : isSetAllCheckBox(true);
-  // }, [cartItem]);
 
   return (
     <div className="cart">
@@ -141,11 +129,11 @@ const Cart = () => {
               <ul className="payment_list">
                 <li className="all_price">
                   <p>총 상품 금액</p>
-                  <p>원</p>
+                  <p>{sumItemPrice()}원</p>
                 </li>
                 <li className="all_price">
                   <p>총 배송비</p>
-                  <p />
+                  <p>{checkedItem.length === 0 ? '0원' : '3500원'}</p>
                 </li>
                 <li className="option_price">
                   <dl className="option">
@@ -155,7 +143,7 @@ const Cart = () => {
                 </li>
                 <li>
                   <p className="final_title">예상 결제 금액</p>
-                  <p className="final_price">원</p>
+                  <p className="final_price">{sumAllPrice(sumItemPrice)}원</p>
                 </li>
               </ul>
               <button className="payment_btn order">상품 주문하기</button>
