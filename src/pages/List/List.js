@@ -17,8 +17,8 @@ const List = () => {
 
   useEffect(() => {
     fetch(
-      // `https://0bec-211-106-114-186.jp.ngrok.io/products/list?categoriesId=${paramsId}`,
-      `https://jsonplaceholder.typicode.com/users/`
+      `https://0bec-211-106-114-186.jp.ngrok.io/products/list?categoriesId=${paramsId}`
+      // `https://jsonplaceholder.typicode.com/users/`
       // {
       //   // mode: 'no-cors',
       //   headers: {
@@ -28,7 +28,7 @@ const List = () => {
     )
       .then(res => res.json())
       .then(data => setProducts(data));
-  });
+  }, [paramsId]);
   return (
     <div className="list">
       <section className="list_banner" />
