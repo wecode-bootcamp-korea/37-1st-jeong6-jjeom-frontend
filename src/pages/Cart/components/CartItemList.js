@@ -1,11 +1,13 @@
 import { React } from 'react';
 import './CartItemList.scss';
 
-const CartItemList = ({ itemInfo, onChangeProps, setCartItem, cartItem }) => {
-  const { id, img, name, option, price, gram, amount, isChecked } = itemInfo;
-  const handleCheckBox = () => {
-    onChangeProps(id, 'isChecked', !isChecked);
-  };
+const CartItemList = ({
+  itemInfo,
+  onChangeProps,
+  checkedItem,
+  handleSingleCheck,
+}) => {
+  const { id, img, name, option, price, gram, amount } = itemInfo;
 
   const plusQuantity = () => {
     onChangeProps(id, 'amount', amount + 1);
@@ -15,14 +17,6 @@ const CartItemList = ({ itemInfo, onChangeProps, setCartItem, cartItem }) => {
     onChangeProps(id, 'amount', amount === 1 ? 1 : amount - 1);
   };
 
-  const removeItem = id => {
-    setCartItem(
-      cartItem.filter(item => {
-        return item.id !== id;
-      })
-    );
-  };
-
   return (
     <li>
       <div className="check_area">
@@ -30,8 +24,8 @@ const CartItemList = ({ itemInfo, onChangeProps, setCartItem, cartItem }) => {
           type="checkbox"
           id={`check${id}`}
           title="선택"
-          checked={isChecked}
-          onChange={handleCheckBox}
+          checked={checkedItem.includes(id)}
+          onChange={e => handleSingleCheck(e.target.checked, id)}
         />
         <label htmlFor={`check${id}`} />
       </div>
@@ -53,12 +47,7 @@ const CartItemList = ({ itemInfo, onChangeProps, setCartItem, cartItem }) => {
         </button>
       </div>
       <p className="price">{price * amount}원</p>
-      <button
-        className="delete_btn"
-        onClick={() => {
-          removeItem(id);
-        }}
-      >
+      <button className="delete_btn">
         <i className="fa-solid fa-xmark" />
       </button>
     </li>

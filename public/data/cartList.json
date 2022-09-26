@@ -6,7 +6,6 @@
     "option": "보통(16mm)",
     "price": "46800",
     "gram": "600",
-    "isChecked": false,
     "amount": 1
   },
   {
@@ -16,7 +15,6 @@
     "option": "구이용(15mm)",
     "price": "41000",
     "gram": "200",
-    "isChecked": false,
     "amount": 1
   },
   {
@@ -26,7 +24,6 @@
     "option": "",
     "price": "6700",
     "gram": "950",
-    "isChecked": false,
     "amount": 1
   }
 ]

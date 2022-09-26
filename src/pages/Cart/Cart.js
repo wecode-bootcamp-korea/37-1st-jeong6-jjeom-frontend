@@ -5,34 +5,52 @@ import ItemNone from './components/ItemNone';
 
 const Cart = () => {
   const [cartItem, setCartItem] = useState([]);
-  const [isAllCheckBox, isSetAllCheckBox] = useState(false);
+  const [checkedItem, setCheckedItem] = useState([]);
 
-  const checkItem = cartItem.filter(item => item.isChecked);
-  const checkedId = checkItem.map(item => item.id);
+  const isAllChecked = cartItem.length === checkedItem.length;
 
-  const removeChild = id => {
-    let removeProducts;
-    id.forEach(
-      item => (removeProducts = cartItem.filter(product => product.id !== item))
-    );
-    id.forEach(
-      item =>
-        (removeProducts = removeProducts.filter(
-          removeProducts => removeProducts.id !== item
-        ))
-    );
-    setCartItem(removeProducts);
+  const handleSingleCheck = (checked, id) => {
+    if (checked) {
+      setCheckedItem(prev => [...prev, id]);
+    } else {
+      setCheckedItem(checkedItem.filter(el => el !== id));
+    }
   };
 
-  const handelAllCheckbox = value => {
-    setCartItem(prevItem => {
-      return prevItem.map(obj => {
-        return { ...obj, isChecked: value };
-      });
-    });
-
-    isSetAllCheckBox(value);
+  const handleAllCheck = checked => {
+    if (checked) {
+      setCheckedItem(cartItem.map(({ id }) => id));
+    } else {
+      setCheckedItem([]);
+    }
   };
+
+  // const checkItem = cartItem.filter(item => item.isChecked);
+  // const checkedId = checkItem.map(item => item.id);
+
+  // const removeChild = id => {
+  //   let removeProducts;
+  //   id.forEach(
+  //     item => (removeProducts = cartItem.filter(product => product.id !== item))
+  //   );
+  //   id.forEach(
+  //     item =>
+  //       (removeProducts = removeProducts.filter(
+  //         removeProducts => removeProducts.id !== item
+  //       ))
+  //   );
+  //   setCartItem(removeProducts);
+  // };
+
+  // const handelAllCheckbox = value => {
+  //   setCartItem(prevItem => {
+  //     return prevItem.map(obj => {
+  //       return { ...obj, isChecked: value };
+  //     });
+  //   });
+
+  //   isSetAllCheckBox(value);
+  // };
 
   const onChangeProps = (id, key, value) => {
     setCartItem(prevItem => {
@@ -46,21 +64,21 @@ const Cart = () => {
     });
   };
 
-  const sumItemPrice = () => {
-    let totalPrice = 0;
-    for (let i = 0; i < checkItem.length; i++) {
-      totalPrice += checkItem[i].price * checkItem[i].amount;
-    }
-    return totalPrice;
-  };
+  // const sumItemPrice = () => {
+  //   let totalPrice = 0;
+  //   for (let i = 0; i < checkItem.length; i++) {
+  //     totalPrice += checkItem[i].price * checkItem[i].amount;
+  //   }
+  //   return totalPrice;
+  // };
 
-  const sumAllPrice = totalPrice => {
-    if (checkItem.length === 0) {
-      return 0;
-    } else {
-      return sumItemPrice() + 3500;
-    }
-  };
+  // const sumAllPrice = totalPrice => {
+  //   if (checkItem.length === 0) {
+  //     return 0;
+  //   } else {
+  //     return sumItemPrice() + 3500;
+  //   }
+  // };
 
   useEffect(() => {
     fetch('/data/cartList.json')
@@ -68,17 +86,17 @@ const Cart = () => {
       .then(data => setCartItem(data));
   }, []);
 
-  useEffect(() => {
-    let checkedArr = [];
+  // useEffect(() => {
+  //   let checkedArr = [];
 
-    cartItem.forEach(item => {
-      checkedArr.push(item.isChecked);
-    });
+  //   cartItem.forEach(item => {
+  //     checkedArr.push(item.isChecked);
+  //   });
 
-    checkedArr.includes(false)
-      ? isSetAllCheckBox(false)
-      : isSetAllCheckBox(true);
-  }, [cartItem]);
+  //   checkedArr.includes(false)
+  //     ? isSetAllCheckBox(false)
+  //     : isSetAllCheckBox(true);
+  // }, [cartItem]);
 
   return (
     <div className="cart">
@@ -95,9 +113,9 @@ const Cart = () => {
                     type="checkbox"
                     id="checkAll"
                     title="선택"
-                    checked={isAllCheckBox}
+                    checked={isAllChecked}
                     onChange={e => {
-                      handelAllCheckbox(e.target.checked);
+                      handleAllCheck(e.target.checked);
                     }}
                   />
                   <label htmlFor="checkAll" />
@@ -111,30 +129,23 @@ const Cart = () => {
                   <CartItemList
                     key={data.id}
                     itemInfo={data}
-                    cartItem={cartItem}
-                    setCartItem={setCartItem}
                     onChangeProps={onChangeProps}
+                    checkedItem={checkedItem}
+                    handleSingleCheck={handleSingleCheck}
                   />
                 ))}
               </ul>
-              <button
-                className="all_delete"
-                onClick={() => {
-                  removeChild(checkedId);
-                }}
-              >
-                선택 상품 삭제
-              </button>
+              <button className="all_delete">선택 상품 삭제</button>
             </div>
             <div className="payment_area">
               <ul className="payment_list">
                 <li className="all_price">
                   <p>총 상품 금액</p>
-                  <p>{sumItemPrice()}원</p>
+                  <p>원</p>
                 </li>
                 <li className="all_price">
                   <p>총 배송비</p>
-                  <p>{checkItem.length === 0 ? '0원' : '3500원'}</p>
+                  <p />
                 </li>
                 <li className="option_price">
                   <dl className="option">
@@ -144,7 +155,7 @@ const Cart = () => {
                 </li>
                 <li>
                   <p className="final_title">예상 결제 금액</p>
-                  <p className="final_price">{sumAllPrice(sumItemPrice)}원</p>
+                  <p className="final_price">원</p>
                 </li>
               </ul>
               <button className="payment_btn order">상품 주문하기</button>
