@@ -15,11 +15,11 @@ const List = () => {
     setTabSwitch(pageName);
   };
 
-  useEffect(() => {
-    fetch('/data/list-data.json') //`name=${name}`
-      .then(res => res.json())
-      .then(data => setProducts(data));
-  }, [name]);
+  // useEffect(() => {
+  // //   fetch('https://94ae-211-106-114-186.jp.ngrok.io/products/1/list') //`name=${name}`
+  // //     .then(res => res.json())
+  // //     .then(data => setProducts(data));
+  // // }, [name]);
 
   return (
     <div className="list">
@@ -35,7 +35,7 @@ const List = () => {
                   }`}
                   key={tab.id}
                   onClick={() => {
-                    handleTab(tab.name);
+                    handleTab(tab.id);
                   }}
                 >
                   {tab.text}

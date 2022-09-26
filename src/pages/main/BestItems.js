@@ -8,10 +8,10 @@ import SortingModal from './SortingModal';
 const BestItems = () => {
   const [bestItems, setBestItems] = useState([]);
 
-  const [modal, setModal] = useState(true);
+  const [modal, setModal] = useState(false);
 
   const modalHandler = () => {
-    setModal(!modal);
+    setModal(true);
   };
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -22,13 +22,18 @@ const BestItems = () => {
     fetch(`./data/bestItems.json?name=${getNames}`)
       .then(res => res.json())
       .then(result => setBestItems(result));
-  }, []);
+  }, [getNames]);
   return (
     <div className="bestItems">
-      <div className="best_header">
+      <div
+        onMouseLeave={() => {
+          setModal(false);
+        }}
+        className="best_header"
+      >
         <span className="best_title">정육쩜 베스트 상품</span>
         {modal && <SortingModal />}
-        <i onClick={modalHandler} className="fa-solid fa-bars"></i>
+        <i onMouseOver={modalHandler} className="fa-solid fa-bars"></i>
       </div>
 
       <ul className="products_list">

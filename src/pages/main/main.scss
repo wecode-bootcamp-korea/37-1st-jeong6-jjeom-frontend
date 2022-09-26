@@ -24,7 +24,7 @@
         .bannerImg {
           width: 100%;
           height: 100%;
-          object-fit: fill;
+          object-fit: contain;
           padding: 0 150px;
         }
       }
@@ -55,7 +55,6 @@
   .fourthBanner {
     width: 1168px;
     height: 208px;
-    border: 1px solid black;
     margin-top: 50px;
   }
 }

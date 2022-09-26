@@ -28,7 +28,7 @@ const Main = () => {
             <img
               className="bannerImg"
               style={active}
-              src="images/pork1.jpeg"
+              src="images/banner-3.png"
               alt="배너이미지"
             />
           </div>
@@ -36,7 +36,7 @@ const Main = () => {
             <img
               className="bannerImg"
               style={active}
-              src="images/pork2.jpeg"
+              src="images/banner2 (1).png"
               alt="배너이미지"
             />
           </div>
@@ -86,10 +86,14 @@ const Main = () => {
           <NotifyBanner />
         </div>
 
-        <div className="promotionBanner">홍보게시물!</div>
+        <div className="promotionBanner">
+          <img src="images/promotion.png" />
+        </div>
       </div>
       <BestItems />
-      <div className="fourthBanner">다양한 정육쩜 상품을 만나보세요!</div>
+      <div className="fourthBanner">
+        <img src="images/footerbanner.png" />
+      </div>
     </div>
   );
 };
