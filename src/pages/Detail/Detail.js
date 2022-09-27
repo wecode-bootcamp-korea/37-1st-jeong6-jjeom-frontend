@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Option from './Option';
-import ItemInfo from './ItemInfo';
-import Info from './Info';
+import Option from './Option/Option';
+import ItemInfo from './ItemInfo/ItemInfo';
+import Info from './Info/Info';
 import './Detail.scss';
 
 const Detail = () => {
@@ -11,28 +11,38 @@ const Detail = () => {
   const [quantityItem, setQuantityItem] = useState(1);
   const [isOptionSwtich, setIsOptionSwitch] = useState(false);
   const [option, setOption] = useState('선택');
-  const [tab, setTab] = useState('description');
+  const [currTab, setCurrTab] = useState('상품설명');
+
+  const TAP_LIST = {
+    상품설명: <ItemInfo />,
+    상품정보안내: <Info />,
+  };
 
   useEffect(() => {
     fetch(`/data/detail${id}.json`)
       .then(res => res.json())
       .then(data => setDetailDate(data));
   }, [id]);
+
   const handlePlusCount = () => {
     setQuantityItem(quantityItem + 1);
   };
 
   const handleMinusCount = () => {
-    quantityItem !== 1 ? setQuantityItem(quantityItem - 1) : setQuantityItem(1);
+    if (quantityItem === 1) return;
+
+    setQuantityItem(quantityItem - 1);
   };
 
   const handleOption = e => {
     setOption(e.target.value);
     setIsOptionSwitch(!isOptionSwtich);
   };
-  const handleTab = e => {
-    setTab(e.target.parentElement.value);
+
+  const handleTab = tab => {
+    setCurrTab(tab);
   };
+
   return (
     <div className="detail">
       <section className="detail_top">
@@ -88,22 +98,15 @@ const Detail = () => {
       </section>
 
       <section className="detail_tab">
-        <button value="description" onClick={handleTab}>
-          <span className={`${tab === '1' ? 'active' : ''}`}>상품설명</span>
-        </button>
-        <button value="production" onClick={handleTab}>
-          <span className={`${tab === '2' ? 'active' : ''}`}>상품정보안내</span>
-        </button>
+        {Object.keys(TAP_LIST).map(tap => (
+          <button key={tap} onClick={() => handleTab(tap)}>
+            <span className={`${currTab === tap ? 'active' : ''}`}>{tap}</span>
+          </button>
+        ))}
       </section>
-
-      {TAP_LIST[tab]}
+      {TAP_LIST[currTab]}
     </div>
   );
 };
 
 export default Detail;
-
-const TAP_LIST = {
-  description: <ItemInfo />,
-  production: <Info />,
-};
