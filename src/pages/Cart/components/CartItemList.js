@@ -6,15 +6,18 @@ const CartItemList = ({
   onChangeProps,
   checkedItem,
   handleSingleCheck,
+  deleteCart,
 }) => {
   const { id, img, name, option, price, gram, amount } = itemInfo;
 
   const plusQuantity = () => {
     onChangeProps(id, 'amount', amount + 1);
+    console.log(`${name} : ${amount}`);
   };
 
   const minusQuantity = () => {
     onChangeProps(id, 'amount', amount === 1 ? 1 : amount - 1);
+    console.log(`${name} : ${amount}`);
   };
 
   return (
@@ -47,7 +50,7 @@ const CartItemList = ({
         </button>
       </div>
       <p className="price">{price * amount}원</p>
-      <button className="delete_btn">
+      <button className="delete_btn" onClick={() => console.log(id)}>
         <i className="fa-solid fa-xmark" />
       </button>
     </li>

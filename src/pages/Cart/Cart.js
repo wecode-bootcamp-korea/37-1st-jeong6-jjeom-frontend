@@ -7,6 +7,9 @@ const Cart = () => {
   const [cartItem, setCartItem] = useState([]);
   const [checkedItem, setCheckedItem] = useState([]);
 
+  console.log(checkedItem);
+  console.log(cartItem);
+
   const isAllChecked = cartItem.length === checkedItem.length;
 
   const handleSingleCheck = (checked, id) => {
@@ -53,8 +56,67 @@ const Cart = () => {
     }
   };
 
+  //POST
+  const postOrder = () => {
+    fetch(`/data/cartList.json`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
+      },
+      body: JSON.stringify({
+        name: cartItem.name,
+        option: cartItem.price,
+      }),
+    }).then(response => {
+      response.json();
+    });
+  };
+
+  //PATCH
+  const addCart = (id, amount) => {
+    fetch(`/data/cartList.json`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
+      },
+      body: JSON.stringify({
+        amount: amount,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => console.log(data));
+  };
+
+  //DELETE
+  const deleteCart = id => {
+    fetch(`/data/cartList.json`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
+      },
+    }).then(res => {
+      fetch(`/data/cartList.json`, {
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: localStorage.getItem('token'),
+        },
+      })
+        .then(res => res.json())
+        .then(data => setCartItem(data));
+    });
+  };
+
+  // GET
   useEffect(() => {
-    fetch('/data/cartList.json')
+    fetch('/data/cartList.json', {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
+      },
+    })
       .then(res => res.json())
       .then(data => setCartItem(data));
   }, []);
@@ -93,10 +155,16 @@ const Cart = () => {
                     onChangeProps={onChangeProps}
                     checkedItem={checkedItem}
                     handleSingleCheck={handleSingleCheck}
+                    deleteCart={deleteCart}
                   />
                 ))}
               </ul>
-              <button className="all_delete">선택 상품 삭제</button>
+              <button
+                className="all_delete"
+                onClick={() => console.log(checkedItem)}
+              >
+                선택 상품 삭제
+              </button>
             </div>
             <div className="payment_area">
               <ul className="payment_list">
