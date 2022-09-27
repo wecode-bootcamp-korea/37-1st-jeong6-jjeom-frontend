@@ -1,0 +1,81 @@
+@import '/src/styles/variables.scss';
+
+.info {
+  padding: 5rem;
+
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    padding-bottom: 30px;
+  }
+
+  .info_basic {
+    margin: 50px 0;
+
+    ul {
+      width: 100%;
+      padding: 20px;
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+    }
+
+    li {
+      display: flex;
+      height: 30px;
+      line-height: 30px;
+      font-weight: 500;
+
+      & :first-child {
+        width: 200px;
+      }
+    }
+  }
+  .info_delivery {
+    margin: 50px 0;
+
+    .info_delivery_container {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid black;
+      padding: 50px 0;
+
+      .delivery_sub_title {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 25px;
+      }
+
+      ul {
+        width: 700px;
+        padding: 1.5rem;
+        background-color: #fafafa;
+
+        li {
+          display: flex;
+          padding-bottom: 50px;
+
+          .content_title {
+            min-width: 80px;
+            font-weight: 600;
+          }
+
+          .sub-text {
+            color: $sub-text;
+            margin-bottom: 5px;
+          }
+        }
+      }
+    }
+  }
+  .info_refund {
+    .content_title {
+      min-width: 80px;
+      font-weight: 600;
+    }
+    p {
+      padding-top: 50px;
+      border-top: 1px solid black;
+      font-weight: 500;
+    }
+  }
+}

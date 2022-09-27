@@ -1,0 +1,9 @@
+{
+  "id": 2,
+  "title": "초신선 무항생제 돼지 삼겹살 구이용",
+  "price": "23,400",
+  "gram": 600,
+  "img_url": "https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-clean-list.png",
+  "antibiotic": true,
+  "option": ["보통(16mm)", "얇게(12mm)"]
+}

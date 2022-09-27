@@ -14,12 +14,8 @@ button {
 .container {
   width: 1200px;
   margin: 0 auto;
-  border: 1px solid #000;
 }
 
-@media (max-width: 1180px) {
-  .container {
-    width: 100%;
-    margin: 0 40px;
-  }
+.hide {
+  display: none;
 }

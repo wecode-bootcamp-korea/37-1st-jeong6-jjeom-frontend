@@ -1,7 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import Product from './Product/Product';
 import { useSearchParams } from 'react-router-dom';
-import Product from './Product';
 import './List.scss';
+
+const LIST_TAB = [
+  { id: 1, text: '돼지', name: '돼지' },
+  { id: 2, text: '소', name: '소' },
+  { id: 3, text: '닭', name: '닭' },
+  { id: 4, text: '수산', name: '수산' },
+  { id: 5, text: '밀키트', name: '밀키트' },
+  { id: 6, text: '우유', name: '우유' },
+  { id: 7, text: '달걀', name: '달걀' },
+  { id: 8, text: '이유식', name: '이유식' },
+];
 
 const List = () => {
   const [products, setProducts] = useState([]);
@@ -14,6 +25,8 @@ const List = () => {
     setSearchParams(searchParams);
     setTabSwitch(pageId);
   };
+
+  // TODO : 서버 통신 하기
   useEffect(() => {
     // fetch(`http://192.168.87.192:3000/products/${paramsId}/list`)
     fetch('/data/list-data.json')
@@ -61,14 +74,3 @@ const List = () => {
 };
 
 export default List;
-
-const LIST_TAB = [
-  { id: 1, text: '돼지', name: '돼지' },
-  { id: 2, text: '소', name: '소' },
-  { id: 3, text: '닭', name: '닭' },
-  { id: 4, text: '수산', name: '수산' },
-  { id: 5, text: '밀키트', name: '밀키트' },
-  { id: 6, text: '우유', name: '우유' },
-  { id: 7, text: '달걀', name: '달걀' },
-  { id: 8, text: '이유식', name: '이유식' },
-];
