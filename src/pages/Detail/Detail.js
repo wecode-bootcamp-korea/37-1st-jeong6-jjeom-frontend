@@ -4,7 +4,6 @@ import Option from './Option/Option';
 import ItemInfo from './ItemInfo/ItemInfo';
 import Info from './Info/Info';
 import './Detail.scss';
-import Modal from './Modal/Modal';
 
 const Detail = () => {
   const { id } = useParams();
@@ -13,7 +12,10 @@ const Detail = () => {
   const [isOptionSwtich, setIsOptionSwitch] = useState(false);
   const [option, setOption] = useState('선택');
   const [currTab, setCurrTab] = useState('상품설명');
+  const [isModal, setIsModal] = useState(false);
+  const [modalContent, setModalContent] = useState('');
   const navigate = useNavigate();
+
   // TODO : 받은 데이터로 보여주기
   const TAB_LIST = {
     상품설명: <ItemInfo />,
@@ -46,9 +48,15 @@ const Detail = () => {
     setCurrTab(tab);
   };
 
+  const handleModal = () => {
+    setIsModal(false);
+  };
+
   const handleBtn = button => {
     if (option === '선택') {
-      alert('옵션을 선택해주세용!');
+      setModalContent('옵션을 선택해주세요!🤔');
+      setIsModal(true);
+      setTimeout(handleModal, 3000);
     } else if (button === 'buy') {
       fetch('http://localhost:3000/carts/post', {
         method: 'POST',
@@ -61,22 +69,26 @@ const Detail = () => {
       });
       navigate('/cart');
     } else if (button === 'cart') {
-      fetch('http://localhost:3000/carts/post', {
-        method: 'POST',
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('token'),
-        body: JSON.stringify({
-          optionProductsId: detailData.id,
-          quantity: quantityItem,
-        }),
-      });
-      alert('장바구니에 추가되었습니다!');
+      // fetch('http://localhost:3000/carts/post', {
+      //   method: 'POST',
+      //   'Content-Type': 'application/json;charset=utf-8',
+      //   Authorization: localStorage.getItem('token'),
+      //   body: JSON.stringify({
+      //     optionProductsId: detailData.id,
+      //     quantity: quantityItem,
+      //   }),
+      // });
+      setModalContent('장바구니에 담겼습니당🎉');
+      setIsModal(true);
+      setTimeout(handleModal, 3000);
     }
   };
 
   return (
     <div className="detail">
-      <Modal />
+      <div className="modal">
+        <span className={isModal ? 'on' : 'off'}>{modalContent}</span>
+      </div>
       <section className="detail_top">
         <div className="detail_top_data">
           <img
