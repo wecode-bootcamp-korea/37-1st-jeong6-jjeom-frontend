@@ -23,7 +23,12 @@ const List = () => {
 
   return (
     <div className="list">
-      <section className="list_banner" />
+      <section className="list_banner">
+        <img
+          src="https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-app/web/list_top/new/pcbaby.png"
+          alt="카테고리 배너"
+        />
+      </section>
       <div className="container">
         <section className="list_tab">
           <ul className="list_tab_container">
@@ -49,6 +54,7 @@ const List = () => {
             return <Product key={data.id} data={data} />;
           })}
         </ul>
+        <form />
       </div>
     </div>
   );

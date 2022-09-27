@@ -2,10 +2,12 @@
 
 .list {
   .list_banner {
-    height: 520px;
-    background: url('https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-app/web/list_top/new/pcbaby.png')
-      no-repeat center;
-    background-size: cover;
+    width: 100%;
+
+    img {
+      width: 100%;
+      background-size: cover;
+    }
   }
 
   .container {

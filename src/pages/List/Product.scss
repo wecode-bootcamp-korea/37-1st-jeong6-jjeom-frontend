@@ -3,10 +3,15 @@
 .products_list {
   display: flex;
   flex-wrap: wrap;
+
   .products_container {
     margin-bottom: 30px;
-    width: 33%;
+    width: calc((100% - 40px) / 3);
+    margin-right: 20px;
 
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
     a {
       text-decoration: none;
       color: black;
@@ -15,7 +20,6 @@
     .products_img {
       @include flex-center;
       position: relative;
-      width: 350px;
       height: 350px;
       background-color: $gray-color;
 
@@ -60,15 +64,20 @@
           rgba(0, 0, 0, 0.05) 0px 5px 10px;
       }
     }
-    .product_title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-top: 20px;
-    }
-    .product_price {
-      font-weight: 400;
-      color: $sub-text;
-      margin-top: 10px;
+    .product_content {
+      display: flex;
+      flex-direction: column;
+
+      .product_title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-top: 20px;
+      }
+      .product_price {
+        font-weight: 400;
+        color: $sub-text;
+        margin-top: 10px;
+      }
     }
   }
 }

@@ -14,10 +14,12 @@ const Products = ({ data }) => {
             <i className="fa-solid fa-cart-shopping" />
           </button>
         </div>
-        <h6 className="product_title">{title}</h6>
-        <p className="product_price">
-          기준가 {price}원/{gram}g
-        </p>
+        <div className="product_content">
+          <span className="product_title">{title}</span>
+          <span className="product_price">
+            기준가 {price}원/{gram}g
+          </span>
+        </div>
       </Link>
     </li>
   );
