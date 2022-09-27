@@ -28,7 +28,7 @@ const CartItemList = ({
           id={`check${id}`}
           title="선택"
           checked={checkedItem.includes(id)}
-          onChange={e => handleSingleCheck(e.target.checked, id)}
+          onChange={handleSingleCheck}
         />
         <label htmlFor={`check${id}`} />
       </div>

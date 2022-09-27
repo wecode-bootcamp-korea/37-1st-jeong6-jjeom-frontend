@@ -3,6 +3,8 @@ import CartItemList from './components/CartItemList';
 import ItemNone from './components/ItemNone';
 import './Cart.scss';
 
+const DELIVERY_FEE = 3500;
+
 const Cart = () => {
   const [cartItem, setCartItem] = useState([]);
   const [checkedItem, setCheckedItem] = useState([]);
@@ -10,21 +12,22 @@ const Cart = () => {
   console.log(checkedItem);
   console.log(cartItem);
 
-  const isAllChecked = cartItem.length === checkedItem.length;
+  const isAllChecked =
+    checkedItem.length !== 0 && cartItem.length === checkedItem.length;
 
-  const handleSingleCheck = (checked, id) => {
-    if (checked) {
-      setCheckedItem(prev => [...prev, id]);
-    } else {
+  const handleSingleCheck = id => {
+    if (checkedItem.includes(id)) {
       setCheckedItem(checkedItem.filter(el => el !== id));
+    } else {
+      setCheckedItem(checkedItem.concat(id));
     }
   };
 
-  const handleAllCheck = checked => {
-    if (checked) {
-      setCheckedItem(cartItem.map(({ id }) => id));
+  const handleAllCheck = () => {
+    if (isAllChecked) {
     } else {
       setCheckedItem([]);
+      setCheckedItem(cartItem.map(({ id }) => id));
     }
   };
 
@@ -40,21 +43,14 @@ const Cart = () => {
     });
   };
 
-  const sumItemPrice = () => {
-    let totalPrice = 0;
-    for (let i = 0; i < checkedItem.length; i++) {
-      totalPrice += cartItem[i].price * cartItem[i].amount;
-    }
-    return totalPrice;
-  };
-
-  const sumAllPrice = totalPrice => {
-    if (checkedItem.length === 0) {
-      return 0;
-    } else {
-      return sumItemPrice() + 3500;
-    }
-  };
+  const totalPrice = cartItem.reduce(
+    (acc, cart) =>
+      checkedItem.indexOf(cart.id) !== -1
+        ? acc + Number(cart.price) * cart.amount
+        : acc,
+    0
+  );
+  const sumAllPrice = checkedItem.length === 0 ? 0 : totalPrice + DELIVERY_FEE;
 
   //POST
   const postOrder = () => {
@@ -65,19 +61,21 @@ const Cart = () => {
         Authorization: localStorage.getItem('token'),
       },
       body: JSON.stringify({
+        // TODO: 어떤 형태로 받아야하는지 백엔드와 정하기
         name: cartItem.name,
         option: cartItem.price,
       }),
     })
-      .then(res => {
-        res.json();
-      })
+      .then(res => res.json())
       .then(data => {
         console.log(data);
       });
   };
 
   //PATCH
+  // TODO: state update와 싱크 맞추기!
+  // 1. fetch 결과가 성공적이면 setState(plusQuantity에서 onChangeProps)
+  // 2. fetch 결과가 성공적이면 한번 더 getData (setState X)
   const addCart = (id, amount) => {
     //http://localhost:3000/carts/patch?optionProductsId=1&quantity=1
     fetch(`/data/cartList.json`, {
@@ -87,7 +85,8 @@ const Cart = () => {
         Authorization: localStorage.getItem('token'),
       },
       body: JSON.stringify({
-        amount: amount,
+        id,
+        amount,
       }),
     })
       .then(res => res.json())
@@ -109,7 +108,7 @@ const Cart = () => {
   };
 
   // GET
-  useEffect(() => {
+  const getCartData = () => {
     fetch('/data/cartList.json', {
       //http://localhost:3000/carts/get
       headers: {
@@ -119,6 +118,10 @@ const Cart = () => {
     })
       .then(res => res.json())
       .then(data => setCartItem(data));
+  };
+
+  useEffect(() => {
+    getCartData();
   }, []);
 
   return (
@@ -137,9 +140,7 @@ const Cart = () => {
                     id="checkAll"
                     title="선택"
                     checked={isAllChecked}
-                    onChange={e => {
-                      handleAllCheck(e.target.checked);
-                    }}
+                    onChange={handleAllCheck}
                   />
                   <label htmlFor="checkAll" />
                 </div>
@@ -154,7 +155,7 @@ const Cart = () => {
                     itemInfo={data}
                     onChangeProps={onChangeProps}
                     checkedItem={checkedItem}
-                    handleSingleCheck={handleSingleCheck}
+                    handleSingleCheck={() => handleSingleCheck(data.id)}
                     deleteCart={deleteCart}
                   />
                 ))}
@@ -170,22 +171,29 @@ const Cart = () => {
               <ul className="payment_list">
                 <li className="all_price">
                   <p>총 상품 금액</p>
-                  <p>{sumItemPrice().toLocaleString()}원</p>
+                  <p>{totalPrice.toLocaleString()}원</p>
                 </li>
                 <li className="all_price">
                   <p>총 배송비</p>
-                  <p>{checkedItem.length === 0 ? '0원' : '3,500원'}</p>
+                  <p>
+                    {checkedItem.length === 0
+                      ? 0
+                      : DELIVERY_FEE.toLocaleString()}
+                    원
+                  </p>
                 </li>
                 <li className="option_price">
                   <dl className="option">
                     <dt className="delivery">기본 배송비</dt>
-                    <dd className="delivery">3,500원</dd>
+                    <dd className="delivery">
+                      {DELIVERY_FEE.toLocaleString()}원
+                    </dd>
                   </dl>
                 </li>
                 <li>
                   <p className="final_title">예상 결제 금액</p>
                   <p className="final_price">
-                    {sumAllPrice(sumItemPrice).toLocaleString()}원
+                    {sumAllPrice.toLocaleString()}원
                   </p>
                 </li>
               </ul>
