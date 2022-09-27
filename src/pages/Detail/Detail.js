@@ -13,12 +13,14 @@ const Detail = () => {
   const [option, setOption] = useState('선택');
   const [currTab, setCurrTab] = useState('상품설명');
 
-  const TAP_LIST = {
+  // TODO : 받은 데이터로 보여주기
+  const TAB_LIST = {
     상품설명: <ItemInfo />,
     상품정보안내: <Info />,
   };
 
   useEffect(() => {
+    // TODO : API Integration
     fetch(`/data/detail${id}.json`)
       .then(res => res.json())
       .then(data => setDetailDate(data));
@@ -98,13 +100,13 @@ const Detail = () => {
       </section>
 
       <section className="detail_tab">
-        {Object.keys(TAP_LIST).map(tap => (
-          <button key={tap} onClick={() => handleTab(tap)}>
-            <span className={`${currTab === tap ? 'active' : ''}`}>{tap}</span>
+        {Object.keys(TAB_LIST).map(tab => (
+          <button key={tab} onClick={() => handleTab(tab)}>
+            <span className={`${currTab === tab ? 'active' : ''}`}>{tab}</span>
           </button>
         ))}
       </section>
-      {TAP_LIST[currTab]}
+      {TAB_LIST[currTab]}
     </div>
   );
 };
