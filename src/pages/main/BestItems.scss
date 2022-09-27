@@ -1,7 +1,13 @@
 @import '../../styles/variables.scss';
+.headerTitle {
+  margin-right: 50px;
+}
+.none-active {
+  opacity: 0.5;
+}
 .bestItems {
   position: relative;
-
+  width: 1168px;
   .best_header {
     @include flex-center;
     justify-content: space-between;
@@ -16,7 +22,8 @@
     font-weight: bold;
   }
   .products_list {
-    @include flex-center;
+    display: flex;
+    align-items: center;
     gap: 50px;
   }
 }
