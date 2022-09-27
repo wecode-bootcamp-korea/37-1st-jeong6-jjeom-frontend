@@ -3,6 +3,7 @@ const NAV_LIST = [
     id: 1,
     image: './images/pig.png',
     catogory: '돼지',
+    path: '',
   },
   {
     id: 2,
@@ -11,22 +12,22 @@ const NAV_LIST = [
   },
   {
     id: 3,
-    image: './images/pig.png',
+    image: './images/chicken.png',
     catogory: '닭',
   },
   {
     id: 4,
-    image: './images/chicken.png',
+    image: './images/fish.png',
     catogory: '수산',
   },
   {
     id: 5,
-    image: './images/fish.png',
+    image: './images/cutlery.png',
     catogory: '밀키트',
   },
   {
     id: 6,
-    image: './images/cutlery.png',
+    image: './images/milk.png',
     catogory: '우유',
   },
   {
