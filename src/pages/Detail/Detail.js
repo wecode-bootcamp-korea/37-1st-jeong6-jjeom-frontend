@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Option from './Option/Option';
 import ItemInfo from './ItemInfo/ItemInfo';
 import Info from './Info/Info';
 import './Detail.scss';
+import Modal from './Modal/Modal';
 
 const Detail = () => {
   const { id } = useParams();
-  const [detailData, setDetailDate] = useState({});
+  const [detailData, setDetailData] = useState({});
   const [quantityItem, setQuantityItem] = useState(1);
   const [isOptionSwtich, setIsOptionSwitch] = useState(false);
   const [option, setOption] = useState('선택');
   const [currTab, setCurrTab] = useState('상품설명');
-
+  const navigate = useNavigate();
   // TODO : 받은 데이터로 보여주기
   const TAB_LIST = {
     상품설명: <ItemInfo />,
@@ -23,7 +24,7 @@ const Detail = () => {
     // TODO : API Integration
     fetch(`/data/detail${id}.json`)
       .then(res => res.json())
-      .then(data => setDetailDate(data));
+      .then(data => setDetailData(data));
   }, [id]);
 
   const handlePlusCount = () => {
@@ -45,8 +46,37 @@ const Detail = () => {
     setCurrTab(tab);
   };
 
+  const handleBtn = button => {
+    if (option === '선택') {
+      alert('옵션을 선택해주세용!');
+    } else if (button === 'buy') {
+      fetch('http://localhost:3000/carts/post', {
+        method: 'POST',
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
+        body: JSON.stringify({
+          optionProductsId: detailData.id,
+          quantity: quantityItem,
+        }),
+      });
+      navigate('/cart');
+    } else if (button === 'cart') {
+      fetch('http://localhost:3000/carts/post', {
+        method: 'POST',
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
+        body: JSON.stringify({
+          optionProductsId: detailData.id,
+          quantity: quantityItem,
+        }),
+      });
+      alert('장바구니에 추가되었습니다!');
+    }
+  };
+
   return (
     <div className="detail">
+      <Modal />
       <section className="detail_top">
         <div className="detail_top_data">
           <img
@@ -60,7 +90,6 @@ const Detail = () => {
             <p className="detail_top_price">
               기준가 {detailData.price}원({detailData.gram}g)
             </p>
-
             <div className="detail_top_option">
               <span>옵션</span>
               <div>
@@ -92,8 +121,8 @@ const Detail = () => {
             </div>
 
             <div className="detail_content_btn">
-              <button>바로구매</button>
-              <button>장바구니</button>
+              <button onClick={() => handleBtn('buy')}>바로구매</button>
+              <button onClick={() => handleBtn('cart')}>장바구니</button>
             </div>
           </div>
         </div>
