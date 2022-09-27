@@ -18,13 +18,47 @@ const CartItemList = ({
     quantity,
   } = itemInfo;
 
-  const plusQuantity = () => {
-    onChangeProps(product_id, 'quantity', quantity + 1);
+  const plusQuantity = (id, quantity) => {
+    //http://localhost:3000/carts/patch?optionProductsId=1&quantity=1
+    fetch(`/data/cartList.json`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
+      },
+      body: JSON.stringify({
+        id,
+        quantity,
+      }),
+    })
+      .then(res => res.json())
+      .then(data =>
+        onChangeProps(data.product_id, 'quantity', data.quantity + 1)
+      );
     console.log(`${name}수량 : ${quantity}`);
   };
 
-  const minusQuantity = () => {
-    onChangeProps(product_id, 'quantity', quantity === 1 ? 1 : quantity - 1);
+  const minusQuantity = (id, quantity) => {
+    //http://localhost:3000/carts/patch?optionProductsId=1&quantity=1
+    fetch(`/data/cartList.json`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
+      },
+      body: JSON.stringify({
+        id,
+        quantity,
+      }),
+    })
+      .then(res => res.json())
+      .then(data =>
+        onChangeProps(
+          data.product_id,
+          'quantity',
+          data.quantity === 1 ? 1 : data.quantity - 1
+        )
+      );
     console.log(`${name}수량 : ${quantity}`);
   };
 
@@ -53,7 +87,12 @@ const CartItemList = ({
           <i className="fa-solid fa-minus" />
         </button>
         <p className="box">{quantity}</p>
-        <button className="box" onClick={plusQuantity}>
+        <button
+          className="box"
+          onClick={() => {
+            plusQuantity(product_id, quantity);
+          }}
+        >
           <i className="fa-solid fa-plus" />
         </button>
       </div>

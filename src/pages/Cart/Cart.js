@@ -72,31 +72,10 @@ const Cart = () => {
       });
   };
 
-  //PATCH
-  // TODO: state update와 싱크 맞추기!
-  // 1. fetch 결과가 성공적이면 setState(plusQuantity에서 onChangeProps)
-  // 2. fetch 결과가 성공적이면 한번 더 getData (setState X)
-  const addCart = (id, amount) => {
-    //http://localhost:3000/carts/patch?optionProductsId=1&quantity=1
-    fetch(`/data/cartList.json`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('token'),
-      },
-      body: JSON.stringify({
-        id,
-        amount,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => console.log(data));
-  };
-
   //DELETE
   const deleteCart = id => {
     fetch(`/data/cartList.json?id=${id}`, {
-      //http://localhost:3000/carts/post
+      //http://localhost:3000/carts/delete?product_id=${checkedItem.join('&cart_id')}
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -104,7 +83,7 @@ const Cart = () => {
       },
     })
       .then(res => res.json())
-      .then(data => setCartItem(data));
+      .then(data => console.log(data));
   };
 
   // GET
