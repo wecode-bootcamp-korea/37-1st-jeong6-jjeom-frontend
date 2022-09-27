@@ -4,9 +4,17 @@ import './Order.scss';
 
 const Order = ({ handleStep, saveInputValue }) => {
   const [userData, setUserData] = useState({});
+  const currentYear = new Date().getFullYear();
+  const currnetMonth = new Date().getMonth() + 1;
+  const currentDate = new Date().getDate();
 
-  let currentDay =
-    new Date().getMonth() + 1 + '월 ' + new Date().getDate() + '일';
+  const currentDay =
+    currentYear +
+    '-' +
+    (currnetMonth.toString().length === 1 ? '0' : '') +
+    currnetMonth +
+    '-' +
+    currentDate;
 
   useEffect(() => {
     fetch('/data/user-data.json')
@@ -90,8 +98,8 @@ const Order = ({ handleStep, saveInputValue }) => {
             <div className="order_delivery_date">
               <input
                 name="date"
-                type="number"
-                placeholder={currentDay}
+                type="date"
+                min={currentDay}
                 onChange={saveInputValue}
               />
             </div>

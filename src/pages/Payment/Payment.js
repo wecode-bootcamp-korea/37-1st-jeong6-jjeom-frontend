@@ -22,6 +22,7 @@ const Payment = () => {
   const saveInputValue = e => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
+    console.log(e.target.value);
   };
 
   const stepUi = {
