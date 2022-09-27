@@ -68,13 +68,18 @@ const Cart = () => {
         name: cartItem.name,
         option: cartItem.price,
       }),
-    }).then(response => {
-      response.json();
-    });
+    })
+      .then(res => {
+        res.json();
+      })
+      .then(data => {
+        console.log(data);
+      });
   };
 
   //PATCH
   const addCart = (id, amount) => {
+    //http://localhost:3000/carts/patch?optionProductsId=1&quantity=1
     fetch(`/data/cartList.json`, {
       method: 'PATCH',
       headers: {
@@ -85,33 +90,28 @@ const Cart = () => {
         amount: amount,
       }),
     })
-      .then(response => response.json())
+      .then(res => res.json())
       .then(data => console.log(data));
   };
 
   //DELETE
   const deleteCart = id => {
-    fetch(`/data/cartList.json`, {
+    fetch(`/data/cartList.json?id=${id}`, {
+      //http://localhost:3000/carts/post
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: localStorage.getItem('token'),
       },
-    }).then(res => {
-      fetch(`/data/cartList.json`, {
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          Authorization: localStorage.getItem('token'),
-        },
-      })
-        .then(res => res.json())
-        .then(data => setCartItem(data));
-    });
+    })
+      .then(res => res.json())
+      .then(data => setCartItem(data));
   };
 
   // GET
   useEffect(() => {
     fetch('/data/cartList.json', {
+      //http://localhost:3000/carts/get
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: localStorage.getItem('token'),
@@ -170,21 +170,23 @@ const Cart = () => {
               <ul className="payment_list">
                 <li className="all_price">
                   <p>총 상품 금액</p>
-                  <p>{sumItemPrice()}원</p>
+                  <p>{sumItemPrice().toLocaleString()}원</p>
                 </li>
                 <li className="all_price">
                   <p>총 배송비</p>
-                  <p>{checkedItem.length === 0 ? '0원' : '3500원'}</p>
+                  <p>{checkedItem.length === 0 ? '0원' : '3,500원'}</p>
                 </li>
                 <li className="option_price">
                   <dl className="option">
                     <dt className="delivery">기본 배송비</dt>
-                    <dd className="delivery">3500원</dd>
+                    <dd className="delivery">3,500원</dd>
                   </dl>
                 </li>
                 <li>
                   <p className="final_title">예상 결제 금액</p>
-                  <p className="final_price">{sumAllPrice(sumItemPrice)}원</p>
+                  <p className="final_price">
+                    {sumAllPrice(sumItemPrice).toLocaleString()}원
+                  </p>
                 </li>
               </ul>
               <button className="payment_btn order">상품 주문하기</button>

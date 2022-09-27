@@ -49,7 +49,7 @@ const CartItemList = ({
           <i className="fa-solid fa-plus" />
         </button>
       </div>
-      <p className="price">{price * amount}원</p>
+      <p className="price">{(price * amount).toLocaleString()}원</p>
       <button className="delete_btn" onClick={() => console.log(id)}>
         <i className="fa-solid fa-xmark" />
       </button>
