@@ -53,17 +53,17 @@ const Cart = () => {
   const sumAllPrice = checkedItem.length === 0 ? 0 : totalPrice + DELIVERY_FEE;
 
   //POST
-  const postOrder = () => {
+  const postOrder = id => {
     fetch(`/data/cartList.json`, {
+      //http://localhost:3000/carts/post?product_id=${checkedItem.join('&cart_id')}
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: localStorage.getItem('token'),
       },
       body: JSON.stringify({
-        // TODO: 어떤 형태로 받아야하는지 백엔드와 정하기
-        name: cartItem.name,
-        option: cartItem.price,
+        // TODO: 어떤 형태로 받아야하는지 백엔드와 정하기 => 상품 id 값을 전달
+        product_id: cartItem.product_id,
       }),
     })
       .then(res => res.json())
@@ -176,7 +176,9 @@ const Cart = () => {
                   </p>
                 </li>
               </ul>
-              <button className="payment_btn order">상품 주문하기</button>
+              <button className="payment_btn order" onClick={() => postOrder()}>
+                상품 주문하기
+              </button>
               <button className="payment_btn shopping">쇼핑계속하기</button>
             </div>
           </>
