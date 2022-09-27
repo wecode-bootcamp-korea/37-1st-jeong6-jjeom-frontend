@@ -6,7 +6,7 @@ import List from './pages/List/List';
 import Detail from './pages/Detail/Detail';
 import Cart from './pages/Cart/Cart';
 import Payment from './pages/Payment/Payment';
-import Main from './pages/Main/Main';
+import Main from './pages/main/Main';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 
