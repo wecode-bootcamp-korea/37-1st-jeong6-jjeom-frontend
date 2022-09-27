@@ -8,16 +8,24 @@ const CartItemList = ({
   handleSingleCheck,
   deleteCart,
 }) => {
-  const { id, img, name, option, price, gram, amount } = itemInfo;
+  const {
+    product_id,
+    tumbnail_url,
+    name,
+    standard_unit,
+    price,
+    thick,
+    quantity,
+  } = itemInfo;
 
   const plusQuantity = () => {
-    onChangeProps(id, 'amount', amount + 1);
-    console.log(`${name} : ${amount}`);
+    onChangeProps(product_id, 'quantity', quantity + 1);
+    console.log(`${name}수량 : ${quantity}`);
   };
 
   const minusQuantity = () => {
-    onChangeProps(id, 'amount', amount === 1 ? 1 : amount - 1);
-    console.log(`${name} : ${amount}`);
+    onChangeProps(product_id, 'quantity', quantity === 1 ? 1 : quantity - 1);
+    console.log(`${name}수량 : ${quantity}`);
   };
 
   return (
@@ -25,32 +33,32 @@ const CartItemList = ({
       <div className="check_area">
         <input
           type="checkbox"
-          id={`check${id}`}
+          id={`check${product_id}`}
           title="선택"
-          checked={checkedItem.includes(id)}
+          checked={checkedItem.includes(product_id)}
           onChange={handleSingleCheck}
         />
-        <label htmlFor={`check${id}`} />
+        <label htmlFor={`check${product_id}`} />
       </div>
-      <img src={img} alt="sample" />
+      <img src={tumbnail_url} alt="sample" />
       <div className="product_info">
         <p className="name">
           {name}
-          <span className="option">{option}</span>
+          <span className="option">{standard_unit}</span>
         </p>
-        <span className="standard">{gram}g 기준</span>
+        <span className="standard">{thick}g 기준</span>
       </div>
       <div className="amount_box">
         <button className="box" onClick={minusQuantity}>
           <i className="fa-solid fa-minus" />
         </button>
-        <p className="box">{amount}</p>
+        <p className="box">{quantity}</p>
         <button className="box" onClick={plusQuantity}>
           <i className="fa-solid fa-plus" />
         </button>
       </div>
-      <p className="price">{(price * amount).toLocaleString()}원</p>
-      <button className="delete_btn" onClick={() => console.log(id)}>
+      <p className="price">{(price * quantity).toLocaleString()}원</p>
+      <button className="delete_btn" onClick={() => console.log(product_id)}>
         <i className="fa-solid fa-xmark" />
       </button>
     </li>

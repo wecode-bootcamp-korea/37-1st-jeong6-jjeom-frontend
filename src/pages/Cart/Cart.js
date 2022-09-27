@@ -9,8 +9,8 @@ const Cart = () => {
   const [cartItem, setCartItem] = useState([]);
   const [checkedItem, setCheckedItem] = useState([]);
 
-  console.log(checkedItem);
-  console.log(cartItem);
+  console.log('선택된 상품:', checkedItem);
+  console.log('장바구니에 담긴 상품', cartItem);
 
   const isAllChecked =
     checkedItem.length !== 0 && cartItem.length === checkedItem.length;
@@ -25,16 +25,16 @@ const Cart = () => {
 
   const handleAllCheck = () => {
     if (isAllChecked) {
-    } else {
       setCheckedItem([]);
-      setCheckedItem(cartItem.map(({ id }) => id));
+    } else {
+      setCheckedItem(cartItem.map(({ product_id }) => product_id));
     }
   };
 
   const onChangeProps = (id, key, value) => {
     setCartItem(prevItem => {
       return prevItem.map(obj => {
-        if (obj.id === id) {
+        if (obj.product_id === id) {
           return { ...obj, [key]: value };
         } else {
           return { ...obj };
@@ -45,8 +45,8 @@ const Cart = () => {
 
   const totalPrice = cartItem.reduce(
     (acc, cart) =>
-      checkedItem.indexOf(cart.id) !== -1
-        ? acc + Number(cart.price) * cart.amount
+      checkedItem.indexOf(cart.product_id) !== -1
+        ? acc + Number(cart.price) * cart.quantity
         : acc,
     0
   );
@@ -151,11 +151,11 @@ const Cart = () => {
               <ul className="item_list">
                 {cartItem.map(data => (
                   <CartItemList
-                    key={data.id}
+                    key={data.product_id}
                     itemInfo={data}
                     onChangeProps={onChangeProps}
                     checkedItem={checkedItem}
-                    handleSingleCheck={() => handleSingleCheck(data.id)}
+                    handleSingleCheck={() => handleSingleCheck(data.product_id)}
                     deleteCart={deleteCart}
                   />
                 ))}
