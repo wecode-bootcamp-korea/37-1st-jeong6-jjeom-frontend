@@ -1,18 +1,18 @@
 import React from 'react';
-import './LoginModal.scss';
+import './Modal.scss';
 
-const LoginModal = ({ title, comment, onClick, ClickToMain }) => {
+const Modal = ({ title, comment, closeModal, confirm }) => {
   return (
     <>
-      <div onClick={onClick} className="successModalBack" />
+      <div onClick={closeModal} className="successModalBack" />
       <div className="successModal">
         <p className="successHeader">{title}</p>
         <p className="successContent">{comment}</p>
-        <button onClick={ClickToMain} className="successBtn">
+        <button onClick={confirm} className="successBtn">
           확인
         </button>
       </div>
     </>
   );
 };
-export default LoginModal;
+export default Modal;

@@ -1,17 +1,15 @@
 @import '/src/styles/variables.scss';
-.start {
-  transition: all 1s;
-  opacity: 0;
-}
-
-.end {
-  opacity: 1;
-}
 
 .loginWrap {
   @include flex-center;
   flex-direction: column;
   margin-top: 200px;
+  transition: all 1s;
+  opacity: 0;
+
+  &.end {
+    opacity: 1;
+  }
 
   .loginWord {
     font-weight: bold;
