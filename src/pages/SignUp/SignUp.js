@@ -8,9 +8,11 @@ const SignUp = () => {
   const goToLogin = () => {
     navigate('/login');
   };
+
   const goToRegister = () => {
     navigate('/register');
   };
+
   return (
     <div className="signUpWrap">
       <div className="signUpWord">회원가입</div>
