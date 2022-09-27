@@ -14,21 +14,13 @@ const List = () => {
     setSearchParams(searchParams);
     setTabSwitch(pageId);
   };
-
   useEffect(() => {
-    fetch(
-      `https://0bec-211-106-114-186.jp.ngrok.io/products/list?categoriesId=${paramsId}`
-      // `https://jsonplaceholder.typicode.com/users/`
-      // {
-      //   // mode: 'no-cors',
-      //   headers: {
-      //     'Content-Type': 'application/json;charset=utf-8',
-      //   },
-      // }
-    )
+    // fetch(`http://192.168.87.192:3000/products/${paramsId}/list`)
+    fetch('/data/list-data.json')
       .then(res => res.json())
       .then(data => setProducts(data));
   }, [paramsId]);
+
   return (
     <div className="list">
       <section className="list_banner" />
@@ -52,7 +44,7 @@ const List = () => {
             })}
           </ul>
         </section>
-        <ul className="products_list">
+        <ul className="products_list container">
           {products.map(data => {
             return <Product key={data.id} data={data} />;
           })}

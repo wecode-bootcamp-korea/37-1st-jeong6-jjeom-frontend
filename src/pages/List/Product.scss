@@ -3,10 +3,9 @@
 .products_list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-
   .products_container {
     margin-bottom: 30px;
+    width: 33%;
 
     a {
       text-decoration: none;
