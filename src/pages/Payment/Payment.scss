@@ -14,9 +14,7 @@
   .active {
     color: black;
   }
-  .none {
-    display: none;
-  }
+  
   .payment_status_container {
     @include flex-center;
     justify-content: space-evenly;

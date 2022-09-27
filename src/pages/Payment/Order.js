@@ -5,14 +5,14 @@ import './Order.scss';
 const Order = ({ handleStep, saveInputValue }) => {
   const [userData, setUserData] = useState({});
   const currentYear = new Date().getFullYear();
-  const currnetMonth = new Date().getMonth() + 1;
+  const currentMonth = new Date().getMonth() + 1;
   const currentDate = new Date().getDate();
 
   const currentDay =
     currentYear +
     '-' +
-    (currnetMonth.toString().length === 1 ? '0' : '') +
-    currnetMonth +
+    (currentMonth.toString().length === 1 ? '0' : '') +
+    currentMonth +
     '-' +
     currentDate;
 

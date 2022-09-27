@@ -22,7 +22,6 @@ const Payment = () => {
   const saveInputValue = e => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
-    console.log(e.target.value);
   };
 
   const stepUi = {
@@ -55,7 +54,7 @@ const Payment = () => {
                 className={`fa-solid fa-chevron-right status_icon ${
                   step === status.name && 'active'
                 } ${
-                  status.id === STEP_STATUS[STEP_STATUS.length - 1].id && 'none'
+                  status.id === STEP_STATUS[STEP_STATUS.length - 1].id && 'hide'
                 }`}
               />
             </div>
