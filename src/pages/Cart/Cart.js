@@ -102,6 +102,44 @@ const Cart = () => {
       });
   };
 
+  const deleteProduct = async () => {
+    const response = await fetch(`api주소`, {
+      //http://localhost:3000/carts/delete?product_id=${checkedItem.join('&cart_id')}
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
+      },
+    });
+
+    const data = await response.json();
+
+    if (data) {
+      const response = await fetch('api주소', {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      });
+
+      const data = await response.json();
+      const filteredList = data.filter(
+        el =>
+          !checkedItem.includes(el.product_id).map(obj => {
+            return {
+              product_id: obj.product_id,
+              name: obj.name,
+              price: obj.price,
+              quantity: obj.quantity,
+              tumbnail_url: obj.tumbnail_url,
+              standard_unit: obj.standard_unit,
+              thick: obj.thick,
+            };
+          })
+      );
+      setCartItem(filteredList);
+    }
+  };
+
   // GET
   const getCartData = () => {
     fetch('/data/cartList.json', {
