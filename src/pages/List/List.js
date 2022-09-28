@@ -7,20 +7,17 @@ const List = () => {
   const [products, setProducts] = useState([]);
   const [tabSwtich, setTabSwitch] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
-  const categories = searchParams.get('categories');
 
   const handleTab = pageId => {
     searchParams.set('categories', pageId);
     setSearchParams(searchParams);
     setTabSwitch(pageId);
   };
-
   useEffect(() => {
     fetch(`http://172.20.10.3:3000/products/${tabSwtich}/list`) //`name=${name}`
       .then(res => res.json())
       .then(data => setProducts(data.result));
-  }, [categories]);
-
+  }, [tabSwtich]);
   return (
     <div className="list">
       <section className="list_banner" />

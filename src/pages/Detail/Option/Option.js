@@ -5,7 +5,7 @@ const Option = ({ handleOption, option }) => {
     <ul className="option_btn_container">
       {option.map(option => {
         return (
-          <li key={option}>
+          <li key={option.thick}>
             <button
               type="button"
               className="option_btn"

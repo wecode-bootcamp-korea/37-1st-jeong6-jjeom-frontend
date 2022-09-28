@@ -10,12 +10,11 @@ const Detail = () => {
   const [detailData, setDetailData] = useState({});
   const [quantityItem, setQuantityItem] = useState(1);
   const [isOptionSwtich, setIsOptionSwitch] = useState(false);
-  const [option, setOption] = useState('');
   const [optionContent, setOptionContent] = useState('선택');
   const [currTab, setCurrTab] = useState('상품설명');
   const [isModal, setIsModal] = useState(false);
   const [modalContent, setModalContent] = useState('');
-  const [description, setDescription] = useState();
+  const [description, setDescription] = useState({});
   const navigate = useNavigate();
 
   // TODO : 받은 데이터로 보여주기
@@ -23,7 +22,6 @@ const Detail = () => {
     상품설명: <ItemInfo description_url={detailData.description_url} />,
     상품정보안내: <Info description={description} />,
   };
-
   // console.log(detailData.option[1 - 1].value);
 
   useEffect(() => {
@@ -43,10 +41,9 @@ const Detail = () => {
     setQuantityItem(quantityItem - 1);
   };
 
-  const handleOption = option => {
-    setOption(option.id);
+  const handleOption = optionValue => {
     setIsOptionSwitch(!isOptionSwtich);
-    setOptionContent(option.thick);
+    setOptionContent(optionValue.thick);
   };
 
   const handleTab = tab => {
@@ -135,8 +132,7 @@ const Detail = () => {
                 <button
                   type="button"
                   className="option_btn"
-                  onClick={() => handleOption(option)}
-                  value={option}
+                  onClick={() => handleOption(optionContent)}
                 >
                   {optionContent}
                 </button>
