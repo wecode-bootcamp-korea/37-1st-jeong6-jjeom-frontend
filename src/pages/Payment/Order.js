@@ -129,7 +129,7 @@ const Order = ({ handleStep, saveInputValue }) => {
           </div>
         </section>
       </form>
-      <StepBtn />
+      <StepBtn handleStep={handleStep} prev="cart" next="confirm" />
     </div>
   );
 };

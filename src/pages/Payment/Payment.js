@@ -17,6 +17,9 @@ const Payment = () => {
     order: [],
   });
   const handleStep = step => {
+    if (step === 'confirm') {
+      console.log('여기서 포스트해야돼');
+    }
     setStep(step);
   };
 
