@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CartItemList from './components/CartItemList';
 import ItemNone from './components/ItemNone';
 import './Cart.scss';
@@ -9,8 +10,16 @@ const Cart = () => {
   const [cartItem, setCartItem] = useState([]);
   const [checkedItem, setCheckedItem] = useState([]);
 
-  console.log('선택된 상품:', checkedItem);
-  console.log('장바구니에 담긴 상품', cartItem);
+  //console.log('선택된 상품:', checkedItem);
+  //console.log('장바구니에 담긴 상품', cartItem);
+
+  const navigate = useNavigate();
+  const goToPayment = () => {
+    navigate('/payment');
+  };
+  const goToList = () => {
+    navigate('/list');
+  };
 
   const isAllChecked =
     checkedItem.length !== 0 && cartItem.length === checkedItem.length;
@@ -62,13 +71,16 @@ const Cart = () => {
         Authorization: localStorage.getItem('token'),
       },
       body: JSON.stringify({
-        // TODO: 어떤 형태로 받아야하는지 백엔드와 정하기 => 상품 id 값을 전달
+        // TODO: 어떤 형태로 받아야하는지 백엔드와 정하기 => 상품 id 값을 전달해달라고 하심
         product_id: cartItem.product_id,
       }),
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        if (data) {
+          alert('주문하기 페이지로 이동합니다.');
+          goToPayment(); //주문하기 페이지로 이동
+        }
       });
   };
 
@@ -83,7 +95,11 @@ const Cart = () => {
       },
     })
       .then(res => res.json())
-      .then(data => console.log(data));
+      .then(data => {
+        if (data) {
+          alert('상품이 삭제되었습니다.');
+        }
+      });
   };
 
   // GET
@@ -139,12 +155,7 @@ const Cart = () => {
                   />
                 ))}
               </ul>
-              <button
-                className="all_delete"
-                onClick={() => console.log(checkedItem)}
-              >
-                선택 상품 삭제
-              </button>
+              <button className="all_delete">선택 상품 삭제</button>
             </div>
             <div className="payment_area">
               <ul className="payment_list">
@@ -179,7 +190,12 @@ const Cart = () => {
               <button className="payment_btn order" onClick={() => postOrder()}>
                 상품 주문하기
               </button>
-              <button className="payment_btn shopping">쇼핑계속하기</button>
+              <button
+                className="payment_btn shopping"
+                onClick={() => goToList()}
+              >
+                쇼핑계속하기
+              </button>
             </div>
           </>
         )}

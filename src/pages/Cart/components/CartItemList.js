@@ -6,7 +6,6 @@ const CartItemList = ({
   onChangeProps,
   checkedItem,
   handleSingleCheck,
-  deleteCart,
 }) => {
   const {
     product_id,
@@ -35,7 +34,6 @@ const CartItemList = ({
       .then(data =>
         onChangeProps(data.product_id, 'quantity', data.quantity + 1)
       );
-    console.log(`${name}수량 : ${quantity}`);
   };
 
   const minusQuantity = (id, quantity) => {
@@ -59,7 +57,6 @@ const CartItemList = ({
           data.quantity === 1 ? 1 : data.quantity - 1
         )
       );
-    console.log(`${name}수량 : ${quantity}`);
   };
 
   return (
@@ -97,7 +94,7 @@ const CartItemList = ({
         </button>
       </div>
       <p className="price">{(price * quantity).toLocaleString()}원</p>
-      <button className="delete_btn" onClick={() => console.log(product_id)}>
+      <button className="delete_btn">
         <i className="fa-solid fa-xmark" />
       </button>
     </li>
