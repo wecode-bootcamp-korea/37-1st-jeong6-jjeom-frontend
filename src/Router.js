@@ -8,6 +8,7 @@ import Detail from './pages/Detail/Detail';
 import Cart from './pages/Cart/Cart';
 import Payment from './pages/Payment/Payment';
 import Register from './pages/Register/Register';
+import Footer from './components/Footer/Footer';
 
 const Router = () => {
   return (
@@ -22,6 +23,7 @@ const Router = () => {
         <Route path="/payment" element={<Payment />} />
         <Route path="/register" element={<Register />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };
