@@ -7,11 +7,12 @@ import List from './pages/List/List';
 import Detail from './pages/Detail/Detail';
 import Cart from './pages/Cart/Cart';
 import Payment from './pages/Payment/Payment';
-
+import ScrollToTop from './components/ScrollToTop';
 const Router = () => {
   return (
     <BrowserRouter>
       <Header />
+      <ScrollToTop />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
