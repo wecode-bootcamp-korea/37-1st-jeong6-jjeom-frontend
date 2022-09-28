@@ -1,6 +1,7 @@
 @import '/src/styles/variables.scss';
 
 .detail {
+  padding-top: 97px;
   .modal {
     @include flex-center;
     position: fixed;

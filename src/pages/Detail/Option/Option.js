@@ -5,13 +5,13 @@ const Option = ({ handleOption, option }) => {
     <ul className="option_btn_container">
       {option.map(option => {
         return (
-          <li key={option.id}>
+          <li key={option}>
             <button
               type="button"
               className="option_btn"
               onClick={() => handleOption(option)}
             >
-              {option.value}
+              {option.thick}
             </button>
           </li>
         );

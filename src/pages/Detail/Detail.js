@@ -15,20 +15,22 @@ const Detail = () => {
   const [currTab, setCurrTab] = useState('상품설명');
   const [isModal, setIsModal] = useState(false);
   const [modalContent, setModalContent] = useState('');
+  const [description, setDescription] = useState();
   const navigate = useNavigate();
+
   // TODO : 받은 데이터로 보여주기
   const TAB_LIST = {
-    상품설명: <ItemInfo />,
-    상품정보안내: <Info />,
+    상품설명: <ItemInfo description_url={detailData.description_url} />,
+    상품정보안내: <Info description={description} />,
   };
 
   // console.log(detailData.option[1 - 1].value);
 
   useEffect(() => {
     // TODO : API Integration
-    fetch(`/data/detail${id}.json`)
+    fetch(`http://172.20.10.3:3000/products/${id}`)
       .then(res => res.json())
-      .then(data => setDetailData(data));
+      .then(data => setDetailData(data.getProduct));
   }, [id]);
 
   const handlePlusCount = () => {
@@ -44,49 +46,74 @@ const Detail = () => {
   const handleOption = option => {
     setOption(option.id);
     setIsOptionSwitch(!isOptionSwtich);
-    setOptionContent(option.value);
+    setOptionContent(option.thick);
   };
 
   const handleTab = tab => {
+    fetch(`http://172.20.10.3:3000/products/${id}/description`)
+      .then(res => res.json())
+      .then(data => setDescription(data.getDescription));
     setCurrTab(tab);
   };
 
   const handleModal = () => {
     setIsModal(false);
   };
-
   const handleBtn = button => {
     if (optionContent === '선택') {
       setModalContent('옵션을 선택해주세요!🤔');
       setIsModal(true);
       setTimeout(handleModal, 3000);
     } else if (button === 'buy') {
-      fetch('http://localhost:3000/carts/post', {
+      fetch('http://172.20.10.3:3000/carts/post', {
         method: 'POST',
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('token'),
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: localStorage.getItem('token'),
+        },
         body: JSON.stringify({
           optionProductsId: detailData.id,
           quantity: quantityItem,
         }),
-      });
-      navigate('/cart');
+      })
+        .then(response => {
+          if (response.ok === true) {
+            return response.json();
+          }
+          throw new Error('통신실패');
+        })
+        .then(data => {
+          if (data.message === 'add succes') {
+            navigate('/cart');
+          }
+        });
     } else if (button === 'cart') {
-      // fetch('http://localhost:3000/carts/post', {
-      //   method: 'POST',
-      //   'Content-Type': 'application/json;charset=utf-8',
-      //   Authorization: localStorage.getItem('token'),
-      //   body: JSON.stringify({
-      //     optionProductsId: detailData.id,
-      //     quantity: quantityItem,
-      //   }),
-      // });
-      setModalContent('장바구니에 담겼습니당🎉');
-      setIsModal(true);
-      setTimeout(handleModal, 3000);
+      fetch(`http://172.20.10.3:3000/carts/post`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: localStorage.getItem('token'),
+        },
+        body: JSON.stringify({
+          optionProductsId: detailData.id,
+          quantity: quantityItem,
+        }),
+      })
+        .then(res => {
+          if (res.ok === true) {
+            return res.json();
+          }
+          throw new Error('통신실패!');
+        })
+        .then(data => {
+          if (data.message === 'add success') {
+            setModalContent('장바구니에 담겼습니당🎉');
+            setIsModal(true);
+            setTimeout(handleModal, 3000);
+          }
+        });
     }
   };
-
   return (
     <div className="detail">
       <div className="modal">
@@ -94,16 +121,13 @@ const Detail = () => {
       </div>
       <section className="detail_top">
         <div className="detail_top_data">
-          <img
-            src="https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-fresh-detail.png"
-            alt="상품 이미지"
-          />
+          <img src={detailData.tumbnail_url} alt="상품 이미지" />
 
           <div className="detail_top_content">
-            <h2 className="detail_top_title">{detailData.title}</h2>
+            <h2 className="detail_top_title">{detailData.name}</h2>
             <p className="detail_top_gram">100g당 3,550원</p>
             <p className="detail_top_price">
-              기준가 {detailData.price}원({detailData.gram}g)
+              기준가 {detailData.price}원({detailData.gram})
             </p>
             <div className="detail_top_option">
               <span>옵션</span>
@@ -119,7 +143,7 @@ const Detail = () => {
                 {isOptionSwtich && (
                   <Option
                     handleOption={handleOption}
-                    option={detailData.option}
+                    option={detailData.thick}
                   />
                 )}
               </div>

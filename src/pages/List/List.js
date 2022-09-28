@@ -5,21 +5,21 @@ import './List.scss';
 
 const List = () => {
   const [products, setProducts] = useState([]);
-  const [tabSwtich, setTabSwitch] = useState('pork');
+  const [tabSwtich, setTabSwitch] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
-  const name = searchParams.get('name');
+  const categories = searchParams.get('categories');
 
-  const handleTab = pageName => {
-    searchParams.set('name', pageName);
+  const handleTab = pageId => {
+    searchParams.set('categories', pageId);
     setSearchParams(searchParams);
-    setTabSwitch(pageName);
+    setTabSwitch(pageId);
   };
 
   useEffect(() => {
-    fetch('/data/list-data.json') //`name=${name}`
+    fetch(`http://172.20.10.3:3000/products/${tabSwtich}/list`) //`name=${name}`
       .then(res => res.json())
-      .then(data => setProducts(data));
-  }, [name]);
+      .then(data => setProducts(data.result));
+  }, [categories]);
 
   return (
     <div className="list">
@@ -31,11 +31,11 @@ const List = () => {
               return (
                 <li
                   className={`list_tab_button ${
-                    tab.name === tabSwtich && 'active'
+                    tab.id === tabSwtich && 'active'
                   }`}
                   key={tab.id}
                   onClick={() => {
-                    handleTab(tab.name);
+                    handleTab(tab.id);
                   }}
                 >
                   {tab.text}

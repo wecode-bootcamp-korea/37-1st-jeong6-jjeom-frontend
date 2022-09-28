@@ -1,7 +1,7 @@
 import React from 'react';
 import './Info.scss';
 
-const Info = () => {
+const Info = ({ description }) => {
   return (
     <div className="info">
       <section className="info_basic">
@@ -9,11 +9,11 @@ const Info = () => {
         <ul>
           <li>
             <p>·품목명</p>
-            <p>초신선 돼지 삼겹살</p>
+            <p>{description.name}</p>
           </li>
           <li>
             <p>·내용량</p>
-            <p>중량 600g, 실중량은 제품에 별도 표기</p>
+            <p>중량 {description.weight}, 실중량은 제품에 별도 표기</p>
           </li>
           <li>
             <p>·원산지</p>
@@ -25,7 +25,7 @@ const Info = () => {
           </li>
           <li>
             <p>·보관방법</p>
-            <p>-2~10C 냉장 보관</p>
+            <p>{description.storage}</p>
           </li>
         </ul>
       </section>
