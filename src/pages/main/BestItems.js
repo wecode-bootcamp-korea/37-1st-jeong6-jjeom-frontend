@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Products from '../List/Product/Product';
 import './BestItems.scss';
 
@@ -6,7 +6,7 @@ const BestItems = () => {
   const [bestItems, setBestItems] = useState([]);
 
   const antiBio = bestItems.filter(e => {
-    return e.antibiotic == true;
+    return e.antibiotic === true;
   });
 
   const tabClickHandler = index => {
@@ -87,12 +87,7 @@ const BestItems = () => {
   }, []);
   return (
     <div className="bestItems">
-      <div
-        onMouseLeave={() => {
-          setModal(false);
-        }}
-        className="best_header"
-      >
+      <div className="best_header">
         <span className="best_title">
           {tabContArr.map((section, index) => {
             return section.tabTitle;

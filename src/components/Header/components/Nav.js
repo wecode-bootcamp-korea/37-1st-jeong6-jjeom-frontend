@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Nav.scss';
 import NAV_LIST from '../navData';
-import Products from '../../../pages/List/Product/Product';
 
 const Nav = ({ isActive, showNav }) => {
   const navigate = useNavigate();

@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './Product.scss';
-import { useEffect } from 'react';
 
 const Products = ({ data }) => {
   const { id, title, price, gram, img_url, antibiotic } = data;
