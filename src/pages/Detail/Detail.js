@@ -90,7 +90,7 @@ const Detail = () => {
   return (
     <div className="detail">
       <div className="modal">
-        <span className={isModal ? 'on' : 'off'}>{modalContent}</span>
+        <p className={isModal ? 'on' : 'off'}>{modalContent}</p>
       </div>
       <section className="detail_top">
         <div className="detail_top_data">

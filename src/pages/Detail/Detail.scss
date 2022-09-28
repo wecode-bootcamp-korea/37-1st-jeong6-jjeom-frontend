@@ -2,11 +2,9 @@
 
 .detail {
   .modal {
-    display: flex;
-    justify-content: center;
+    @include flex-center;
     position: fixed;
-    width: 100vw;
-    span {
+    p {
       padding: 1rem;
       color: $main-color;
       font-weight: 600;
