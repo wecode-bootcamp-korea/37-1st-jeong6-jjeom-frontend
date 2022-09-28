@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import Products from '../List/Product';
 import './SortingModal.scss';
 
 const SortingModal = ({ bestItems, filterAnti, key }) => {

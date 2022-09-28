@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Product from './Product';
-import './List.scss';
+import Product from './Product/Product';
 import { useSearchParams } from 'react-router-dom';
+import './List.scss';
 
 const List = () => {
   const [products, setProducts] = useState([]);
@@ -15,11 +15,11 @@ const List = () => {
     setTabSwitch(pageName);
   };
 
-  // useEffect(() => {
-  // //   fetch('https://94ae-211-106-114-186.jp.ngrok.io/products/1/list') //`name=${name}`
-  // //     .then(res => res.json())
-  // //     .then(data => setProducts(data));
-  // // }, [name]);
+  useEffect(() => {
+    fetch('/data/list-data.json') //`name=${name}`
+      .then(res => res.json())
+      .then(data => setProducts(data));
+  }, []);
 
   return (
     <div className="list">
@@ -27,7 +27,7 @@ const List = () => {
       <div className="container">
         <section className="list_tab">
           <ul className="list_tab_container">
-            {LIST_TAB.map(tab => {
+            {LIST_TAB?.map(tab => {
               return (
                 <li
                   className={`list_tab_button ${
@@ -45,7 +45,7 @@ const List = () => {
           </ul>
         </section>
         <ul className="products_list">
-          {products.map(data => {
+          {products?.map(data => {
             return <Product key={data.id} data={data} />;
           })}
         </ul>
