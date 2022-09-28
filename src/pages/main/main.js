@@ -5,9 +5,7 @@ import NotifyBanner from './NotifyBanner';
 
 const Main = () => {
   const [move, setMove] = useState(0);
-  useEffect(() => {
-    return localStorage.setItem('watched', JSON.stringify([]));
-  }, []);
+
   const active = { transform: `translate(${move}vw)`, transition: 'all 1.5s' };
   const moveRightHandler = () => {
     setMove(prev => prev - 100);

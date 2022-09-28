@@ -6,6 +6,8 @@ import NAV_LIST from '../navData';
 const Nav = ({ isActive, showNav }) => {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
+  const recent_view = localStorage.getItem('window');
+  console.log(recent_view);
   return (
     <>
       <div className={`dim ${isActive ? ' active' : ''}`} onClick={showNav} />
