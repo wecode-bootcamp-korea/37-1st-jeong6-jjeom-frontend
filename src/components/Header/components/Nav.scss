@@ -24,6 +24,7 @@
   box-shadow: 3px 7px 20px rgb(0 0 0 / 20%);
   overflow-y: auto;
   transition: 0.7s;
+  z-index: 100;
 
   &.active {
     right: 0;
