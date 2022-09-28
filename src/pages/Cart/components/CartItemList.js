@@ -17,6 +17,10 @@ const CartItemList = ({
     quantity,
   } = itemInfo;
 
+  //PATCH
+  // TODO: state update와 싱크 맞추기!
+  // 1. fetch 결과가 성공적이면 setState(plusQuantity에서 onChangeProps)
+  // 2. fetch 결과가 성공적이면 한번 더 getData (setState X)
   const plusQuantity = (id, quantity) => {
     //http://localhost:3000/carts/patch?optionProductsId=1&quantity=1
     fetch(`/data/cartList.json`, {

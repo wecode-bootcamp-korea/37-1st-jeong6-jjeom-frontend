@@ -63,8 +63,7 @@ const Cart = () => {
 
   //POST
   const postOrder = id => {
-    fetch(`/data/cartList.json`, {
-      //http://localhost:3000/carts/post?product_id=${checkedItem.join('&cart_id')}
+    fetch(`cart post api주소`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -85,26 +84,9 @@ const Cart = () => {
   };
 
   //DELETE
-  const deleteCart = id => {
-    fetch(`/data/cartList.json?id=${id}`, {
-      //http://localhost:3000/carts/delete?product_id=${checkedItem.join('&cart_id')}
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('token'),
-      },
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data) {
-          alert('상품이 삭제되었습니다.');
-        }
-      });
-  };
-
   const deleteProduct = async () => {
-    const response = await fetch(`api주소`, {
-      //http://localhost:3000/carts/delete?product_id=${checkedItem.join('&cart_id')}
+    const response = await fetch(`cart delete api주소`, {
+      //http://localhost:3000/carts/delete?product_id=${checkedItem.join('&product_id=')}
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -115,7 +97,7 @@ const Cart = () => {
     const data = await response.json();
 
     if (data) {
-      const response = await fetch('api주소', {
+      const response = await fetch('cart api주소', {
         headers: {
           Authorization: localStorage.getItem('token'),
         },
@@ -189,11 +171,13 @@ const Cart = () => {
                     onChangeProps={onChangeProps}
                     checkedItem={checkedItem}
                     handleSingleCheck={() => handleSingleCheck(data.product_id)}
-                    deleteCart={deleteCart}
+                    deleteProduct={deleteProduct}
                   />
                 ))}
               </ul>
-              <button className="all_delete">선택 상품 삭제</button>
+              <button className="all_delete" onClick={deleteProduct}>
+                선택 상품 삭제
+              </button>
             </div>
             <div className="payment_area">
               <ul className="payment_list">
