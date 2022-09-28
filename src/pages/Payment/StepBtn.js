@@ -3,14 +3,10 @@ import React from 'react';
 const StepBtn = ({ handleStep, preStep, nextStep, confirmOrder }) => {
   return (
     <div className="payment_btn_container">
-      <button className="step_btn" value={preStep} onClick={handleStep}>
+      <button className="step_btn" onClick={() => handleStep()}>
         이전 단계
       </button>
-      <button
-        className="step_btn"
-        value={nextStep}
-        onClick={(handleStep, confirmOrder)}
-      >
+      <button className="step_btn" onClick={() => handleStep()}>
         다음 단계
       </button>
     </div>

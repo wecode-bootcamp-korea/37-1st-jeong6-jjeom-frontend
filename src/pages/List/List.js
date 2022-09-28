@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Product from './Product';
-import './List.scss';
+import Product from './Product/Product';
 import { useSearchParams } from 'react-router-dom';
+import './List.scss';
 
 const List = () => {
   const [products, setProducts] = useState([]);

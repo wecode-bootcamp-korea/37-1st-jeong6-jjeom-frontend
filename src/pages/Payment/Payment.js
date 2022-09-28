@@ -3,9 +3,10 @@ import Completion from './Completion';
 import Confirm from './Confirm';
 import Order from './Order';
 import './Payment.scss';
+import StepBtn from './StepBtn';
 
 const Payment = () => {
-  const [paymentData, setPaymentData] = useState({});
+  // const [paymentData, setPaymentData] = useState({});
   const [step, setStep] = useState('order');
   const [inputValue, setInputValue] = useState({
     name: '',
@@ -16,8 +17,8 @@ const Payment = () => {
     paymentMethod: '',
     order: [],
   });
-  const handleStep = e => {
-    setStep(e.target.value);
+  const handleStep = step => {
+    setStep(step);
   };
 
   const saveInputValue = e => {

@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import './Confirm.scss';
 import StepBtn from './StepBtn';
+import './Confirm.scss';
 
 const Confirm = ({ handleStep, saveInputValue }) => {
+  // 장바구니에서 선택된 정보를 담아서 보내는 Post 요청
   // useEffect(()=>{
   //   fetch(`url`,{
   //     method: 'POST',
@@ -19,9 +20,29 @@ const Confirm = ({ handleStep, saveInputValue }) => {
   //   }).then(res=>res.json).then(data)
   // })
 
-  const confirmOrder = () => {
-    console.log('sa');
-  };
+  // 선택된 카트를 지우기위한 delete 요청
+  // useEffect(()=>{\
+  //   fetch(`url/order/choice`,{
+  //     method: 'DELETE',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //     },
+  //     body :JSON.stringify({
+  //       cartId : id
+  //     })
+  //   }).then(res=>res.json).then(data)
+  // })
+
+  //오더 아이디를 요청하는 get 요청
+  // useEffect(()=>{
+  //   fetch(`url/order/id`).then(res=>res.json).then(data)
+  // })
+
+  // 주문 완료창을 위한 GET 요청 (계좌번호 주는거)
+  // useEffect(()=>{
+  //   fetch(`url/order/complete?${orderId}`).then(res=>res.json).then(data)
+  // })
+
   return (
     <div className="confirm container">
       <section className="confirm_way">
@@ -130,12 +151,7 @@ const Confirm = ({ handleStep, saveInputValue }) => {
           2022-09-22 (목) 오후 2시 - 7시 전 도착 예정
         </div>
       </section>
-      <StepBtn
-        handleStep={handleStep}
-        preStep="order"
-        nextStep="completion"
-        confirmOrder={confirmOrder}
-      />
+      <StepBtn />
     </div>
   );
 };
