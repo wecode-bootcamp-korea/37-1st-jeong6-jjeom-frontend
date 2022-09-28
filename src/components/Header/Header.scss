@@ -1,9 +1,14 @@
 @import '../../styles/variables.scss';
 
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   padding: 20px 0;
   background: $main-color;
   color: #fff;
+  z-index: 99;
 
   .container {
     display: flex;
