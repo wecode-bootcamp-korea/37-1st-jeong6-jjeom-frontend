@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import StepBtn from './StepBtn';
 import './Confirm.scss';
 

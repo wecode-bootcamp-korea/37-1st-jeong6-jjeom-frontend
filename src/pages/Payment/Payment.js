@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Completion from './Completion';
 import Confirm from './Confirm';
 import Order from './Order';
 import './Payment.scss';
-import StepBtn from './StepBtn';
 
 const Payment = () => {
   // const [paymentData, setPaymentData] = useState({});
