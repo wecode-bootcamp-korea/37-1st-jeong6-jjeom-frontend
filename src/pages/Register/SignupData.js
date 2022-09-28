@@ -41,6 +41,8 @@ const SignupData = ({ setTransPage }) => {
         </label>
         <div className="registerAgreeContent">
           <iframe
+            id="registerContent"
+            title="registerDocument"
             className="AgreeContent"
             src="https://yookgak.com/website/term-20191015.html"
           />
@@ -58,6 +60,8 @@ const SignupData = ({ setTransPage }) => {
 
         <div className="registerAgreeContent">
           <iframe
+            id="AgreeContent"
+            title="AgreeDocument"
             className="AgreeContent"
             src="https://yookgak.com/assets/private-20220502.html"
           />
