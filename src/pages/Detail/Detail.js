@@ -10,17 +10,20 @@ const Detail = () => {
   const [detailData, setDetailData] = useState({});
   const [quantityItem, setQuantityItem] = useState(1);
   const [isOptionSwtich, setIsOptionSwitch] = useState(false);
-  const [option, setOption] = useState('선택');
+  const [option, setOption] = useState('');
+  const [optionContent, setOptionContent] = useState('선택');
   const [currTab, setCurrTab] = useState('상품설명');
   const [isModal, setIsModal] = useState(false);
   const [modalContent, setModalContent] = useState('');
   const navigate = useNavigate();
-
   // TODO : 받은 데이터로 보여주기
   const TAB_LIST = {
     상품설명: <ItemInfo />,
     상품정보안내: <Info />,
   };
+  const options = detailData.option;
+
+  // console.log(detailData.option[1 - 1].value);
 
   useEffect(() => {
     // TODO : API Integration
@@ -39,9 +42,10 @@ const Detail = () => {
     setQuantityItem(quantityItem - 1);
   };
 
-  const handleOption = e => {
-    setOption(e.target.value);
+  const handleOption = option => {
+    setOption(option.id);
     setIsOptionSwitch(!isOptionSwtich);
+    setOptionContent(option.value);
   };
 
   const handleTab = tab => {
@@ -53,7 +57,7 @@ const Detail = () => {
   };
 
   const handleBtn = button => {
-    if (option === '선택') {
+    if (optionContent === '선택') {
       setModalContent('옵션을 선택해주세요!🤔');
       setIsModal(true);
       setTimeout(handleModal, 3000);
@@ -108,12 +112,11 @@ const Detail = () => {
                 <button
                   type="button"
                   className="option_btn"
+                  onClick={() => handleOption(option)}
                   value={option}
-                  onClick={handleOption}
                 >
-                  {option}
+                  {optionContent}
                 </button>
-
                 {isOptionSwtich && (
                   <Option
                     handleOption={handleOption}
