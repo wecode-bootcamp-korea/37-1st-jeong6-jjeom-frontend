@@ -10,13 +10,13 @@ const Cart = () => {
   const [cartItem, setCartItem] = useState([]);
   const [checkedItem, setCheckedItem] = useState([]);
 
-  //console.log('선택된 상품:', checkedItem);
-  //console.log('장바구니에 담긴 상품', cartItem);
+  // console.log('선택된 상품:', checkedItem);
+  // console.log('장바구니에 담긴 상품', cartItem);
 
   const navigate = useNavigate();
-  const goToPayment = () => {
-    navigate('/payment');
-  };
+  // const goToPayment = () => {
+  //   navigate('/payment');
+  // };
   const goToList = () => {
     navigate('/list');
   };
@@ -36,14 +36,14 @@ const Cart = () => {
     if (isAllChecked) {
       setCheckedItem([]);
     } else {
-      setCheckedItem(cartItem.map(({ product_id }) => product_id));
+      setCheckedItem(cartItem.map(({ id }) => id));
     }
   };
 
   const onChangeProps = (id, key, value) => {
     setCartItem(prevItem => {
       return prevItem.map(obj => {
-        if (obj.product_id === id) {
+        if (obj.option_products_id === id) {
           return { ...obj, [key]: value };
         } else {
           return { ...obj };
@@ -54,7 +54,7 @@ const Cart = () => {
 
   const totalPrice = cartItem.reduce(
     (acc, cart) =>
-      checkedItem.indexOf(cart.product_id) !== -1
+      checkedItem.indexOf(cart.id) !== -1
         ? acc + Number(cart.price) * cart.quantity
         : acc,
     0
@@ -79,61 +79,67 @@ const Cart = () => {
       .then(data => {
         if (data) {
           alert('주문하기 페이지로 이동합니다.');
-          goToPayment(); //주문하기 페이지로 이동
+          // goToPayment(); //주문하기 페이지로 이동
         }
       });
   };
 
-  //DELETE
+  //DELETE == 성공
   const deleteProduct = async () => {
-    const response = await fetch(`cart delete api주소`, {
-      //http://localhost:3000/carts/delete?product_id=${checkedItem.join('&product_id=')}
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('token'),
-      },
-    });
+    const response = await fetch(
+      `http://172.20.10.3:3000/carts/delete?cartsId=${checkedItem.join(
+        '&cartsId='
+      )}`,
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: localStorage.getItem('token'),
+        },
+      }
+    );
 
     const data = await response.json();
 
     if (data) {
-      const response = await fetch('cart api주소', {
+      const response = await fetch('http://172.20.10.3:3000/carts/user', {
         headers: {
           Authorization: localStorage.getItem('token'),
         },
       });
 
       const data = await response.json();
-      const filteredList = data.filter(
-        el =>
-          !checkedItem.includes(el.product_id).map(obj => {
-            return {
-              product_id: obj.product_id,
-              name: obj.name,
-              price: obj.price,
-              quantity: obj.quantity,
-              tumbnail_url: obj.tumbnail_url,
-              standard_unit: obj.standard_unit,
-              thick: obj.thick,
-            };
-          })
-      );
+      const filteredList = data.getCartbyId
+        .filter(el => {
+          return !checkedItem.includes(el.id);
+        })
+        .map(obj => {
+          return {
+            id: obj.id,
+            product_id: obj.product_id,
+            name: obj.name,
+            price: obj.price,
+            quantity: obj.quantity,
+            tumbnail_url: obj.tumbnail_url,
+            standard_unit: obj.standard_unit,
+            thick: obj.thick,
+          };
+        });
       setCartItem(filteredList);
     }
   };
 
-  // GET
+  // GET == 성공
   const getCartData = () => {
     fetch('/data/cartList.json', {
-      //http://localhost:3000/carts/get
+      //'http://172.20.10.3:3000/carts/user'
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: localStorage.getItem('token'),
       },
     })
       .then(res => res.json())
-      .then(data => setCartItem(data));
+      .then(data => setCartItem(data)); //data.getCartbyId
   };
 
   useEffect(() => {
@@ -167,12 +173,13 @@ const Cart = () => {
               <ul className="item_list">
                 {cartItem.map(data => (
                   <CartItemList
-                    key={data.product_id}
+                    key={data.id}
                     itemInfo={data}
                     onChangeProps={onChangeProps}
                     checkedItem={checkedItem}
-                    handleSingleCheck={() => handleSingleCheck(data.product_id)}
+                    handleSingleCheck={() => handleSingleCheck(data.id)}
                     deleteProduct={deleteProduct}
+                    setCartItem={setCartItem}
                   />
                 ))}
               </ul>

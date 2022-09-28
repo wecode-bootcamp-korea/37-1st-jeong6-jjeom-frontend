@@ -6,9 +6,11 @@ const CartItemList = ({
   onChangeProps,
   checkedItem,
   handleSingleCheck,
+  setCartItem,
 }) => {
   const {
-    product_id,
+    id,
+    option_products_id,
     tumbnail_url,
     name,
     standard_unit,
@@ -21,46 +23,49 @@ const CartItemList = ({
   // TODO: state update와 싱크 맞추기!
   // 1. fetch 결과가 성공적이면 setState(plusQuantity에서 onChangeProps)
   // 2. fetch 결과가 성공적이면 한번 더 getData (setState X)
-  const plusQuantity = (id, quantity) => {
-    //http://localhost:3000/carts/patch?optionProductsId=1&quantity=1
-    fetch(`/data/cartList.json`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('token'),
-      },
-      body: JSON.stringify({
-        id,
-        quantity,
-      }),
-    })
-      .then(res => res.json())
-      .then(data =>
-        onChangeProps(data.product_id, 'quantity', data.quantity + 1)
-      );
+  const plusQuantity = () => {
+    onChangeProps(option_products_id, 'quantity', quantity + 1);
+    // console.log(
+    //   `option_products_id: ${option_products_id}`,
+    //   `quantity: ${quantity}`
+    // );
+    // fetch(
+    //   `http://172.20.10.3:3000/carts/patch?optionProductsId=${option_products_id}&quantity=${quantity}`,
+    //   {
+    //     method: 'PATCH',
+    //     headers: {
+    //       'Content-Type': 'application/json;charset=utf-8',
+    //       Authorization: localStorage.getItem('token'),
+    //     },
+    //   }
+    // )
+    //   .then(res => res.json())
+    //   .then(data => setCartItem(data.getCartbyId));
   };
 
-  const minusQuantity = (id, quantity) => {
-    //http://localhost:3000/carts/patch?optionProductsId=1&quantity=1
-    fetch(`/data/cartList.json`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('token'),
-      },
-      body: JSON.stringify({
-        id,
-        quantity,
-      }),
-    })
-      .then(res => res.json())
-      .then(data =>
-        onChangeProps(
-          data.product_id,
-          'quantity',
-          data.quantity === 1 ? 1 : data.quantity - 1
-        )
-      );
+  const minusQuantity = () => {
+    onChangeProps(
+      option_products_id,
+      'quantity',
+      quantity === 1 ? 1 : quantity - 1
+    );
+    // console.log(
+    //   `option_products_id: ${option_products_id}`,
+    //   `quantity: ${quantity}`
+    // );
+
+    // fetch(
+    //   `http://172.20.10.3:3000/carts/patch?optionProductsId=${option_products_id}&quantity=${quantity}`,
+    //   {
+    //     method: 'PATCH',
+    //     headers: {
+    //       'Content-Type': 'application/json;charset=utf-8',
+    //       Authorization: localStorage.getItem('token'),
+    //     },
+    //   }
+    // )
+    //   .then(res => res.json())
+    //   .then(data => setCartItem(data.getCartbyId));
   };
 
   return (
@@ -68,12 +73,12 @@ const CartItemList = ({
       <div className="check_area">
         <input
           type="checkbox"
-          id={`check${product_id}`}
+          id={`check${id}`}
           title="선택"
-          checked={checkedItem.includes(product_id)}
+          checked={checkedItem.includes(id)}
           onChange={handleSingleCheck}
         />
-        <label htmlFor={`check${product_id}`} />
+        <label htmlFor={`check${id}`} />
       </div>
       <img src={tumbnail_url} alt="sample" />
       <div className="product_info">
@@ -88,12 +93,7 @@ const CartItemList = ({
           <i className="fa-solid fa-minus" />
         </button>
         <p className="box">{quantity}</p>
-        <button
-          className="box"
-          onClick={() => {
-            plusQuantity(product_id, quantity);
-          }}
-        >
+        <button className="box" onClick={plusQuantity}>
           <i className="fa-solid fa-plus" />
         </button>
       </div>
