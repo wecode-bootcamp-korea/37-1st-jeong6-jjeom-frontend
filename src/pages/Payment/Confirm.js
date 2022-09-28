@@ -1,8 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Confirm.scss';
 import StepBtn from './StepBtn';
 
 const Confirm = ({ handleStep, saveInputValue }) => {
+  // useEffect(()=>{
+  //   fetch(`url`,{
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //     },
+  //     body :  JSON.stringify({
+  //       name : string,
+  //       phoneNumber : number,
+  //       address: string,
+  //       arrivalDate : 2022-10-32,
+  //       deliveryMethod: boolean,
+  //     })
+  //   }).then(res=>res.json).then(data)
+  // })
+
+  const confirmOrder = () => {
+    console.log('sa');
+  };
   return (
     <div className="confirm container">
       <section className="confirm_way">
@@ -111,7 +130,12 @@ const Confirm = ({ handleStep, saveInputValue }) => {
           2022-09-22 (목) 오후 2시 - 7시 전 도착 예정
         </div>
       </section>
-      <StepBtn handleStep={handleStep} preStep="order" nextStep="completion" />
+      <StepBtn
+        handleStep={handleStep}
+        preStep="order"
+        nextStep="completion"
+        confirmOrder={confirmOrder}
+      />
     </div>
   );
 };

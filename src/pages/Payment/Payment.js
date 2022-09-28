@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Completion from './Completion';
 import Confirm from './Confirm';
 import Order from './Order';
 import './Payment.scss';
 
 const Payment = () => {
+  const [paymentData, setPaymentData] = useState({});
   const [step, setStep] = useState('order');
   const [inputValue, setInputValue] = useState({
     name: '',
@@ -33,6 +34,13 @@ const Payment = () => {
       <Completion handleStep={handleStep} saveInputValue={saveInputValue} />
     ),
   };
+
+  // useEffect(() => {
+  //   // Todo : cartID 장바구니에서 쿼리스트링 형식으로 받아와야함
+  //   // fetch('http://dadsa/order/information/cartId')
+  //     .then(res => res.json())
+  //     .then(data => setPaymentData(data));
+  // });
 
   return (
     <div className="payment container">
