@@ -5,18 +5,6 @@ import { useEffect } from 'react';
 
 const Products = ({ data }) => {
   const { id, title, price, gram, img_url, antibiotic } = data;
-  const [idStorage, setIdStorage] = useState([]);
-  const items_id = () => {
-    setIdStorage(data.id);
-  };
-  console.log(data, '지원');
-  // useEffect(() => {
-  //   let seen = localStorage.getItem('watched');
-  //   seen = JSON.parse(seen);
-  //   console.log(LIST_TAB.id);
-  //   seen.push(LIST_TAB.id);
-  //   localStorage.setItem('watched', JSON.stringify(seen));
-  // }, []);
 
   return (
     <li className="products_container">
