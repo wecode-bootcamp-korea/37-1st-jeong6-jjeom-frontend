@@ -62,17 +62,18 @@ const Cart = () => {
   const sumAllPrice = checkedItem.length === 0 ? 0 : totalPrice + DELIVERY_FEE;
 
   //POST
-  const postOrder = id => {
-    fetch(`cart post api주소`, {
+  const postOrder = () => {
+    //http://localhost:3000/carts/delete?product_id=${checkedItem.join('&product_id')}
+    fetch(`post api주소`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: localStorage.getItem('token'),
       },
-      body: JSON.stringify({
-        // TODO: 어떤 형태로 받아야하는지 백엔드와 정하기 => 상품 id 값을 전달해달라고 하심
-        product_id: cartItem.product_id,
-      }),
+      // body: JSON.stringify({
+      //   // TODO: 어떤 형태로 받아야하는지 백엔드와 정하기 => 상품 id 값을 전달해달라고 하심
+      //   product_id: cartItem.product_id,
+      // }),
     })
       .then(res => res.json())
       .then(data => {
