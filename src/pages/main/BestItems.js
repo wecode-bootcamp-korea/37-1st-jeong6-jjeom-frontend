@@ -1,27 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Products from '../List/Product/Product';
 import './BestItems.scss';
-import SortingModal from './SortingModal';
 
 const BestItems = () => {
   const [bestItems, setBestItems] = useState([]);
-
-  const [modal, setModal] = useState(false);
-
-  const [filtered, setFiltered] = useState([]);
 
   const antiBio = bestItems.filter(e => {
     return e.antibiotic == true;
   });
 
-  let i = 0;
-
   const tabClickHandler = index => {
     setActiveIndex(index);
-  };
-
-  const modalHandler = () => {
-    setModal(true);
   };
 
   const arr = [];
@@ -109,8 +98,6 @@ const BestItems = () => {
             return section.tabTitle;
           })}
         </span>
-        {modal && <SortingModal bestItems={bestItems} />}
-        <i onMouseOver={modalHandler} className="fa-solid fa-bars"></i>
       </div>
 
       <ul className="products_list">{tabContArr[activeIndex].tabCont}</ul>

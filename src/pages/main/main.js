@@ -20,8 +20,6 @@ const Main = () => {
     return setMove(0);
   }
 
-  // setTimeout(moveRightHandler, 3000);
-
   return (
     <div className="mainWrap">
       <div className="wrapWrap">
@@ -69,16 +67,16 @@ const Main = () => {
           <div className="btnWrap">
             {move === 0 ? (
               <button disabled onClick={moveLeftHandler} className="btn1">
-                <i className="fa-solid fa-chevron-left"></i>
+                <i className="fa-solid fa-chevron-left" />
               </button>
             ) : (
               <button onClick={moveLeftHandler} className="btn1">
-                <i className="fa-solid fa-chevron-left"></i>
+                <i className="fa-solid fa-chevron-left" />
               </button>
             )}
 
             <button onClick={moveRightHandler} className="btn2">
-              <i className="fa-solid fa-chevron-right"></i>
+              <i className="fa-solid fa-chevron-right" />
             </button>
           </div>
         </div>
@@ -89,12 +87,12 @@ const Main = () => {
         </div>
 
         <div className="promotionBanner">
-          <img src="images/promotion.png" />
+          <img alt="promotion" src="images/promotion.png" />
         </div>
       </div>
       <BestItems />
       <div className="fourthBanner">
-        <img src="images/footerbanner.png" />
+        <img alt="foot_banner" src="images/footerbanner.png" />
       </div>
     </div>
   );
