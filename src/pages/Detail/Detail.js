@@ -21,7 +21,6 @@ const Detail = () => {
     상품설명: <ItemInfo />,
     상품정보안내: <Info />,
   };
-  const options = detailData.option;
 
   // console.log(detailData.option[1 - 1].value);
 
