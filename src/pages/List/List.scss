@@ -1,0 +1,40 @@
+@import 'src/styles/variables.scss';
+
+.list {
+  .list_banner {
+    height: 520px;
+    background: url('https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-app/web/list_top/new/pcbaby.png')
+      no-repeat center;
+    background-size: cover;
+  }
+
+  .container {
+    border: none;
+
+    .list_tab {
+      margin: 50px 0;
+
+      .list_tab_container {
+        @include flex-center;
+        justify-content: space-around;
+
+        .list_tab_button {
+          @include flex-center;
+          width: 145px;
+          height: 55px;
+          font-weight: 600;
+          background-color: $gray-color;
+
+          &:hover {
+            color: white;
+            background-color: $main-color;
+          }
+        }
+        .active {
+          color: white;
+          background-color: $main-color;
+        }
+      }
+    }
+  }
+}

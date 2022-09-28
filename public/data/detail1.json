@@ -1,0 +1,9 @@
+{
+  "id": 1,
+  "title": "초신선 돼지 삼겹살 구이용",
+  "price": 21300,
+  "gram": 600,
+  "img_url": "https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-fresh-list.png",
+  "antibiotic": false,
+  "option": ["보통(16mm)", "얇게(12mm)", "두껍(24mm)"]
+}

@@ -1,0 +1,151 @@
+@import '../../styles/variables.scss';
+
+.footer {
+  margin-top: 150px;
+  padding-top: 15px;
+  border-top: 1px solid $sub-text;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .footer_menu {
+      display: flex;
+
+      li {
+        padding: 0 10px;
+        font-size: 13px;
+
+        &:first-child {
+          padding-left: 0;
+        }
+
+        &.personal_info {
+          font-weight: 700;
+        }
+      }
+    }
+
+    .app_btn {
+      padding: 10px;
+      font-size: 12px;
+      background: $gray-color;
+      border-radius: 5px;
+
+      &::before {
+        content: '\f3cd';
+        display: inline-block;
+        margin-right: 5px;
+        font-family: FontAwesome;
+      }
+    }
+
+    .corp_info {
+      width: 38%;
+
+      .ft_logo {
+        width: 100px;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      dl {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 10px;
+        font-size: 12px;
+
+        dd {
+          position: relative;
+          padding: 0 16px 10px 0;
+
+          &:nth-of-type(2),
+          &:nth-of-type(4) {
+            &:after {
+              content: '';
+              position: absolute;
+              top: 0;
+              right: 8px;
+              width: 1px;
+              height: 52%;
+              background: #000;
+            }
+          }
+        }
+      }
+
+      .copy {
+        margin-top: 30px;
+        font-size: 12px;
+      }
+    }
+
+    .service_info {
+      p {
+        text-align: right;
+      }
+
+      .cs {
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .cs_number {
+        font-size: 24px;
+        line-height: 30px;
+        font-weight: 900;
+      }
+
+      .cs_time {
+        p {
+          font-size: 12px;
+          color: #757575;
+          line-height: 16px;
+        }
+      }
+
+      .cs_contact {
+        margin-top: 10px;
+
+        p {
+          font-size: 12px;
+        }
+
+        span {
+          display: inline-block;
+          vertical-align: baseline;
+          color: #4bb8ce;
+          line-height: 16px;
+        }
+      }
+
+      .cs_question {
+        margin-top: 10px;
+        text-align: right;
+
+        button {
+          margin-right: 5px;
+          padding: 7px 15px;
+          font-size: 12px;
+          background: #fff;
+          border-radius: 3px;
+          border: 1px solid #212121;
+
+          &:last-of-type {
+            margin-right: 0;
+          }
+        }
+      }
+
+    }
+  }
+
+  .line {
+    height: 1px;
+    margin: 15px 0;
+    background: #eee;
+  }
+}
