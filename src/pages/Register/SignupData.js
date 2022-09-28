@@ -76,13 +76,12 @@ const SignupData = ({ setTransPage }) => {
         >
           이전으로
         </button>
+
         <button
           onClick={() => {
-            {
-              checkBoxAcitve && checkBoxAcitve2
-                ? setTransPage(true)
-                : setModal(true);
-            }
+            checkBoxAcitve && checkBoxAcitve2
+              ? setTransPage(true)
+              : setModal(true);
           }}
           className="agreeBtn"
         >
