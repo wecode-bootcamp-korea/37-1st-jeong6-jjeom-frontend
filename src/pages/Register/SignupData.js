@@ -71,6 +71,7 @@ const SignupData = ({ setTransPage }) => {
         <button
           onClick={() => {
             navigate(-1);
+            window.scrollTo(0, 0);
           }}
           className="backBtn"
         >
@@ -82,6 +83,7 @@ const SignupData = ({ setTransPage }) => {
             checkBoxAcitve && checkBoxAcitve2
               ? setTransPage(true)
               : setModal(true);
+            window.scrollTo(0, 0);
           }}
           className="agreeBtn"
         >

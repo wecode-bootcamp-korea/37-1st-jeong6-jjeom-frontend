@@ -7,16 +7,30 @@
 
   .secondBannerWrap {
     @include flex-center;
-    width: 1728px;
+    width: 1150px;
     height: 176px;
     border-right: 1px solid #e1e1e1;
     position: relative;
 
     .secondBannerContent {
       @include flex-center;
+      flex-direction: column;
       width: 576px;
       height: 176px;
+
+      p {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      div {
+        span {
+          padding: 0 10px
+        }
+      }
     }
+
     .secondBtnWrap {
       @include flex-center;
       position: absolute;
@@ -25,6 +39,11 @@
       justify-content: space-between;
       left: 0;
       top: 0;
+
+      button {
+        background: none;
+        padding: 0 30px;
+      }
     }
   }
 }

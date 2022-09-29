@@ -31,6 +31,7 @@ const SignupData2 = ({ setTransPage }) => {
   });
   const lastPage = () => {
     setTransPage(false);
+    window.scrollTo(0, 0);
   };
 
   const handleInput = event => {
@@ -51,14 +52,17 @@ const SignupData2 = ({ setTransPage }) => {
         }),
       })
         .then(response => response.json())
-        .then(result =>
-          result.message === 'success'
-            ? setSuccessModal(true)
-            : setCheckInfoModal(true)
+        .then(
+          result =>
+            result.message === 'success'
+              ? setSuccessModal(true)
+              : setCheckInfoModal(true),
+          navigate('/main')
         );
     } else {
       setCheckInfoPwModal(true);
     }
+    window.scroll(0, 0);
   };
   return (
     <div>
