@@ -15,11 +15,11 @@ const List = () => {
     setTabSwitch(pageId);
   };
   useEffect(() => {
-    fetch(`${API.LIST}/${tabSwtich}/list`) //`name=${name}`
-      // fetch(`data/list-data.json`)
+    fetch(`data/list-data.json`)
+      // fetch(`${API.LIST}/${tabSwtich}/list`) //`name=${name}`
       // fetch(`http://172.20.10.3:3000/products/${tabSwtich}/list`) //`name=${name}`
       .then(res => res.json())
-      .then(data => setProducts(data));
+      .then(data => setProducts(data)); //통신 할땐 data.result
   }, [tabSwtich]);
   return (
     <div className="list">

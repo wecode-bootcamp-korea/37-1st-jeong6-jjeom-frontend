@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Product.scss';
 
 const Products = ({ data }) => {
-  const { id, name, price, standard_unit, tumbnail_url, antibiotic } = data;
+  const { id, name, price, thick, tumbnail_url, antibiotic } = data;
   return (
     <li className="products_container">
       <Link to={`/detail/${id}`}>
@@ -16,7 +16,7 @@ const Products = ({ data }) => {
         </div>
         <h6 className="product_title">{name}</h6>
         <p className="product_price">
-          기준가 {price}원/{standard_unit}
+          기준가 {price}원/{thick}g
         </p>
       </Link>
     </li>
