@@ -16,18 +16,18 @@ const Order = ({ inputValue, handleStep, saveInputValue }) => {
     '-' +
     currentDate;
 
+  const validation =
+    inputValue.name.length !== 0 &&
+    inputValue.phoneNumber.length !== 0 &&
+    inputValue.address.length !== 0 &&
+    inputValue.arrivalDate.length !== 0 &&
+    inputValue.deliveryMethod.length !== 0;
+
   useEffect(() => {
     fetch('/data/user-data.json')
       .then(res => res.json())
       .then(data => setUserData(data));
   }, []);
-
-  const btnDisabled =
-    inputValue.name === '' &&
-    inputValue.phoneNumber === '' &&
-    inputValue.address === '' &&
-    inputValue.arrivalDate === '' &&
-    inputValue.deliveryMethod === '';
 
   return (
     <div className="order">
@@ -66,6 +66,7 @@ const Order = ({ inputValue, handleStep, saveInputValue }) => {
                   <input
                     name="name"
                     placeholder="홍길동"
+                    value={inputValue.name}
                     onChange={saveInputValue}
                   />
                 </div>
@@ -79,6 +80,7 @@ const Order = ({ inputValue, handleStep, saveInputValue }) => {
                   <input
                     name="phoneNumber"
                     placeholder="'-'를 제외한 전화번호를 입력해주세요"
+                    value={inputValue.phoneNumber}
                     onChange={saveInputValue}
                   />
                 </div>
@@ -92,6 +94,7 @@ const Order = ({ inputValue, handleStep, saveInputValue }) => {
                   <input
                     name="address"
                     placeholder="주소를 입력해주세요"
+                    value={inputValue.address}
                     onChange={saveInputValue}
                   />
                 </div>
@@ -107,6 +110,7 @@ const Order = ({ inputValue, handleStep, saveInputValue }) => {
                 name="arrivalDate"
                 type="date"
                 min={currentDay}
+                value={inputValue.arrivalDate}
                 onChange={saveInputValue}
               />
             </div>
@@ -118,8 +122,9 @@ const Order = ({ inputValue, handleStep, saveInputValue }) => {
                 <input
                   type="radio"
                   name="deliveryMethod"
-                  value="0"
+                  value={(inputValue.deliveryMethod, 0)}
                   onChange={saveInputValue}
+                  checked={inputValue.deliveryMethod === '0'}
                 />
                 새벽배송 (오전 7시 전 도착)
               </label>
@@ -127,8 +132,9 @@ const Order = ({ inputValue, handleStep, saveInputValue }) => {
                 <input
                   type="radio"
                   name="deliveryMethod"
-                  value="1"
+                  value={(inputValue.deliveryMethod, 1)}
                   onChange={saveInputValue}
+                  checked={inputValue.deliveryMethod === '1'}
                 />
                 당일배송 (오후 2시 - 7시 도착)
               </label>
@@ -136,7 +142,12 @@ const Order = ({ inputValue, handleStep, saveInputValue }) => {
           </div>
         </section>
       </form>
-      <StepBtn handleStep={handleStep} prev="cart" next="confirm" />
+      <StepBtn
+        handleStep={handleStep}
+        prev="cart"
+        next="confirm"
+        validation={validation}
+      />
     </div>
   );
 };

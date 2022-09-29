@@ -13,24 +13,19 @@ const Payment = () => {
     address: '',
     arrivalDate: '',
     deliveryMethod: '',
+    paymentMethod: '',
   });
-  // const validation =
-  //   inputValue.name.length !== 0 &&
-  //   inputValue.phoneNumber.length !== 0 &&
-  //   inputValue.address.length !== 0 &&
-  //   inputValue.arrivalDate.length !== 0;
 
   const saveInputValue = e => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
   };
-
   // useEffect(() => {
   //   // Todo : cartID 장바구니에서 쿼리스트링 형식으로 받아와야함
   //   // fetch('http://dadsa/order/information/cartId')
   //     .then(res => res.json())
   //     .then(data => setPaymentData(data));
-  // });
+  // },[]);
 
   const handleStep = step => {
     if (step === 'completion') {

@@ -1,13 +1,13 @@
 import React from 'react';
 
-const StepBtn = ({ handleStep, prev, next }) => {
+const StepBtn = ({ handleStep, prev, next, validation }) => {
   return (
     <div className="payment_btn_container">
       <button className="step_btn" onClick={() => handleStep(prev)}>
         이전 단계
       </button>
       <button
-        disabled={true}
+        disabled={!validation}
         className="step_btn"
         onClick={() => handleStep(next)}
       >

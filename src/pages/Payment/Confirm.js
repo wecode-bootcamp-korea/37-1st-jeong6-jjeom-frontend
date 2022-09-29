@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import StepBtn from './StepBtn';
 import './Confirm.scss';
 
 const Confirm = ({ inputValue, handleStep, saveInputValue }) => {
-  const [isBtn, setIsBtn] = useState(true);
-  const disabledBtn = inputValue.arrivalDate === '';
-
+  const validation = inputValue.paymentMethod === '무통장 입금';
   return (
     <div className="confirm container">
       <section className="confirm_way">
@@ -21,7 +19,7 @@ const Confirm = ({ inputValue, handleStep, saveInputValue }) => {
             />
             무통장 입금
           </label>
-          <label className="confirm_radio">
+          {/* <label className="confirm_radio">
             <input
               className="radio_btn"
               type="radio"
@@ -50,7 +48,7 @@ const Confirm = ({ inputValue, handleStep, saveInputValue }) => {
               onChange={saveInputValue}
             />
             신용카드
-          </label>
+          </label> */}
         </form>
       </section>
 
@@ -115,7 +113,7 @@ const Confirm = ({ inputValue, handleStep, saveInputValue }) => {
         </div>
       </section>
       <StepBtn
-        disabled={inputValue.paymentMethod !== '' && setIsBtn(false)}
+        validation={validation}
         handleStep={handleStep}
         prev="order"
         next="completion"
