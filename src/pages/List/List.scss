@@ -1,8 +1,11 @@
 @import 'src/styles/variables.scss';
 
 .list {
+  padding-top: 97px;
+
   .list_banner {
     @include flex-center;
+
     img {
       width: 100%;
     }
@@ -30,6 +33,7 @@
             background-color: $main-color;
           }
         }
+
         .active {
           color: white;
           background-color: $main-color;

@@ -16,7 +16,7 @@ const Cart = () => {
   const navigate = useNavigate();
   //POST
   const postOrder = () => {
-    navigate('/list', { state: { cartId: checkedItem } });
+    navigate('/payment', { state: { cartId: checkedItem } });
   };
 
   const isAllChecked =

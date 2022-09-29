@@ -1,11 +1,12 @@
 [
   {
     "id": 1,
-    "title": "초신선 돼지 삼겹살 구이용",
+    "name": "초신선 돼지 삼겹살 구이용",
     "price": 21300,
-    "gram": 600,
-    "img_url": "https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-fresh-list.png",
-    "antibiotic": false
+    "thick": 600,
+    "tumbnail_url": "https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-fresh-list.png",
+    "antibiotic": false,
+    "categories_url": "https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-fresh-list.png"
   },
   {
     "id": 2,
@@ -13,7 +14,8 @@
     "price": "23,400",
     "gram": 600,
     "img_url": "https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-clean-list.png",
-    "antibiotic": true
+    "antibiotic": true,
+    "categories_url": "https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-fresh-list.png"
   },
   {
     "id": 3,
@@ -21,7 +23,8 @@
     "price": "21,300",
     "gram": 600,
     "img_url": "https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-clean-list.png",
-    "antibiotic": true
+    "antibiotic": true,
+    "categories_url": "https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-fresh-list.png"
   },
   {
     "id": 4,
@@ -29,7 +32,8 @@
     "price": "21,300",
     "gram": 600,
     "img_url": "https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-fresh-whole-list.png",
-    "antibiotic": false
+    "antibiotic": false,
+    "categories_url": "https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-fresh-list.png"
   },
   {
     "id": 5,
@@ -37,7 +41,8 @@
     "price": "21,300",
     "gram": 600,
     "img_url": "https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkneck-fresh-list.png",
-    "antibiotic": true
+    "antibiotic": true,
+    "categories_url": "https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-fresh-list.png"
   },
   {
     "id": 6,
@@ -45,7 +50,8 @@
     "price": "21,300",
     "gram": 600,
     "img_url": "https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkneck-clean-list.png",
-    "antibiotic": false
+    "antibiotic": false,
+    "categories_url": "https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-fresh-list.png"
   },
   {
     "id": 7,
