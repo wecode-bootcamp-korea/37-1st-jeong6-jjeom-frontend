@@ -10,7 +10,9 @@ const Payment = () => {
   const [step, setStep] = useState('order');
   const location = useLocation();
   const { cartId } = location.state;
-  const [cartItem, setCartItem] = useState([]);
+  const [cartItem, setCartItem] = useState([
+    { userName: '', phone_number: '', email: '' },
+  ]);
   const [inputValue, setInputValue] = useState({
     name: '',
     phoneNumber: '',
@@ -20,6 +22,14 @@ const Payment = () => {
     paymentMethod: '',
   });
 
+  const totalPrice = () => {
+    let result = 0;
+    for (let i = 0; i < cartItem.length; i++) {
+      result += cartItem[i].price;
+    }
+    return result;
+  };
+
   const checkedQueryString = () => {
     let checkedProducts = '';
     for (let i = 0; i < cartId.length; i++) {
@@ -28,12 +38,11 @@ const Payment = () => {
     return checkedProducts.slice(0, -1);
   };
 
-  console.log(checkedQueryString());
-
   const saveInputValue = e => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
   };
+
   // Todo : cartId=1& 장바구니에서 쿼리스트링 형식으로 받아와야함
   useEffect(() => {
     fetch(`${API.ORDER}/information?${checkedQueryString()}`, {
@@ -51,9 +60,11 @@ const Payment = () => {
     return item.quantity;
   });
   // console.log(getQuan.toString());
+
   const getProductId = cartItem.map(item => {
     return item.id;
   });
+
   const handleStep = step => {
     if (step === 'completion') {
       fetch(`${API.ORDER}/makeOrder`, {
@@ -72,17 +83,13 @@ const Payment = () => {
           quantity: getQuan,
         }),
       })
-        .then(res => res.json)
+        .then(res => res.json())
         .then(data => {
-          if (data.messege === 'success') {
-            alert('성공');
-          } else {
-            alert('실패');
-          }
+          console.log(data);
         });
     }
-    window.scroll(0, 0);
     setStep(step);
+    window.scroll(0, 0);
   };
 
   const stepUi = {
@@ -99,10 +106,16 @@ const Payment = () => {
         handleStep={handleStep}
         saveInputValue={saveInputValue}
         inputValue={inputValue}
+        cartItem={cartItem}
+        totalPrice={totalPrice}
       />
     ),
     completion: (
-      <Completion handleStep={handleStep} saveInputValue={saveInputValue} />
+      <Completion
+        handleStep={handleStep}
+        saveInputValue={saveInputValue}
+        totalPrice={totalPrice}
+      />
     ),
   };
   return (

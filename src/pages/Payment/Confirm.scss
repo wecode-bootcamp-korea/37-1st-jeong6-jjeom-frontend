@@ -43,12 +43,15 @@
 
       .confirm_order_list {
         @include flex-center;
+        flex-direction: column;
 
         .confirm_order_product {
           @include flex-center;
           justify-content: space-between;
           width: 100%;
+          margin-bottom: 20px;
           padding-bottom: 10px;
+
           border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
 
           .product_title {

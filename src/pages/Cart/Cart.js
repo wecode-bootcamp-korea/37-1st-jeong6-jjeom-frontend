@@ -11,8 +11,8 @@ const Cart = () => {
   const [cartItem, setCartItem] = useState([]);
   const [checkedItem, setCheckedItem] = useState([]);
 
-  // console.log('선택된 상품:', checkedItem);
-  // console.log('장바구니에 담긴 상품', cartItem);
+  console.log('선택된 상품:', checkedItem);
+  console.log('장바구니에 담긴 상품', cartItem);
 
   const navigate = useNavigate();
   //POST
@@ -64,7 +64,6 @@ const Cart = () => {
   const patchAmount = async (optionProductsId, quantity) => {
     const response = await fetch(
       `${API.CART}/patch?optionProductsId=${optionProductsId}&quantity=${quantity}`,
-      //`http://172.20.10.3:3000/carts/patch?optionProductsId=${optionProductsId}&quantity=${quantity}`,
       {
         method: 'PATCH',
         headers: {
@@ -114,9 +113,7 @@ const Cart = () => {
   const deleteProduct = async () => {
     const response = await fetch(
       `${API.CART}/delete?cartsId=${checkedItem.join('&cartsId=')}`,
-      // `http://172.20.10.3:3000/carts/delete?cartsId=${checkedItem.join(
-      //   '&cartsId='
-      // )}`,
+
       {
         method: 'DELETE',
         headers: {
@@ -159,8 +156,6 @@ const Cart = () => {
   // GET == 성공
   const getCartData = () => {
     fetch(`${API.CART}/user`, {
-      //'http://172.20.10.3:3000/carts/user'
-      //'/data/cartList.json'
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: localStorage.getItem('token'),

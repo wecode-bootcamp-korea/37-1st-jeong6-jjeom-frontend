@@ -8,7 +8,7 @@ import { API } from '../../config';
 
 const Detail = () => {
   const { id } = useParams();
-  const [detailData, setDetailData] = useState({});
+  const [detailData, setDetailData] = useState({ optionProductsId: { id: 0 } });
   const [quantityItem, setQuantityItem] = useState(1);
   const [isOptionSwtich, setIsOptionSwitch] = useState(false);
   const [optionContent, setOptionContent] = useState('선택');
@@ -17,14 +17,15 @@ const Detail = () => {
   const [modalContent, setModalContent] = useState('');
   const [description, setDescription] = useState({});
   const navigate = useNavigate();
-
+  const [optionI, setOptionI] = useState(0);
   // TODO : 받은 데이터로 보여주기
   const TAB_LIST = {
     상품설명: <ItemInfo description_url={detailData.description_url} />,
     상품정보안내: <Info description={description} />,
   };
-  // console.log(detailData.option[1 - 1].value);
 
+  const optionId = detailData.optionProductsId[optionI];
+  console.log(optionId);
   useEffect(() => {
     // TODO : API Integration
     fetch(`${API.DETAIL}/${id}`)
@@ -36,16 +37,16 @@ const Detail = () => {
   const handlePlusCount = () => {
     setQuantityItem(quantityItem + 1);
   };
-
   const handleMinusCount = () => {
     if (quantityItem === 1) return;
 
     setQuantityItem(quantityItem - 1);
   };
 
-  const handleOption = optionValue => {
+  const handleOption = (optionContent, index) => {
+    setOptionI(index);
     setIsOptionSwitch(!isOptionSwtich);
-    setOptionContent(optionValue.thick);
+    setOptionContent(optionContent.thick);
   };
 
   const handleTab = tab => {
@@ -55,7 +56,7 @@ const Detail = () => {
       .then(data => setDescription(data.getDescription));
     setCurrTab(tab);
   };
-
+  // console.log(detailData.optionId);
   const handleModal = () => {
     setIsModal(false);
   };
@@ -66,14 +67,13 @@ const Detail = () => {
       setTimeout(handleModal, 3000);
     } else if (button === 'buy') {
       fetch(`${API.CART}/post`, {
-        // fetch(`http://172.20.10.3:3000/carts/post`
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
           Authorization: localStorage.getItem('token'),
         },
         body: JSON.stringify({
-          optionProductsId: detailData.id,
+          optionProductsId: optionId.id,
           quantity: quantityItem,
         }),
       })
@@ -84,7 +84,7 @@ const Detail = () => {
           throw new Error('통신실패');
         })
         .then(data => {
-          if (data.message === 'add succes') {
+          if (data.message === 'add success') {
             navigate('/cart');
           }
         });
@@ -96,7 +96,7 @@ const Detail = () => {
           Authorization: localStorage.getItem('token'),
         },
         body: JSON.stringify({
-          optionProductsId: detailData.id,
+          optionProductsId: optionId.id,
           quantity: quantityItem,
         }),
       })
@@ -136,7 +136,7 @@ const Detail = () => {
                 <button
                   type="button"
                   className="option_btn"
-                  onClick={() => handleOption(optionContent)}
+                  onClick={() => handleOption(optionContent, 0)}
                 >
                   {optionContent}
                 </button>
