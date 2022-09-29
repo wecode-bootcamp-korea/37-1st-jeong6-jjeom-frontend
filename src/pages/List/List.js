@@ -13,11 +13,13 @@ const List = () => {
     setSearchParams(searchParams);
     setTabSwitch(pageId);
   };
+
   useEffect(() => {
     fetch(`http://172.20.10.3:3000/products/${tabSwtich}/list`) //`name=${name}`
       .then(res => res.json())
       .then(data => setProducts(data.result));
   }, [tabSwtich]);
+
   return (
     <div className="list">
       <section className="list_banner">
@@ -26,7 +28,7 @@ const List = () => {
       <div className="container">
         <section className="list_tab">
           <ul className="list_tab_container">
-            {LIST_TAB.map(tab => {
+            {LIST_TAB?.map(tab => {
               return (
                 <li
                   className={`list_tab_button ${
@@ -44,7 +46,7 @@ const List = () => {
           </ul>
         </section>
         <ul className="products_list">
-          {products.map(data => {
+          {products?.map(data => {
             return <Product key={data.id} data={data} />;
           })}
         </ul>

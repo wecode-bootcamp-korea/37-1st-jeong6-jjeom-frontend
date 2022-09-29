@@ -2,9 +2,12 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Nav.scss';
 import NAV_LIST from '../navData';
+
 const Nav = ({ isActive, showNav }) => {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
+  const recent_view = localStorage.getItem('window');
+  console.log(recent_view);
   return (
     <>
       <div className={`dim ${isActive ? ' active' : ''}`} onClick={showNav} />
@@ -70,6 +73,7 @@ const Nav = ({ isActive, showNav }) => {
             <i className="fa-solid fa-arrow-right-to-bracket" />
             로그인
           </p>
+          <p className="menu_name">내가 본 상품</p>
         </section>
       </div>
     </>
