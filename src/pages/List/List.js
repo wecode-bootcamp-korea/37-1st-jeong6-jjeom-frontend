@@ -5,25 +5,26 @@ import './List.scss';
 
 const List = () => {
   const [products, setProducts] = useState([]);
-  const [tabSwtich, setTabSwitch] = useState('pork');
+  const [tabSwtich, setTabSwitch] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
-  const name = searchParams.get('name');
 
-  const handleTab = pageName => {
-    searchParams.set('name', pageName);
+  const handleTab = pageId => {
+    searchParams.set('categories', pageId);
     setSearchParams(searchParams);
-    setTabSwitch(pageName);
+    setTabSwitch(pageId);
   };
 
   useEffect(() => {
-    fetch('/data/list-data.json') //`name=${name}`
+    fetch(`http://172.20.10.3:3000/products/${tabSwtich}/list`) //`name=${name}`
       .then(res => res.json())
-      .then(data => setProducts(data));
-  }, []);
+      .then(data => setProducts(data.result));
+  }, [tabSwtich]);
 
   return (
     <div className="list">
-      <section className="list_banner" />
+      <section className="list_banner">
+        <img src={products.categories_url} alt="카테고리 배너" />
+      </section>
       <div className="container">
         <section className="list_tab">
           <ul className="list_tab_container">
@@ -31,7 +32,7 @@ const List = () => {
               return (
                 <li
                   className={`list_tab_button ${
-                    tab.name === tabSwtich && 'active'
+                    tab.id === tabSwtich && 'active'
                   }`}
                   key={tab.id}
                   onClick={() => {

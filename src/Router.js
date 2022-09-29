@@ -9,11 +9,13 @@ import Payment from './pages/Payment/Payment';
 import Main from './pages/main/Main';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
+import ScrollToTop from './components/ScrollToTop';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Header />
+      <ScrollToTop />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
