@@ -1,47 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import StepBtn from './StepBtn';
 import './Confirm.scss';
 
-const Confirm = ({ handleStep, saveInputValue }) => {
-  // 장바구니에서 선택된 정보를 담아서 보내는 Post 요청
-  // useEffect(()=>{
-  //   fetch(`url`,{
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //     },
-  //     body :  JSON.stringify({
-  //       name : string,
-  //       phoneNumber : number,
-  //       address: string,
-  //       arrivalDate : 2022-10-32,
-  //       deliveryMethod: boolean,
-  //     })
-  //   }).then(res=>res.json).then(data)
-  // })
-
-  // 선택된 카트를 지우기위한 delete 요청
-  // useEffect(()=>{\
-  //   fetch(`url/order/choice`,{
-  //     method: 'DELETE',
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //     },
-  //     body :JSON.stringify({
-  //       cartId : id
-  //     })
-  //   }).then(res=>res.json).then(data)
-  // })
-
-  //오더 아이디를 요청하는 get 요청
-  // useEffect(()=>{
-  //   fetch(`url/order/id`).then(res=>res.json).then(data)
-  // })
-
-  // 주문 완료창을 위한 GET 요청 (계좌번호 주는거)
-  // useEffect(()=>{
-  //   fetch(`url/order/complete?${orderId}`).then(res=>res.json).then(data)
-  // })
+const Confirm = ({ inputValue, handleStep, saveInputValue }) => {
+  const [isBtn, setIsBtn] = useState(true);
+  const disabledBtn = inputValue.arrivalDate === '';
 
   return (
     <div className="confirm container">
@@ -62,11 +25,11 @@ const Confirm = ({ handleStep, saveInputValue }) => {
             <input
               className="radio_btn"
               type="radio"
-              value="무통장 입금"
+              value="네이버 페이"
               name="paymentMethod"
               onChange={saveInputValue}
             />
-            무통장 입금
+            네이버 페이
           </label>
           <label className="confirm_radio">
             <input
@@ -82,11 +45,11 @@ const Confirm = ({ handleStep, saveInputValue }) => {
             <input
               className="radio_btn"
               type="radio"
-              value="무통장 입금"
+              value="신용카드"
               name="paymentMethod"
               onChange={saveInputValue}
             />
-            무통장 입금
+            신용카드
           </label>
         </form>
       </section>
@@ -148,10 +111,15 @@ const Confirm = ({ handleStep, saveInputValue }) => {
       <section className="confirm_delivery">
         <p className="confirm_title">배송정보</p>
         <div className="confirm_delivery_container">
-          2022-09-22 (목) 오후 2시 - 7시 전 도착 예정
+          {inputValue.arrivalDate} (목) 오후 2시 - 7시 전 도착 예정
         </div>
       </section>
-      <StepBtn />
+      <StepBtn
+        disabled={inputValue.paymentMethod !== '' && setIsBtn(false)}
+        handleStep={handleStep}
+        prev="order"
+        next="completion"
+      />
     </div>
   );
 };

@@ -10,32 +10,14 @@ const Payment = () => {
   const [inputValue, setInputValue] = useState({
     name: '',
     phoneNumber: ' ',
-    adddress: '',
-    date: '',
-    delivery: '',
-    paymentMethod: '',
-    order: [],
+    address: '',
+    arrivalDate: '',
+    deliveryMethod: '',
   });
-  const handleStep = step => {
-    if (step === 'confirm') {
-      console.log('여기서 포스트해야돼');
-    }
-    setStep(step);
-  };
 
   const saveInputValue = e => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
-  };
-
-  const stepUi = {
-    order: <Order handleStep={handleStep} saveInputValue={saveInputValue} />,
-    confirm: (
-      <Confirm handleStep={handleStep} saveInputValue={saveInputValue} />
-    ),
-    completion: (
-      <Completion handleStep={handleStep} saveInputValue={saveInputValue} />
-    ),
   };
 
   // useEffect(() => {
@@ -45,6 +27,73 @@ const Payment = () => {
   //     .then(data => setPaymentData(data));
   // });
 
+  const handleStep = step => {
+    if (step === 'completion') {
+      // fetch(`url`, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json;charset=utf-8',
+      //     Authorization: localStorage.getItem('token'),
+      //   },
+      //   body: JSON.stringify({
+      //     name: string,
+      //     phoneNumber: number,
+      //     address: string,
+      //     arrivalDate: 2022 - 10 - 32,
+      //     deliveryMethod: boolean,
+      //   }),
+      // })
+      //   .then(res => res.json)
+      //   .then(data => {
+      //     if (data.messege === 'success') {
+      //       alert('성공');
+      //     } else {
+      //       alert('실패');
+      //     }
+      //   });
+      // 선택된 카트를 지우기위한 delete 요청
+      // useEffect(()=>{\
+      //   fetch(`url/order/choice`,{
+      //     method: 'DELETE',
+      //     headers: {
+      //       'Content-Type': 'application/json;charset=utf-8',
+      //     },
+      //     body :JSON.stringify({
+      //       cartId : id
+      //     })
+      //   }).then(res=>res.json).then(data)
+      // })
+      //오더 아이디를 요청하는 get 요청
+      // useEffect(()=>{
+      //   fetch(`url/order/id`).then(res=>res.json).then(data)
+      // })
+      // 주문 완료창을 위한 GET 요청 (계좌번호 주는거)
+      // useEffect(()=>{
+      //   fetch(`url/order/complete?${orderId}`).then(res=>res.json).then(data)
+      // })
+    }
+    setStep(step);
+  };
+
+  const stepUi = {
+    order: (
+      <Order
+        handleStep={handleStep}
+        saveInputValue={saveInputValue}
+        inputValue={inputValue}
+      />
+    ),
+    confirm: (
+      <Confirm
+        handleStep={handleStep}
+        saveInputValue={saveInputValue}
+        inputValue={inputValue}
+      />
+    ),
+    completion: (
+      <Completion handleStep={handleStep} saveInputValue={saveInputValue} />
+    ),
+  };
   return (
     <div className="payment container">
       <p className="payment_title">주문하기</p>

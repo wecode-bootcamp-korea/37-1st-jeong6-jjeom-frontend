@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import StepBtn from './StepBtn';
 import './Order.scss';
 
-const Order = ({ handleStep, saveInputValue }) => {
+const Order = ({ inputValue, handleStep, saveInputValue }) => {
   const [userData, setUserData] = useState({});
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth() + 1;
@@ -21,6 +21,13 @@ const Order = ({ handleStep, saveInputValue }) => {
       .then(res => res.json())
       .then(data => setUserData(data));
   }, []);
+
+  const btnDisabled =
+    inputValue.name === '' &&
+    inputValue.phoneNumber === '' &&
+    inputValue.address === '' &&
+    inputValue.arrivalDate === '' &&
+    inputValue.deliveryMethod === '';
 
   return (
     <div className="order">
@@ -97,7 +104,7 @@ const Order = ({ handleStep, saveInputValue }) => {
             <p className="order_delivery_title">도착 희망일</p>
             <div className="order_delivery_date">
               <input
-                name="date"
+                name="arrivalDate"
                 type="date"
                 min={currentDay}
                 onChange={saveInputValue}
@@ -110,8 +117,8 @@ const Order = ({ handleStep, saveInputValue }) => {
               <label>
                 <input
                   type="radio"
-                  name="delivery"
-                  value="새벽배송 (오전 7시 전 도착)"
+                  name="deliveryMethod"
+                  value="0"
                   onChange={saveInputValue}
                 />
                 새벽배송 (오전 7시 전 도착)
@@ -119,8 +126,8 @@ const Order = ({ handleStep, saveInputValue }) => {
               <label>
                 <input
                   type="radio"
-                  name="delivery"
-                  value=" 당일배송 (오후 2시 - 7시 도착)"
+                  name="deliveryMethod"
+                  value="1"
                   onChange={saveInputValue}
                 />
                 당일배송 (오후 2시 - 7시 도착)
