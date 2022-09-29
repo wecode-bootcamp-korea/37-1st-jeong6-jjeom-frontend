@@ -20,7 +20,9 @@ const List = () => {
   }, [tabSwtich]);
   return (
     <div className="list">
-      <section className="list_banner" />
+      <section className="list_banner">
+        <img src={products.categories_url} alt="카테고리 배너" />
+      </section>
       <div className="container">
         <section className="list_tab">
           <ul className="list_tab_container">
