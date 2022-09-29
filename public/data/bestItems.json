@@ -1,50 +1,50 @@
 [
   {
     "id": 1,
-    "title": "초신선 돼지 삼겹살 구이용",
+    "name": "초신선 돼지 삼겹살 구이용",
     "price": 21300,
-    "gram": 600,
-    "tumbnail_url": "https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-fresh-list.png",
+    "thick": 600,
+    "tumbnail_url": "https://user-images.githubusercontent.com/106464348/191904859-28d8e387-f8ce-4701-b56b-49357e382a4c.png",
     "antibiotic": false
   },
   {
     "id": 2,
-    "title": "초신선 무항생제 돼지 삼겹살 구이용",
+    "name": "초신선 무항생제 돼지 등갈비 구이용",
     "price": "23,400",
-    "gram": 600,
-    "tumbnail_url": "https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-clean-list.png",
+    "thick": 600,
+    "tumbnail_url": "https://user-images.githubusercontent.com/106464348/191904882-5bd6aeeb-cbcd-4e8f-9c83-194f29b95d8a.png",
     "antibiotic": true
   },
   {
     "id": 3,
-    "title": "초신선 돼지 삼겹살 수육용",
+    "name": "초신선 돼지 삼겹살 수육용",
     "price": "21,300",
-    "gram": 600,
-    "tumbnail_url": "https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-clean-list.png",
+    "thick": 600,
+    "tumbnail_url": "https://user-images.githubusercontent.com/106464348/191904935-069af351-f8d3-433d-886c-93b9d989be97.png",
     "antibiotic": true
   },
   {
     "id": 4,
-    "title": "초신선 돼지 삼겹살 구이용",
+    "name": "초신선 돼지 삼겹살 구이용",
     "price": 21300,
-    "gram": 600,
-    "tumbnail_url": "https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-fresh-list.png",
+    "thick": 600,
+    "tumbnail_url": "https://user-images.githubusercontent.com/106464348/191904902-82c3d357-f160-4d18-81c7-2b9219eb276c.png",
     "antibiotic": false
   },
   {
     "id": 5,
-    "title": "초신선 무항생제 돼지 삼겹살 구이용",
+    "name": "초신선 무항생제 돼지 삼겹살 구이용",
     "price": "23,400",
-    "gram": 600,
-    "tumbnail_url": "https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-clean-list.png",
+    "thick": 600,
+    "tumbnail_url": "https://user-images.githubusercontent.com/106464348/191904882-5bd6aeeb-cbcd-4e8f-9c83-194f29b95d8a.png",
     "antibiotic": true
   },
   {
     "id": 6,
-    "title": "초신선 돼지 삼겹살 수육용",
+    "name": "초신선 돼지 삼겹살 수육용",
     "price": "21,300",
-    "gram": 600,
-    "tumbnail_url": "https://jeongyookgak-commerce.s3.ap-northeast-2.amazonaws.com/jyg-custom-seoul-app/frontend/thumbnails/transparent_background/porkbelly-clean-list.png",
+    "thick": 600,
+    "tumbnail_url": "https://user-images.githubusercontent.com/106464348/191904859-28d8e387-f8ce-4701-b56b-49357e382a4c.png",
     "antibiotic": true
   }
 ]
