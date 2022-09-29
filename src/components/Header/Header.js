@@ -17,7 +17,7 @@ const Header = () => {
       <header className="header">
         <div className="container">
           <h1 className="logo" onClick={() => navigate('/main')}>
-            <img src="./images/logo_w.png" alt="정육쩜 로고" />
+            <img src="/images/logo_w.png" alt="정육쩜 로고" />
           </h1>
           <div className="menu_wrap">
             <ul className="service_menu">

@@ -50,7 +50,7 @@ const Login = () => {
       return;
     }
 
-    fetch('https://937d-211-106-114-186.jp.ngrok.io/users/signin', {
+    fetch('http://172.20.10.3:3000/users/signin', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({
@@ -60,9 +60,9 @@ const Login = () => {
     })
       .then(response => response.json())
       .then(result => {
-        if (result.message === 'success') {
+        if (result.message === 'signIn success') {
           localStorage.setItem('name', result.username);
-          localStorage.setItem('또큰', result.accessToken);
+          localStorage.setItem('token', result.accessToken);
           setIsModal(true);
         } else {
           setIsFailModal(true);
