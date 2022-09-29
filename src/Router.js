@@ -7,6 +7,7 @@ import List from './pages/List/List';
 import Detail from './pages/Detail/Detail';
 import Cart from './pages/Cart/Cart';
 import Payment from './pages/Payment/Payment';
+import Register from './pages/Register/Register';
 import Footer from './components/Footer/Footer';
 
 const Router = () => {
@@ -20,6 +21,7 @@ const Router = () => {
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/payment" element={<Payment />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
       <Footer />
     </BrowserRouter>
