@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// import { useLocation } from 'react-router-dom';
 import Completion from './Completion';
 import Confirm from './Confirm';
 import Order from './Order';
@@ -7,6 +8,9 @@ import './Payment.scss';
 const Payment = () => {
   // const [paymentData, setPaymentData] = useState({});
   const [step, setStep] = useState('order');
+  // const [cartItem, setCartItem] = useState({});
+  // const location = useLocation();
+  // const { cartId } = location.state;
   const [inputValue, setInputValue] = useState({
     name: '',
     phoneNumber: ' ',
@@ -20,11 +24,11 @@ const Payment = () => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
   };
-  // useEffect(() => {
   //   // Todo : cartID 장바구니에서 쿼리스트링 형식으로 받아와야함
-  //   // fetch('http://dadsa/order/information/cartId')
+  // useEffect(() => {
+  //   // fetch(`http://dadsa/order/information/${cartId}`)
   //     .then(res => res.json())
-  //     .then(data => setPaymentData(data));
+  //     .then(data => setCartItem(data.뭐시기));
   // },[]);
 
   const handleStep = step => {
@@ -41,6 +45,7 @@ const Payment = () => {
       //     address: string,
       //     arrivalDate: 2022 - 10 - 32,
       //     deliveryMethod: boolean,
+      //     quantity: cartItem.뭐시기,
       //   }),
       // })
       //   .then(res => res.json)
@@ -51,26 +56,24 @@ const Payment = () => {
       //       alert('실패');
       //     }
       //   });
-      // 선택된 카트를 지우기위한 delete 요청
-      // useEffect(()=>{\
-      //   fetch(`url/order/choice`,{
-      //     method: 'DELETE',
-      //     headers: {
-      //       'Content-Type': 'application/json;charset=utf-8',
-      //     },
-      //     body :JSON.stringify({
-      //       cartId : id
-      //     })
-      //   }).then(res=>res.json).then(data)
-      // })
-      //오더 아이디를 요청하는 get 요청
-      // useEffect(()=>{
-      //   fetch(`url/order/id`).then(res=>res.json).then(data)
-      // })
-      // 주문 완료창을 위한 GET 요청 (계좌번호 주는거)
-      // useEffect(()=>{
-      //   fetch(`url/order/complete?${orderId}`).then(res=>res.json).then(data)
-      // })
+      // // 선택된 카트를 지우기위한 delete 요청
+      // fetch(`url/order/choice`, {
+      //   method: 'DELETE',
+      //   headers: {
+      //     'Content-Type': 'application/json;charset=utf-8',
+      //   },
+      //   body: JSON.stringify({
+      //     cartId: id,
+      //   }),
+      // }).then(res => res.json);
+      // // 오더 아이디를 요청하는 get 요청
+      // fetch(`url/order/id`)
+      //   .then(res => res.json)
+      //   .then(data);
+      // // 주문 완료창을 위한 GET 요청 (계좌번호 주는거)
+      // fetch(`url/order/complete?${orderId}`)
+      //   .then(res => res.json)
+      //   .then(data);
     }
     setStep(step);
   };
