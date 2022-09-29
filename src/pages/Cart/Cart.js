@@ -11,8 +11,8 @@ const Cart = () => {
   const [cartItem, setCartItem] = useState([]);
   const [checkedItem, setCheckedItem] = useState([]);
 
-  console.log('선택된 상품:', checkedItem);
-  console.log('장바구니에 담긴 상품', cartItem);
+  // console.log('선택된 상품:', checkedItem);
+  // console.log('장바구니에 담긴 상품', cartItem);
 
   const navigate = useNavigate();
   //POST

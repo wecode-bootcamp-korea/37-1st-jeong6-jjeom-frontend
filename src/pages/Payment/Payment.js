@@ -84,9 +84,7 @@ const Payment = () => {
         }),
       })
         .then(res => res.json())
-        .then(data => {
-          console.log(data);
-        });
+        .then(data => {});
     }
     setStep(step);
     window.scroll(0, 0);

@@ -25,7 +25,6 @@ const Detail = () => {
   };
 
   const optionId = detailData.optionProductsId[optionI];
-  console.log(optionId);
   useEffect(() => {
     // TODO : API Integration
     fetch(`${API.DETAIL}/${id}`)
