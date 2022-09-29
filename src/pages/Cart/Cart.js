@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import CartItemList from './components/CartItemList';
 import ItemNone from './components/ItemNone';
 import './Cart.scss';
+import { API } from '../../config';
 
 const DELIVERY_FEE = 3500;
 
@@ -62,7 +63,8 @@ const Cart = () => {
   // PATCH
   const patchAmount = async (optionProductsId, quantity) => {
     const response = await fetch(
-      `http://172.20.10.3:3000/carts/patch?optionProductsId=${optionProductsId}&quantity=${quantity}`,
+      `${API.CART}/patch?optionProductsId=${optionProductsId}&quantity=${quantity}`,
+      //`http://172.20.10.3:3000/carts/patch?optionProductsId=${optionProductsId}&quantity=${quantity}`,
       {
         method: 'PATCH',
         headers: {
@@ -73,7 +75,7 @@ const Cart = () => {
 
     const data = await response.json();
     if (data) {
-      const response = await fetch('http://172.20.10.3:3000/carts/user', {
+      const response = await fetch(`${API.CART}/user`, {
         headers: {
           Authorization: localStorage.getItem('token'),
         },
@@ -111,9 +113,10 @@ const Cart = () => {
   //DELETE == 성공
   const deleteProduct = async () => {
     const response = await fetch(
-      `http://172.20.10.3:3000/carts/delete?cartsId=${checkedItem.join(
-        '&cartsId='
-      )}`,
+      `${API.CART}/delete?cartsId=${checkedItem.join('&cartsId=')}`,
+      // `http://172.20.10.3:3000/carts/delete?cartsId=${checkedItem.join(
+      //   '&cartsId='
+      // )}`,
       {
         method: 'DELETE',
         headers: {
@@ -126,7 +129,7 @@ const Cart = () => {
     const data = await response.json();
 
     if (data) {
-      const response = await fetch('http://172.20.10.3:3000/carts/user', {
+      const response = await fetch(`${API.CART}/user`, {
         headers: {
           Authorization: localStorage.getItem('token'),
         },
@@ -155,7 +158,7 @@ const Cart = () => {
 
   // GET == 성공
   const getCartData = () => {
-    fetch('/data/cartList.json', {
+    fetch(`${API.CART}/user`, {
       //'http://172.20.10.3:3000/carts/user'
       //'/data/cartList.json'
       headers: {

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import ModalPortal from '../../Portal';
 import CheckInfoModal from './CheckInfoModal';
 import './SignupData2.scss';
+import { API } from '../../config';
 
 const SignupData2 = ({ setTransPage }) => {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ const SignupData2 = ({ setTransPage }) => {
 
   const joinBtn = () => {
     if (inputValues.password === inputValues.pwCheck) {
-      fetch('https://937d-211-106-114-186.jp.ngrok.io/users/signup', {
+      fetch(`${API.SIGNUP}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json;charset=utf-8' },
         body: JSON.stringify({

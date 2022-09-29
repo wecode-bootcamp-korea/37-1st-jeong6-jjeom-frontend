@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Product from './Product/Product';
 import { useSearchParams } from 'react-router-dom';
 import './List.scss';
+import { API } from '../../config';
 
 const List = () => {
   const [products, setProducts] = useState([]);
@@ -14,7 +15,8 @@ const List = () => {
     setTabSwitch(pageId);
   };
   useEffect(() => {
-    fetch(`data/list-data.json`) //`name=${name}`
+    fetch(`${API.LIST}/${tabSwtich}/list`) //`name=${name}`
+      // fetch(`data/list-data.json`)
       // fetch(`http://172.20.10.3:3000/products/${tabSwtich}/list`) //`name=${name}`
       .then(res => res.json())
       .then(data => setProducts(data));
