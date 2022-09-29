@@ -1,0 +1,54 @@
+@import '/src/styles/variables.scss';
+.colored1 {
+  opacity: 0.2;
+}
+.colored2 {
+  color: black;
+}
+.inputInfo {
+  font-weight: bold;
+}
+.infoWrap {
+  @include flex-center;
+  flex-direction: column;
+  .subTextInfo {
+    display: flex;
+    width: 753px;
+    justify-content: flex-start;
+    margin: 20px;
+  }
+  .userInfoWrap {
+    width: 753px;
+    height: 340px;
+    border: 1px solid #e1dedf;
+
+    .userBox {
+      height: 68px;
+      border-bottom: 1px solid #e1dedf;
+
+      .userInfo {
+        display: flex;
+        align-items: center;
+        padding-left: 15px;
+        width: 20%;
+        height: 100%;
+        font-size: 13px;
+        background-color: #ffffff;
+        border-right: 1px solid #e1dedf;
+        float: left;
+      }
+      .userInputBox {
+        display: flex;
+        align-items: center;
+
+        height: 100%;
+        .inputText {
+          height: 60%;
+          width: 70%;
+          margin-left: 20px;
+          border: 1px solid #e1dedf;
+        }
+      }
+    }
+  }
+}
