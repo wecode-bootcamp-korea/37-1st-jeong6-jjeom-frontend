@@ -14,6 +14,11 @@ const Payment = () => {
     arrivalDate: '',
     deliveryMethod: '',
   });
+  // const validation =
+  //   inputValue.name.length !== 0 &&
+  //   inputValue.phoneNumber.length !== 0 &&
+  //   inputValue.address.length !== 0 &&
+  //   inputValue.arrivalDate.length !== 0;
 
   const saveInputValue = e => {
     const { name, value } = e.target;
