@@ -1,7 +1,17 @@
 import React from 'react';
 import './Info.scss';
 
-const Info = () => {
+const Info = ({ description }) => {
+  const {
+    name,
+    price,
+    standard_unit,
+    description_url,
+    weight,
+    birth,
+    expiration,
+    storage,
+  } = description;
   return (
     <div className="info">
       <section className="info_basic">
@@ -9,23 +19,23 @@ const Info = () => {
         <ul>
           <li>
             <p>·품목명</p>
-            <p>초신선 돼지 삼겹살</p>
+            <p>{name}</p>
           </li>
           <li>
             <p>·내용량</p>
-            <p>중량 600g, 실중량은 제품에 별도 표기</p>
+            <p>중량 {weight}, 실중량은 제품에 별도 표기</p>
           </li>
           <li>
             <p>·원산지</p>
-            <p>국내산</p>
+            <p>{birth}</p>
           </li>
           <li>
             <p>·유통기한</p>
-            <p>제품에 별도 표기</p>
+            <p>{expiration}</p>
           </li>
           <li>
             <p>·보관방법</p>
-            <p>-2~10C 냉장 보관</p>
+            <p>{storage}</p>
           </li>
         </ul>
       </section>
@@ -102,7 +112,7 @@ const Info = () => {
           <br />
           <br />
           &nbsp;&nbsp;&nbsp;고객센터 1:1 문의 혹은 카카오톡 플러스친구
-          @정육각으로 사진과 함께 내용을 적어 보내주시면
+          @정육쩜으로 사진과 함께 내용을 적어 보내주시면
           <br />
           <br />
           &nbsp;&nbsp;&nbsp;담당자가 확인 후 빠르게 처리 도와드리겠습니다.
