@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import StepBtn from './StepBtn';
 import './Order.scss';
 
-const Order = ({ inputValue, handleStep, saveInputValue }) => {
+const Order = ({ inputValue, handleStep, saveInputValue, cartItem }) => {
   const [userData, setUserData] = useState({});
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth() + 1;
   const currentDate = new Date().getDate();
-
+  console.log(cartItem);
   const currentDay =
     currentYear +
     '-' +
@@ -23,12 +23,6 @@ const Order = ({ inputValue, handleStep, saveInputValue }) => {
     inputValue.arrivalDate.length !== 0 &&
     inputValue.deliveryMethod.length !== 0;
 
-  useEffect(() => {
-    fetch('/data/user-data.json')
-      .then(res => res.json())
-      .then(data => setUserData(data));
-  }, []);
-
   return (
     <div className="order">
       <section className="order_address">
@@ -38,15 +32,15 @@ const Order = ({ inputValue, handleStep, saveInputValue }) => {
           <div className="order_form">
             <div className="order_wrap">
               <div className="order_head">이름</div>
-              <div className="order_content">{userData.name}</div>
+              <div className="order_content">{cartItem.name}</div>
             </div>
             <div className="order_wrap">
               <div className="order_head">전화번호</div>
-              <div className="order_content">{userData.phoneNumber}</div>
+              <div className="order_content">{cartItem.phoneNumber}</div>
             </div>
             <div className="order_wrap">
               <div className="order_head">이메일</div>
-              <div className="order_content">{userData.mail}</div>
+              <div className="order_content">{cartItem.mail}</div>
             </div>
           </div>
         </div>

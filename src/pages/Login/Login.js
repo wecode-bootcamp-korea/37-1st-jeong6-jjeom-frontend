@@ -32,7 +32,7 @@ const Login = () => {
   };
 
   const goToMain = () => {
-    navigate('/main');
+    navigate('/');
   };
 
   const handleInput = e => {
