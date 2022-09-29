@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
+import Register from './pages/Register/Register';
 import List from './pages/List/List';
 import Detail from './pages/Detail/Detail';
 import Cart from './pages/Cart/Cart';
@@ -19,6 +20,7 @@ const Router = () => {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/list" element={<List />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/cart" element={<Cart />} />
