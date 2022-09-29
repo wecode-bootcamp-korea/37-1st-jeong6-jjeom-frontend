@@ -50,13 +50,13 @@
       .item_header {
         position: relative;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-around;
         padding: 20px 0;
         border-top: 1px solid #000;
         border-bottom: 1px solid #e1dedf;
 
         .header_title {
-          width: 10%;
+          width: auto;
           font-size: 13px;
           text-align: center;
 
@@ -150,16 +150,15 @@
       width: 100%;
       padding: 15px 0;
       margin-top: 10px;
-      font-weight: 700;
+      font-size: 14px;
+      font-weight: 500;
       color: #fff;
+      background: $red-color;
 
-      &.order {
-        background: $red-color;
-      }
-
-      &.shopping {
+      &:disabled {
         background: $sub-text;
       }
+
     }
   }
 }

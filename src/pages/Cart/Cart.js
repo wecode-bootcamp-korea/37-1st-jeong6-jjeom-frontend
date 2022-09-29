@@ -14,15 +14,22 @@ const Cart = () => {
   // console.log('장바구니에 담긴 상품', cartItem);
 
   const navigate = useNavigate();
-  // const goToPayment = () => {
-  //   navigate('/payment');
-  // };
-  const goToList = () => {
-    navigate('/list');
+  //POST
+  const postOrder = () => {
+    navigate('/list', { state: { cartId: checkedItem } });
   };
 
   const isAllChecked =
     checkedItem.length !== 0 && cartItem.length === checkedItem.length;
+
+  const totalPrice = cartItem.reduce(
+    (acc, cart) =>
+      checkedItem.indexOf(cart.id) !== -1
+        ? acc + Number(cart.price) * cart.quantity
+        : acc,
+    0
+  );
+  const sumAllPrice = checkedItem.length === 0 ? 0 : totalPrice + DELIVERY_FEE;
 
   const handleSingleCheck = id => {
     if (checkedItem.includes(id)) {
@@ -52,36 +59,53 @@ const Cart = () => {
     });
   };
 
-  const totalPrice = cartItem.reduce(
-    (acc, cart) =>
-      checkedItem.indexOf(cart.id) !== -1
-        ? acc + Number(cart.price) * cart.quantity
-        : acc,
-    0
-  );
-  const sumAllPrice = checkedItem.length === 0 ? 0 : totalPrice + DELIVERY_FEE;
+  // PATCH
+  const patchAmount = async (optionProductsId, quantity) => {
+    const response = await fetch(
+      `http://172.20.10.3:3000/carts/patch?optionProductsId=${optionProductsId}&quantity=${quantity}`,
+      {
+        method: 'PATCH',
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      }
+    );
 
-  //POST
-  const postOrder = () => {
-    //http://localhost:3000/carts/delete?product_id=${checkedItem.join('&product_id')}
-    fetch(`post api주소`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('token'),
-      },
-      // body: JSON.stringify({
-      //   // TODO: 어떤 형태로 받아야하는지 백엔드와 정하기 => 상품 id 값을 전달해달라고 하심
-      //   product_id: cartItem.product_id,
-      // }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data) {
-          alert('주문하기 페이지로 이동합니다.');
-          // goToPayment(); //주문하기 페이지로 이동
-        }
+    const data = await response.json();
+    if (data) {
+      const response = await fetch('http://172.20.10.3:3000/carts/user', {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
       });
+
+      const data = await response.json();
+      const patchedItem = data.getCartbyId
+        .map(obj => {
+          return {
+            id: obj.id,
+            option_products_id: obj.option_products_id,
+            name: obj.name,
+            price: +obj.price,
+            quantity: +obj.quantity,
+            tumbnail_url: obj.tumbnail_url,
+            standard_unit: obj.standard_unit,
+            thick: obj.thick,
+          };
+        })
+        .filter(obj => {
+          return obj.option_products_id === optionProductsId;
+        });
+      setCartItem(prevState => {
+        return prevState.map(obj => {
+          if (obj.option_products_id === optionProductsId) {
+            return patchedItem[0];
+          } else {
+            return obj;
+          }
+        });
+      });
+    }
   };
 
   //DELETE == 성공
@@ -116,7 +140,7 @@ const Cart = () => {
         .map(obj => {
           return {
             id: obj.id,
-            product_id: obj.product_id,
+            option_products_id: obj.option_products_id,
             name: obj.name,
             price: obj.price,
             quantity: obj.quantity,
@@ -133,13 +157,14 @@ const Cart = () => {
   const getCartData = () => {
     fetch('/data/cartList.json', {
       //'http://172.20.10.3:3000/carts/user'
+      //'/data/cartList.json'
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: localStorage.getItem('token'),
       },
     })
       .then(res => res.json())
-      .then(data => setCartItem(data)); //data.getCartbyId
+      .then(data => setCartItem(data.getCartbyId)); //data.getCartbyId
   };
 
   useEffect(() => {
@@ -180,6 +205,7 @@ const Cart = () => {
                     handleSingleCheck={() => handleSingleCheck(data.id)}
                     deleteProduct={deleteProduct}
                     setCartItem={setCartItem}
+                    patchAmount={patchAmount}
                   />
                 ))}
               </ul>
@@ -217,14 +243,12 @@ const Cart = () => {
                   </p>
                 </li>
               </ul>
-              <button className="payment_btn order" onClick={() => postOrder()}>
-                상품 주문하기
-              </button>
               <button
-                className="payment_btn shopping"
-                onClick={() => goToList()}
+                className="payment_btn"
+                onClick={postOrder}
+                disabled={!checkedItem.length}
               >
-                쇼핑계속하기
+                {!checkedItem.length ? '상품을 선택해 주세요' : '주문하기'}
               </button>
             </div>
           </>
