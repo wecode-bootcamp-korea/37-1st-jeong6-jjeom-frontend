@@ -1,79 +1,85 @@
-import React, { useState } from 'react';
-// import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { API } from '../../config';
+import { useLocation } from 'react-router-dom';
 import Completion from './Completion';
 import Confirm from './Confirm';
 import Order from './Order';
 import './Payment.scss';
 
 const Payment = () => {
-  // const [paymentData, setPaymentData] = useState({});
   const [step, setStep] = useState('order');
-  // const [cartItem, setCartItem] = useState({});
-  // const location = useLocation();
-  // const { cartId } = location.state;
+  const location = useLocation();
+  const { cartId } = location.state;
+  const [cartItem, setCartItem] = useState([]);
   const [inputValue, setInputValue] = useState({
     name: '',
-    phoneNumber: ' ',
+    phoneNumber: '',
     address: '',
     arrivalDate: '',
     deliveryMethod: '',
     paymentMethod: '',
   });
 
+  const checkedQueryString = () => {
+    let checkedProducts = '';
+    for (let i = 0; i < cartId.length; i++) {
+      checkedProducts += `cartId=${cartId[i]}&`;
+    }
+    return checkedProducts.slice(0, -1);
+  };
+
+  console.log(checkedQueryString());
+
   const saveInputValue = e => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
   };
-  //   // Todo : cartID 장바구니에서 쿼리스트링 형식으로 받아와야함
-  // useEffect(() => {
-  //   // fetch(`http://dadsa/order/information/${cartId}`)
-  //     .then(res => res.json())
-  //     .then(data => setCartItem(data.뭐시기));
-  // },[]);
+  // Todo : cartId=1& 장바구니에서 쿼리스트링 형식으로 받아와야함
+  useEffect(() => {
+    fetch(`${API.ORDER}/information?${checkedQueryString()}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(res => res.json())
+      .then(data => setCartItem(data.orderInfo));
+  }, []);
 
+  const getQuan = cartItem.map(item => {
+    return item.quantity;
+  });
+  // console.log(getQuan.toString());
+  const getProductId = cartItem.map(item => {
+    return item.id;
+  });
   const handleStep = step => {
     if (step === 'completion') {
-      // fetch(`url`, {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json;charset=utf-8',
-      //     Authorization: localStorage.getItem('token'),
-      //   },
-      //   body: JSON.stringify({
-      //     name: string,
-      //     phoneNumber: number,
-      //     address: string,
-      //     arrivalDate: 2022 - 10 - 32,
-      //     deliveryMethod: boolean,
-      //     quantity: cartItem.뭐시기,
-      //   }),
-      // })
-      //   .then(res => res.json)
-      //   .then(data => {
-      //     if (data.messege === 'success') {
-      //       alert('성공');
-      //     } else {
-      //       alert('실패');
-      //     }
-      //   });
-      // // 선택된 카트를 지우기위한 delete 요청
-      // fetch(`url/order/choice`, {
-      //   method: 'DELETE',
-      //   headers: {
-      //     'Content-Type': 'application/json;charset=utf-8',
-      //   },
-      //   body: JSON.stringify({
-      //     cartId: id,
-      //   }),
-      // }).then(res => res.json);
-      // // 오더 아이디를 요청하는 get 요청
-      // fetch(`url/order/id`)
-      //   .then(res => res.json)
-      //   .then(data);
-      // // 주문 완료창을 위한 GET 요청 (계좌번호 주는거)
-      // fetch(`url/order/complete?${orderId}`)
-      //   .then(res => res.json)
-      //   .then(data);
+      fetch(`${API.ORDER}/makeOrder`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: localStorage.getItem('token'),
+        },
+        body: JSON.stringify({
+          optionProductsId: getProductId,
+          name: inputValue.name,
+          phoneNumber: inputValue.phoneNumber,
+          address: inputValue.address,
+          arrivalDate: inputValue.arrivalDate,
+          deliveryMethod: inputValue.deliveryMethod,
+          quantity: getQuan,
+        }),
+      })
+        .then(res => res.json)
+        .then(data => {
+          if (data.messege === 'success') {
+            alert('성공');
+          } else {
+            alert('실패');
+          }
+        });
     }
     window.scroll(0, 0);
     setStep(step);
@@ -85,6 +91,7 @@ const Payment = () => {
         handleStep={handleStep}
         saveInputValue={saveInputValue}
         inputValue={inputValue}
+        cartItem={cartItem}
       />
     ),
     confirm: (

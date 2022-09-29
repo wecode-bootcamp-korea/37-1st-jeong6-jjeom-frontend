@@ -52,12 +52,10 @@ const SignupData2 = ({ setTransPage }) => {
         }),
       })
         .then(response => response.json())
-        .then(
-          result =>
-            result.message === 'success'
-              ? setSuccessModal(true)
-              : setCheckInfoModal(true),
-          navigate('/main')
+        .then(result =>
+          result.message === 'signUp success'
+            ? setSuccessModal(true)
+            : setCheckInfoModal(true)
         );
     } else {
       setCheckInfoPwModal(true);
