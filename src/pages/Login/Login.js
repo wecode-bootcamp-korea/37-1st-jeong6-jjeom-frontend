@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ModalPortal from '../../Portal';
 import Modal from '../../components/Modal/Modal';
 import './Login.scss';
+import { API } from '../../config';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ const Login = () => {
       return;
     }
 
-    fetch('http://172.20.10.3:3000/users/signin', {
+    fetch(`${API.LOGIN}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import BestItems from './BestItems';
 import './Main.scss';
 import NotifyBanner from './NotifyBanner';
@@ -14,7 +14,7 @@ const Main = () => {
     setMove(prev => prev + 100);
   };
 
-  if (move === -500) {
+  if (move === -300) {
     return setMove(0);
   }
 
@@ -26,7 +26,7 @@ const Main = () => {
             <img
               className="bannerImg"
               style={active}
-              src="images/banner-3.png"
+              src="/images/banner1.png"
               alt="배너이미지"
             />
           </div>
@@ -34,7 +34,7 @@ const Main = () => {
             <img
               className="bannerImg"
               style={active}
-              src="images/banner2 (1).png"
+              src="images/banner2.png"
               alt="배너이미지"
             />
           </div>
@@ -42,23 +42,7 @@ const Main = () => {
             <img
               className="bannerImg"
               style={active}
-              src="images/pork3.jpeg"
-              alt="배너이미지"
-            />
-          </div>
-          <div className="mainBanner">
-            <img
-              className="bannerImg"
-              style={active}
-              src="images/pork4.jpeg"
-              alt="배너이미지"
-            />
-          </div>
-          <div className="mainBanner">
-            <img
-              className="bannerImg "
-              style={active}
-              src="images/pork5.jpeg"
+              src="images/banner3.png"
               alt="배너이미지"
             />
           </div>

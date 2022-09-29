@@ -15,22 +15,29 @@ const NotifyBanner = () => {
     setMove(prev => prev + 575);
   };
 
-  if (move2 === -1725) {
+  if (move2 === -1150) {
     return setMove(0);
   }
+  console.log(move2);
 
   return (
     <div>
       <div className="notifyBanner">
         <div className="secondBannerWrap">
           <div style={active} className="secondBannerContent">
-            공지사항1
+            <p>프론트엔드</p>
+            <div>
+              <span>안수진</span>
+              <span>신주안</span>
+              <span>김효성</span>
+            </div>
           </div>
           <div style={active} className="secondBannerContent">
-            공지사항2
-          </div>
-          <div style={active} className="secondBannerContent">
-            공지사항3
+            <p>백엔드</p>
+            <div>
+              <span>추재호</span>
+              <span>정우진</span>
+            </div>
           </div>
           <div className="secondBtnWrap">
             {move2 === 0 ? (

@@ -66,7 +66,11 @@ const BestItems = () => {
     {
       tabTitle: (
         <span
-          className={activeIndex === 2 ? 'is-active' : 'none-active'}
+          className={
+            activeIndex === 2
+              ? 'headerTitle is-active'
+              : 'headerTitle none-active'
+          }
           onClick={() => {
             tabClickHandler(2);
           }}

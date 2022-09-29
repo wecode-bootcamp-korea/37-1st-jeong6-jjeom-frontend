@@ -4,6 +4,7 @@ import Option from './Option/Option';
 import ItemInfo from './ItemInfo/ItemInfo';
 import Info from './Info/Info';
 import './Detail.scss';
+import { API } from '../../config';
 
 const Detail = () => {
   const { id } = useParams();
@@ -26,7 +27,8 @@ const Detail = () => {
 
   useEffect(() => {
     // TODO : API Integration
-    fetch(`http://172.20.10.3:3000/products/${id}`)
+    fetch(`${API.DETAIL}/${id}`)
+      //fetch(`http://172.20.10.3:3000/products/${id}`
       .then(res => res.json())
       .then(data => setDetailData(data.getProduct));
   }, [id]);
@@ -47,7 +49,8 @@ const Detail = () => {
   };
 
   const handleTab = tab => {
-    fetch(`http://172.20.10.3:3000/products/${id}/description`)
+    fetch(`${API.DETAIL}/${id}/description`)
+      //fetch(`http://172.20.10.3:3000/products/${id}/description`)
       .then(res => res.json())
       .then(data => setDescription(data.getDescription));
     setCurrTab(tab);
@@ -62,7 +65,8 @@ const Detail = () => {
       setIsModal(true);
       setTimeout(handleModal, 3000);
     } else if (button === 'buy') {
-      fetch('http://172.20.10.3:3000/carts/post', {
+      fetch(`${API.CART}/post`, {
+        // fetch(`http://172.20.10.3:3000/carts/post`
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -85,7 +89,7 @@ const Detail = () => {
           }
         });
     } else if (button === 'cart') {
-      fetch(`http://172.20.10.3:3000/carts/post`, {
+      fetch(`${API.CART}/post`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',

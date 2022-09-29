@@ -1,0 +1,30 @@
+.no_product {
+  width: 100%;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #e1dedf;
+  padding: 80px 0;
+
+  p {
+    text-align: center;
+    font-size: 38px;
+    color: #e1dedf;
+  }
+
+  .shopping_btn {
+    display: block;
+    width: 260px;
+    height: 70px;
+    padding: 20px 30px;
+    margin: 60px auto 0;
+    background: #000;
+    color: #fff;
+    font-weight: 700;
+    text-align: left;
+
+    &::after {
+      content: '\f061';
+      font-family: FontAwesome;
+      float: right;
+    }
+  }
+}
