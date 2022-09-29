@@ -1,0 +1,58 @@
+@import '/src/styles/variables.scss';
+
+.payment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 0;
+
+  .payment_title {
+    font-size: 32px;
+    font-weight: 600;
+    text-align: center;
+  }
+  .active {
+    color: black;
+  }
+  
+  .payment_status_container {
+    @include flex-center;
+    justify-content: space-evenly;
+    width: 1200px;
+    height: 120px;
+    margin: 50px 0;
+    color: gray;
+    background-color: #f7f7f7;
+
+    .payment_status_step {
+      @include flex-center;
+      justify-content: space-around;
+      font-weight: 600;
+      gap: 100px;
+
+      .status_icon {
+        font-size: 50px;
+      }
+
+      .payment_status_text {
+        margin-left: 20px;
+        font-size: 18px;
+      }
+    }
+  }
+
+  .payment_btn_container {
+    width: 100%;
+    margin-top: 100px;
+    .step_btn {
+      width: 50%;
+      color: white;
+      background-color: gray;
+      padding: 20px;
+    }
+
+    & :last-child {
+      background-color: black;
+    }
+  }
+}
